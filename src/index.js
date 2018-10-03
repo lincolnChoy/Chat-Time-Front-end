@@ -9,12 +9,12 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
-import { changeRoute, signInForm, callAPI } from './reducers';
+import { changeRoute, signInForm, callAPI, setFormState, loadUser } from './reducers';
 
 /* Prepare redux logger */
 const logger = createLogger();
 
-const rootReducer = combineReducers({ changeRoute, signInForm, callAPI });
+const rootReducer = combineReducers({ changeRoute, signInForm, callAPI, setFormState, loadUser });
 
 /* Create store to contain state, also add redux-logger for debugging and thunk middleware for async actions
  The store uses the root reducer to create the store/ the object tree of the state */

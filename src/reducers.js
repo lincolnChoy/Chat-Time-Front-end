@@ -5,9 +5,21 @@ import {
 	EDIT_PW,
 	EDIT_PW2,
 	EDIT_CODE,
+
 	SIGN_IN,
 	REGISTRATION,
-	HOME
+	HOME,
+
+	NOT_COMPLETE,
+	WRONG_CRED,
+	EXISTING_EMAIL,
+	WRONG_CODE,
+	VERIFIED,
+	PW_MISMATCH,
+	NOT_VERIFIED,
+	RESET,
+
+	LOAD_USER
 
 } from './constants';
 
@@ -91,3 +103,56 @@ export const callAPI = (state = APIResults, action = {}) => {
 			return state;
 	}
 }
+
+const formState = {
+
+	formState : ''
+}
+
+
+export const setFormState = (state = formState, action = {}) => {
+
+	switch (action.type) {
+		case NOT_COMPLETE :
+			return Object.assign({} , state, { formState : action.payload });
+		case WRONG_CRED :
+			return Object.assign({} , state, { formState : action.payload });
+		case EXISTING_EMAIL :
+			return Object.assign({} , state, { formState : action.payload });
+		case WRONG_CODE :
+			return Object.assign({} , state, { formState : action.payload });
+		case VERIFIED : 
+			return Object.assign({} , state, { formState : action.payload });
+		case PW_MISMATCH :
+			return Object.assign({} , state, { formState : action.payload });
+		case NOT_VERIFIED :
+			return Object.assign({} , state, { formState : action.payload });
+		case RESET : 
+			return initialFormState;
+		default : 
+			return state;
+	}
+
+}
+
+const initialStateUser = {
+
+	user : {
+		first : '',
+		last : '',
+		email : ''
+	}
+}
+
+
+export const loadUser = (state = initialStateUser, action = {}) => {
+
+	switch (action.type) {
+
+		case LOAD_USER : 
+			return Object.assign({}, state, { user : action.payload, signedIn : true });
+		default : 
+			return state;
+	}
+}
+

@@ -48,12 +48,12 @@ class App extends Component {
 			default : 
 				page = '';
 		}
-		
+
 		return (
 			<div className = 'App'>
-			<Particles className = 'particles' params = { particlesOptions } />
-			<SignInForm />
-			{ page } 
+				<Particles className = 'particles' params = { particlesOptions } />
+				<SignInForm />
+				{ page } 
 			</div>
 		);
 	}
