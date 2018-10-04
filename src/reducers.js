@@ -27,6 +27,7 @@ import {
 	API_PENDING,
 	API_SUCCESS,
 	API_FAIL,
+	API_READ
 } from './apiConstants';
 
 
@@ -85,6 +86,7 @@ export const signInForm = (state = initialFormState, action = {}) => {
 const APIResults = {
 
 	isPending : false,
+	resultRead : false,
 	resp : '',
 	error : ''
 }
@@ -95,10 +97,12 @@ export const callAPI = (state = APIResults, action = {}) => {
 
 		case API_PENDING :
 			return Object.assign({}, state, { isPending : true });
-		/* Fall through */
 		case API_SUCCESS :
+			return Object.assign({}, state, { resp : action.payload , isPending : false, resultRead : false });
 		case API_FAIL : 
-			return Object.assign({}, state, { resp : action.payload , isPending : false });
+			return Object.assign({}, state, { resp : action.payload , isPending : false, resultRead : false });
+		case API_READ : 
+			return Object.assign({}, state, { resultRead : true });
 		default :
 			return state;
 	}

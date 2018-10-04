@@ -37,7 +37,7 @@ class App extends Component {
 		let page;
 		switch(route) {
 			case SIGN_IN : 
-				page = '';
+				page = <SignInForm />;
 				break;
 			case REGISTRATION : 
 				page = '';
@@ -52,7 +52,6 @@ class App extends Component {
 		return (
 			<div className = 'App'>
 				<Particles className = 'particles' params = { particlesOptions } />
-				<SignInForm />
 				{ page } 
 			</div>
 		);

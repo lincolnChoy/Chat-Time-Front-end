@@ -56,7 +56,15 @@ export const signIn = (email,pw) => (dispatch) => {
 	/* Parse the json response */
 	.then(response => response.json())
 	.then(data => {
+		console.log('data is ' + data.code);
 		dispatch({ type: API.API_SUCCESS, payload: data});
 	})
 	.catch(err => dispatch({ type: API.API_FAIL, payload: err }));
+}
+
+export const setAPIRead = () => {
+
+	return {
+		type : API.API_READ
+	}
 }

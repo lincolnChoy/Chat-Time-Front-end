@@ -4,6 +4,7 @@
 export const API_PENDING = 'API_PENDING';
 export const API_SUCCESS = 'API_SUCCESS';
 export const API_FAIL = 'API_FAIL';
+export const API_READ = 'API_READ';
 
 /* Sign in */
 export const SIGN_IN_PENDING = 'SIGN_IN_PENDING';
