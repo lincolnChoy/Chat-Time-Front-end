@@ -14,6 +14,7 @@ import {
 
 	NOT_COMPLETE,
 	WRONG_CRED,
+	NOT_VERIFIED,
 
 	RESET
 } from '../../constants';
@@ -63,7 +64,13 @@ class SignInForm extends React.Component {
 				/* Save the user in state, then route change */
 				/* Signed in */
 				setFormState(RESET);
-				loadUser(signInResponse);
+				const user = {
+					first : signInResponse.first,
+					last : signInResponse.last,
+					email : signInResponse.email,
+					pw : this.props.pw
+				}
+				loadUser(user);
 				changeRoute(HOME);
 			}
 			else if (signInResponse.code === WRONG_CRED) {

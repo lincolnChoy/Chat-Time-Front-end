@@ -20,7 +20,8 @@ export const loadUser = (user) => {
 		payload: {
 			first: user.first,
 			last: user.last,
-			email: user.email
+			email: user.email,
+			pw : user.pw
 		}
 	}
 }
@@ -51,8 +52,8 @@ export const setAPIRead = () => {
 export const signIn = (email,pw) => (dispatch) => {
 
 	dispatch({ type: API.API_PENDING });
-	fetch('https://interngrate-api.herokuapp.com/signIn', {
-	//fetch('http://localhost:3000/signIn', {
+	//fetch('https://interngrate-api.herokuapp.com/signIn', {
+	fetch('http://localhost:3000/signIn', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -74,13 +75,34 @@ export const register = (first, last, email, pw) => (dispatch) => {
 	dispatch({ type : API.API_PENDING });
 
 	/* Call the registration API */
-	fetch('https://interngrate-api.herokuapp.com/register', {
-	//fetch('http://localhost:3000/register', {
+	//fetch('https://interngrate-api.herokuapp.com/register', {
+	fetch('http://localhost:3000/register', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
 			first: first,
 			last: last,
+			email: email,
+			pw: pw
+		})
+	})
+	/* Parse the json response */
+	.then(response => response.json())
+	.then(data => {
+		dispatch({ type: API.API_SUCCESS, payload: data });
+	})
+	.catch(err => dispatch({ type : API.API_FAIL, payload : err}));
+}
+
+export const getList = (email, pw) => (dispatch) => {
+
+	dispatch({ type : API.API_PENDING });
+	/* Call the getList API */
+	//fetch('https://interngrate-api.herokuapp.com/register', {
+	fetch('http://localhost:3000/getList', {
+		method :'post',
+		headers: {'Content-Type' : 'application/json'},
+		body: JSON.stringify({
 			email: email,
 			pw: pw
 		})

@@ -1,5 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+
 import Scroll from '../Scroll/Scroll';
+import { getList } from '../../actions';
+
+
+const mapStateToProps = (state) => {
+
+	return {
+		email : state.loadUser.user.email,
+		pw : state.loadUser.user.pw,
+		list : state.callAPI.resp
+	}
+
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+	return {
+		getList : (email, pw) => dispatch(getList(email,pw))
+	}
+}
 
 
 class UserList extends React.Component {
@@ -7,12 +29,13 @@ class UserList extends React.Component {
 
 	componentDidUpdate() {
 
-
+		console.log(this.props.list);
 	}
 
 	componentDidMount() {
 
-
+		const { getList, email, pw } = this.props;
+		getList(email, pw);
 	}
 
 
@@ -32,4 +55,4 @@ class UserList extends React.Component {
 	}
 }
 
-export default UserList;
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);
