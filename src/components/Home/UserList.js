@@ -19,40 +19,13 @@ class UserList extends React.Component {
 	render() {
 
 		return (
-			<div className = 'ma2'>
-				<p className = 'f4 ph5 pv3 bg-white br3'>Online Users</p>
-					<Scroll >
-						<p> User 1</p>
-						<p> User 2</p>
-						<p> User 3</p>
-						<p> User 4</p>
-						<p> User 1</p>
-						<p> User 2</p>
-						<p> User 3</p>
-						<p> User 4</p>
-						<p> User 1</p>
-						<p> User 2</p>
-						<p> User 3</p>
-						<p> User 4</p>
-						<p> User 1</p>
-						<p> User 2</p>
-						<p> User 3</p>
-						<p> User 4</p>
-						<p> User 2</p>
-						<p> User 3</p>
-						<p> User 4</p>
-						<p> User 1</p>
-						<p> User 2</p>
-						<p> User 3</p>
-						<p> User 4</p>
-						<p> User 1</p>
-						<p> User 2</p>
-						<p> User 3</p>
-						<p> User 4</p>
-						<p> User 1</p>
-						<p> User 2</p>
-						<p> User 3</p>
-						<p> User 4</p>
+			<div className = 'ma2 w-20'>
+				<p className = 'f4 ph5 pv3 bg-white br3 tc'>Online Users</p>
+					<Scroll>
+						<div className = 'tc'>
+							<p>User 1</p>
+							<p>User 2</p>
+						</div>
 					</Scroll>
 			</div>
 		)
