@@ -6,6 +6,7 @@ import { particlesOptions } from '../particleConfig';
 
 import SignInForm from '../components/SignIn/SignInForm';
 import RegistrationForm from '../components/Registration/RegistrationForm';
+import HomePage from '../components/Home/HomePage';
 
 import { 
 	REGISTRATION,
@@ -44,15 +45,15 @@ class App extends Component {
 				page = <RegistrationForm />;
 				break;
 			case HOME : 
-				page = <img src = 'https://pics.me.me/thumb_hacker-voice-im-in-thalmor-embassy-if-paaari-rnax-hackerman-22788331.png' />;
+				page = <HomePage />;
 				break;
 			default : 
 				page = '';
 		}
 
 		return (
-			<div className = 'App'>
-				<Particles className = 'particles' params = { particlesOptions } />
+			<div style = {{ height : '100%' }} >
+				{ /*<Particles className = 'particles' params = { particlesOptions } /> */} 
 				{ page } 
 			</div>
 		);

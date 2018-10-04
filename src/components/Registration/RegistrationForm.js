@@ -119,9 +119,9 @@ class RegistrationForm extends React.Component {
 		}
 
 		return (
-			<div>
+			<div className = 'tc'>
 				{ loading }
-				<div className = 'mt7'>
+				<div className = 'mt6'>
 					<h1 className = 'f1 white'>Chat Time</h1>
 					<div className = 'br3 ba shadow-5 b--black-10 mv4 w-100 w-50-m w-25-l mw6 center'>
 						<div className = 'pa4 black-80'>
