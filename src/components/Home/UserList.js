@@ -1,5 +1,4 @@
 import React from 'react';
-import './list.css';
 import Scroll from '../Scroll/Scroll';
 
 

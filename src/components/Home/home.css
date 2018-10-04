@@ -1,0 +1,13 @@
+.home { 
+	display : flex;
+	justify-content : space-between;
+}
+
+.wrapper {
+	position : relative;
+}
+
+.message {
+	position: absolute;
+	bottom: 0;
+}
