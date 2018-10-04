@@ -7,8 +7,8 @@ const HomePage = () => {
 	return (
 
 		<div className = 'home'>
-			<Messenger />
 			<UserList />
+			<Messenger />
 		</div>
 	)
 }

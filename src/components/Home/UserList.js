@@ -20,9 +20,8 @@ class UserList extends React.Component {
 	render() {
 
 		return (
-			<div className = 'list'>
-				<div className = 'listElements'>
-					<p className = 'f4 ph5 pv3 bg-white br3'>Online Users</p>
+			<div className = 'ma2'>
+				<p className = 'f4 ph5 pv3 bg-white br3'>Online Users</p>
 					<Scroll >
 						<p> User 1</p>
 						<p> User 2</p>
@@ -39,7 +38,7 @@ class UserList extends React.Component {
 						<p> User 1</p>
 						<p> User 2</p>
 						<p> User 3</p>
-						<p> User 4</p>						
+						<p> User 4</p>
 						<p> User 2</p>
 						<p> User 3</p>
 						<p> User 4</p>
@@ -56,7 +55,6 @@ class UserList extends React.Component {
 						<p> User 3</p>
 						<p> User 4</p>
 					</Scroll>
-				</div>
 			</div>
 		)
 	}
