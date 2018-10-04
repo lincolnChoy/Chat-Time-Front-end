@@ -2,10 +2,10 @@ export const particlesOptions = {
 
 	particles: {
 		number: { 
-			value: 40, 
+			value: 60, 
 			density: { 
 				enable: true, 
-				value_area: 1300 
+				value_area: 800 
 			} 
 		},
 
