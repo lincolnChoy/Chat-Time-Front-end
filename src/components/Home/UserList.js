@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 
 import Scroll from '../Scroll/Scroll';
+import UserCard from './UserCard';
 import { getList } from '../../actions';
 
 
@@ -11,7 +12,7 @@ const mapStateToProps = (state) => {
 	return {
 		email : state.loadUser.user.email,
 		pw : state.loadUser.user.pw,
-		list : state.callAPI.resp
+		list : state.callAPI.resp.users
 	}
 
 }
@@ -19,18 +20,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
 	return {
-		getList : (email, pw) => dispatch(getList(email,pw))
+		getList : (email, pw) => dispatch(getList(email, pw))
 	}
 }
 
-
 class UserList extends React.Component {
 
-
-	componentDidUpdate() {
-
-		console.log(this.props.list);
-	}
 
 	componentDidMount() {
 
@@ -38,16 +33,22 @@ class UserList extends React.Component {
 		getList(email, pw);
 	}
 
-
 	render() {
+
+		const { list } = this.props;
+		let userArray;
+		if (list !== undefined) {
+			userArray = list.map((user,i) => {
+				return <UserCard key = {i} first = {list[i].first} last = {list[i].last} email = {list[i].email} />
+			});
+		}
 
 		return (
 			<div className = 'ma2 w-20'>
 				<p className = 'f4 ph5 pv3 bg-white br3 tc'>Online Users</p>
 					<Scroll>
 						<div className = 'tc'>
-							<p>User 1</p>
-							<p>User 2</p>
+							{ userArray }
 						</div>
 					</Scroll>
 			</div>

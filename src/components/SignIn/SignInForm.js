@@ -14,7 +14,6 @@ import {
 
 	NOT_COMPLETE,
 	WRONG_CRED,
-	NOT_VERIFIED,
 
 	RESET
 } from '../../constants';

@@ -52,8 +52,8 @@ export const setAPIRead = () => {
 export const signIn = (email,pw) => (dispatch) => {
 
 	dispatch({ type: API.API_PENDING });
-	//fetch('https://interngrate-api.herokuapp.com/signIn', {
-	fetch('http://localhost:3000/signIn', {
+	fetch('https://chat-time-api.herokuapp.com/signIn', {
+	//fetch('http://localhost:3000/signIn', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -75,8 +75,8 @@ export const register = (first, last, email, pw) => (dispatch) => {
 	dispatch({ type : API.API_PENDING });
 
 	/* Call the registration API */
-	//fetch('https://interngrate-api.herokuapp.com/register', {
-	fetch('http://localhost:3000/register', {
+	fetch('https://chat-time-api.herokuapp.com/register', {
+	//fetch('http://localhost:3000/register', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -98,8 +98,8 @@ export const getList = (email, pw) => (dispatch) => {
 
 	dispatch({ type : API.API_PENDING });
 	/* Call the getList API */
-	//fetch('https://interngrate-api.herokuapp.com/register', {
-	fetch('http://localhost:3000/getList', {
+	fetch('https://chat-time-api.herokuapp.com/getList', {
+	//fetch('http://localhost:3000/getList', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
