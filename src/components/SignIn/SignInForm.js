@@ -101,7 +101,7 @@ class SignInForm extends React.Component {
 	render() {
 
 		/* Destructure props */
-		const { editField, changeRoute, isPending, formState } = this.props;
+		const { editField, changeRoute, isPending, formState, setFormState } = this.props;
 
 		/* If API is pending, should show loading animation */
 		let loading;
@@ -156,11 +156,11 @@ class SignInForm extends React.Component {
 								<div className = 'lh-copy mt3'>
 									<p onClick = { 
 										() => {
+											setFormState(RESET);
 											changeRoute(REGISTRATION);
 										}
 									}
 									href = '' className = 'f5 link dim black db pointer'>Register</p>
-									
 								</div>
 							</div>
 							{ formError }

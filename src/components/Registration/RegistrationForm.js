@@ -6,8 +6,8 @@ import { editField, changeRoute, register, setFormState, loadUser, setAPIRead } 
 
 import { 
 
-	REGISTRATION,
 	HOME,
+	SIGN_IN,
 
 	EDIT_FIRST_NAME,
 	EDIT_LAST_NAME,
@@ -101,7 +101,7 @@ class RegistrationForm extends React.Component {
 	render() {
 
 		/* Destructure props */
-		const { editField, changeRoute, isPending, formState } = this.props;
+		const { editField, changeRoute, isPending, formState, setFormState } = this.props;
 
 		/* If API is pending, should show loading animation */
 		let loading;
@@ -168,6 +168,15 @@ class RegistrationForm extends React.Component {
 										}
 									} 
 									className = 'mt2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Sign in' />
+								<div className = 'lh-copy mt3'>
+									<p onClick = { 
+										() => {
+											setFormState(RESET);
+											changeRoute(SIGN_IN);
+										}
+									}
+									href = '' className = 'f5 link dim black db pointer'>Have an account? Click here to sign in.</p>
+								</div>
 							</div>
 							{ formError }
 						</div>

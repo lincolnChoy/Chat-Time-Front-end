@@ -1,5 +1,4 @@
 import React from 'react';
-import UserList from '../Home/UserList';
 
 class Messenger extends React.Component {
 

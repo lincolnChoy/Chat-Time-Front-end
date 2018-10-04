@@ -32,7 +32,7 @@ import {
 
 const initialRouteState = {
 
-	route : HOME
+	route : SIGN_IN
 }
 
 export const changeRoute = (state = initialRouteState, action = {}) => {
