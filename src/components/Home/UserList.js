@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Scroll from '../Scroll/Scroll';
 import UserCard from './UserCard';
-import { getList } from '../../actions';
+import { getList, setTarget } from '../../actions';
 
 
 const mapStateToProps = (state) => {
@@ -20,7 +20,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
 	return {
-		getList : (email, pw) => dispatch(getList(email, pw))
+		getList : (email, pw) => dispatch(getList(email, pw)),
+		setTarget : (first, last, email) => dispatch(setTarget(first, last, email))
 	}
 }
 
@@ -35,11 +36,11 @@ class UserList extends React.Component {
 
 	render() {
 
-		const { list } = this.props;
+		const { list, setTarget } = this.props;
 		let userArray;
 		if (list !== undefined) {
 			userArray = list.map((user,i) => {
-				return <UserCard key = {i} first = {list[i].first} last = {list[i].last} email = {list[i].email} />
+				return <UserCard key = {i} first = {list[i].first} last = {list[i].last} email = {list[i].email} setTarget = { setTarget } />
 			});
 		}
 

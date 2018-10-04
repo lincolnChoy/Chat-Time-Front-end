@@ -1,7 +1,8 @@
 import * as API from './apiConstants';
 
 import {
-	LOAD_USER
+	LOAD_USER,
+	SET_TARGET
 } from './constants';
 
 
@@ -113,4 +114,17 @@ export const getList = (email, pw) => (dispatch) => {
 		dispatch({ type: API.API_SUCCESS, payload: data });
 	})
 	.catch(err => dispatch({ type : API.API_FAIL, payload : err}));
+}
+
+export const setTarget = (first, last, email) => {
+
+	const user = {
+		first : first,
+		last : last,
+		email : email
+	}
+	return {
+		type : SET_TARGET,
+		payload : user
+	}
 }

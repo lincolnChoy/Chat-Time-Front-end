@@ -18,7 +18,8 @@ import {
 	NOT_VERIFIED,
 	RESET,
 
-	LOAD_USER
+	LOAD_USER,
+	SET_TARGET
 
 } from './constants';
 
@@ -174,3 +175,18 @@ export const loadUser = (state = initialStateUser, action = {}) => {
 	}
 }
 
+const initialTarget = {
+
+	target : ''
+}
+
+export const setTarget = (state = initialTarget, action = {}) => {
+
+	switch (action.type) {
+
+		case SET_TARGET : 
+			return Object.assign({}, state, { target : action.payload });
+		default : 
+			return state;
+	}
+}

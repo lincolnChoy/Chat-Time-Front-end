@@ -22,3 +22,5 @@ export const PW_MISMATCH = 'PW_MISMATCH';
 export const NOT_VERIFIED = 'NOT_VERIFIED';
 
 export const LOAD_USER = 'LOAD_USER';
+
+export const SET_TARGET = 'SET_TARGET';
