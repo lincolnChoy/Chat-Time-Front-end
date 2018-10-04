@@ -43,7 +43,7 @@ class App extends Component {
 				page = '';
 				break;
 			case HOME : 
-				page = '';
+				page = <img src = 'https://pics.me.me/thumb_hacker-voice-im-in-thalmor-embassy-if-paaari-rnax-hackerman-22788331.png' />;
 				break;
 			default : 
 				page = '';
