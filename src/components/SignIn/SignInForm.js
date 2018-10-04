@@ -112,10 +112,10 @@ class SignInForm extends React.Component {
 			loading = <LoadAnim />
 		}
 		else if (formState === WRONG_CRED) {
-			formError = <p className = 'f4 bg-light-red br3 white'>Incorrect email or password.</p>;
+			formError = <p className = 'f4 pa1 bg-light-red br3 white'>Incorrect email or password.</p>;
 		}
 		else if (formState === NOT_COMPLETE) {
-			formError = <p className = 'f4 bg-light-red br3 white'>Please fill in both fields.</p>;
+			formError = <p className = 'f4 pa1 bg-light-red br3 white'>Please fill in both fields.</p>;
 		}
 
 		return (
