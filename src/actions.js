@@ -41,6 +41,13 @@ export const setFormState = (state) => {
 	}
 }
 
+export const setAPIRead = () => {
+
+	return {
+		type : API.API_READ
+	}
+}
+
 export const signIn = (email,pw) => (dispatch) => {
 
 	dispatch({ type: API.API_PENDING });
@@ -56,15 +63,32 @@ export const signIn = (email,pw) => (dispatch) => {
 	/* Parse the json response */
 	.then(response => response.json())
 	.then(data => {
-		console.log('data is ' + data.code);
 		dispatch({ type: API.API_SUCCESS, payload: data});
 	})
 	.catch(err => dispatch({ type: API.API_FAIL, payload: err }));
 }
 
-export const setAPIRead = () => {
 
-	return {
-		type : API.API_READ
-	}
+export const register = (first, last, email, pw) => (dispatch) => {
+
+	dispatch({ type : API.API_PENDING });
+
+	/* Call the registration API */
+	fetch('https://interngrate-api.herokuapp.com/register', {
+	//fetch('http://localhost:3000/register', {
+		method :'post',
+		headers: {'Content-Type' : 'application/json'},
+		body: JSON.stringify({
+			first: first,
+			last: last,
+			email: email,
+			pw: pw
+		})
+	})
+	/* Parse the json response */
+	.then(response => response.json())
+	.then(data => {
+		dispatch({ type: API.API_SUCCESS, payload: data });
+	})
+	.catch(err => dispatch({ type : API.API_FAIL, payload : err}));
 }

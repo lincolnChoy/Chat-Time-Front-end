@@ -5,6 +5,7 @@ import Particles from 'react-particles-js';
 import { particlesOptions } from '../particleConfig';
 
 import SignInForm from '../components/SignIn/SignInForm';
+import RegistrationForm from '../components/Registration/RegistrationForm';
 
 import { 
 	REGISTRATION,
@@ -40,7 +41,7 @@ class App extends Component {
 				page = <SignInForm />;
 				break;
 			case REGISTRATION : 
-				page = '';
+				page = <RegistrationForm />;
 				break;
 			case HOME : 
 				page = <img src = 'https://pics.me.me/thumb_hacker-voice-im-in-thalmor-embassy-if-paaari-rnax-hackerman-22788331.png' />;

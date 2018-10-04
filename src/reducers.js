@@ -4,7 +4,6 @@ import {
 	EDIT_LAST_NAME,
 	EDIT_PW,
 	EDIT_PW2,
-	EDIT_CODE,
 
 	SIGN_IN,
 	REGISTRATION,
@@ -51,18 +50,34 @@ export const changeRoute = (state = initialRouteState, action = {}) => {
 }
 
 
-const initialFormState = {
-
+const initialSignInForm = {
 	email : '',
-	first : '',
-	last : '',
-	pw : '',
-	pw2 : '',
-	code : ''
-
+	pw : ''
 }
 
-export const signInForm = (state = initialFormState, action = {}) => {
+export const signInForm = (state = initialSignInForm, action = {}) => {
+
+	switch (action.type) {
+
+		case EDIT_EMAIL : 
+			return Object.assign({}, state, { email : action.payload });
+		case EDIT_PW : 
+			return Object.assign({}, state, { pw : action.payload });
+		default :
+			return state;
+	}
+}
+
+const initialRegistrationForm = {
+	first : '',
+	last : '',
+	email : '',
+	pw : '',
+	pw2 : '' 
+}
+
+
+export const registrationForm = (state = initialRegistrationForm, action = {}) => {
 
 	switch (action.type) {
 
@@ -76,17 +91,16 @@ export const signInForm = (state = initialFormState, action = {}) => {
 			return Object.assign({}, state, { pw : action.payload });
 		case EDIT_PW2 : 
 			return Object.assign({}, state, { pw2 : action.payload });
-		case EDIT_CODE : 
-			return Object.assign({}, state, { code : action.payload });
 		default :
 			return state;
 	}
 }
 
+
 const APIResults = {
 
 	isPending : false,
-	resultRead : false,
+	resultRead : true,
 	resp : '',
 	error : ''
 }
@@ -108,13 +122,13 @@ export const callAPI = (state = APIResults, action = {}) => {
 	}
 }
 
-const formState = {
+const initialFormState = {
 
 	formState : ''
 }
 
 
-export const setFormState = (state = formState, action = {}) => {
+export const setFormState = (state = initialFormState, action = {}) => {
 
 	switch (action.type) {
 		case NOT_COMPLETE :
