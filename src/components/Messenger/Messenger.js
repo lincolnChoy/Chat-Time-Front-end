@@ -22,8 +22,9 @@ class Messenger extends React.Component {
 		let messageBox;
 		if (messageTarget) {
 			messageBox = 
-				<div className = 'w-100'>
-					<h1 className = 'tc mt4 pa3'>{ messageTarget.first + '  ' +  messageTarget.last }</h1>
+				<div className = 'w-100 pa3' style = {{ display : 'flex', justifyContent : 'space-around' }}>
+					<div className = 'pa3'>{ messageTarget.first + '  ' +  messageTarget.last }</div>
+					<div className = 'h-50 br3 pa3 pointer grow' style = {{ border : '1px solid blue' }}>View Profile</div>
 					<div className = 'message w-100'>
 						<input className = 'b pa2 input-reset ba bg-transparent hover-white w-90' type = 'text' />
 						<input className = 'ml2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Send' />
