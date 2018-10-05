@@ -10,7 +10,7 @@ import { getList, setTarget } from '../../actions';
 const mapStateToProps = (state) => {
 
 	return {
-		email : state.loadUser.user.email,
+		id : state.loadUser.user.id,
 		pw : state.loadUser.user.pw,
 		list : state.callAPI.resp.users
 	}
@@ -20,8 +20,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
 	return {
-		getList : (email, pw) => dispatch(getList(email, pw)),
-		setTarget : (first, last, email) => dispatch(setTarget(first, last, email))
+		getList : (id, pw) => dispatch(getList(id, pw)),
+		setTarget : (first, last, id) => dispatch(setTarget(first, last, id))
 	}
 }
 
@@ -30,8 +30,8 @@ class UserList extends React.Component {
 
 	componentDidMount() {
 
-		const { getList, email, pw } = this.props;
-		getList(email, pw);
+		const { getList, id, pw } = this.props;
+		getList(id, pw);
 	}
 
 	render() {
@@ -40,7 +40,7 @@ class UserList extends React.Component {
 		let userArray;
 		if (list !== undefined) {
 			userArray = list.map((user,i) => {
-				return <UserCard key = {i} first = {list[i].first} last = {list[i].last} email = {list[i].email} setTarget = { setTarget } />
+				return <UserCard key = {i} first = {list[i].first} last = {list[i].last} id = {list[i].id} setTarget = { setTarget } />
 			});
 		}
 

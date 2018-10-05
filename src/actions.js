@@ -21,7 +21,7 @@ export const loadUser = (user) => {
 		payload: {
 			first: user.first,
 			last: user.last,
-			email: user.email,
+			id: user.id,
 			pw : user.pw
 		}
 	}
@@ -53,8 +53,8 @@ export const setAPIRead = () => {
 export const signIn = (email,pw) => (dispatch) => {
 
 	dispatch({ type: API.API_PENDING });
-	fetch('https://chat-time-api.herokuapp.com/signIn', {
-	//fetch('http://localhost:3000/signIn', {
+	//fetch('https://chat-time-api.herokuapp.com/signIn', {
+	fetch('http://localhost:3000/signIn', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -76,8 +76,8 @@ export const register = (first, last, email, pw) => (dispatch) => {
 	dispatch({ type : API.API_PENDING });
 
 	/* Call the registration API */
-	fetch('https://chat-time-api.herokuapp.com/register', {
-	//fetch('http://localhost:3000/register', {
+	//fetch('https://chat-time-api.herokuapp.com/register', {
+	fetch('http://localhost:3000/register', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -95,16 +95,16 @@ export const register = (first, last, email, pw) => (dispatch) => {
 	.catch(err => dispatch({ type : API.API_FAIL, payload : err}));
 }
 
-export const getList = (email, pw) => (dispatch) => {
+export const getList = (id, pw) => (dispatch) => {
 
 	dispatch({ type : API.API_PENDING });
 	/* Call the getList API */
-	fetch('https://chat-time-api.herokuapp.com/getList', {
-	//fetch('http://localhost:3000/getList', {
+	//fetch('https://chat-time-api.herokuapp.com/getList', {
+	fetch('http://localhost:3000/getList', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
-			email: email,
+			id: id,
 			pw: pw
 		})
 	})
@@ -116,12 +116,12 @@ export const getList = (email, pw) => (dispatch) => {
 	.catch(err => dispatch({ type : API.API_FAIL, payload : err}));
 }
 
-export const setTarget = (first, last, email) => {
+export const setTarget = (first, last, id) => {
 
 	const user = {
 		first : first,
 		last : last,
-		email : email
+		id : id
 	}
 	return {
 		type : SET_TARGET,

@@ -159,7 +159,7 @@ const initialStateUser = {
 	user : {
 		first : '',
 		last : '',
-		email : ''
+		id : ''
 	}
 }
 
