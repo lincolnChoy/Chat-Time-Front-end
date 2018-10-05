@@ -1,18 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux'; 
 
-import { getProfile } from '../../actions';
+import { getProfile, loadProfile, readAPI } from '../../actions';
+
+import {
+	API_READ,
+
+	PROFILE_FETCHED,
+	PROFILE_FAIL
+} from '../../apiConstants';
 
 
 const mapStateToProps = (state) => {
+
 	return {
-		messageTarget : state.setTarget.target
+		messageTarget : state.setTarget.target,
+		profileResponse : state.callAPI.resp,
+		isPending : state.callAPI.isPending,
+		resultWasRead : state.callAPI.resultRead,
+		//profile : state.loadUser.profile
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
+
 	return {
-		getProfile : (id) => dispatch(getProfile(id)) 
+		getProfile : (id) => dispatch(getProfile(id)),
+		loadProfile : (profile) => dispatch(loadProfile(profile)),
+		readAPI : (type) => dispatch(readAPI(type))
 	}
 }
 
@@ -20,11 +35,31 @@ class Messenger extends React.Component {
 
 	callGetProfile() {
 
+		/* Destructure props */
 		const { messageTarget, getProfile } = this.props;
 
+		/* Make sure that the target is loaded into state before requesting profile */
 		if (messageTarget) {
 			getProfile(messageTarget.id);
 		}	
+	}
+
+	componentDidUpdate() {
+
+		if (!this.props.resultWasRead) {
+
+			/* Destructure props */
+			const { profileResponse, loadProfile } = this.props;
+
+			if (profileResponse.code === PROFILE_FETCHED) {
+				loadProfile(profileResponse);
+			}
+			else if (profileResponse.code === PROFILE_FAIL) {
+				console.log('PROFILE DOES NOT EXIST');
+			}
+			readAPI(API_READ);
+		}
+
 	}
 
 	render() {

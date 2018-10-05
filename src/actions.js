@@ -2,6 +2,8 @@ import * as API from './apiConstants';
 
 import {
 	LOAD_USER,
+	LOAD_PROFILE,
+	
 	SET_TARGET,
 	SET_LIST
 } from './constants';
@@ -24,6 +26,20 @@ export const loadUser = (user) => {
 			last: user.last,
 			id: user.id,
 			pw : user.pw
+		}
+	}
+}
+
+export const loadProfile = (profile) => {
+
+	return {
+		type : LOAD_PROFILE,
+		payload : {
+			id : profile.id,
+			occupation : profile.occupation,
+			birthday : profile.birthday,
+			location : profile.location,
+			blurb : profile.blurb
 		}
 	}
 }
@@ -138,7 +154,6 @@ export const getProfile = (id, pw) => (dispatch) => {
 	/* Parse the json response */
 	.then(response => response.json())
 	.then(data => {
-		console.log(data);
 		dispatch({ type: API.API_SUCCESS, payload: data });
 	})
 	.catch(err => dispatch({ type : API.API_FAIL, payload : err}));

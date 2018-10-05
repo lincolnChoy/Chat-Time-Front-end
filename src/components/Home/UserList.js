@@ -7,7 +7,10 @@ import UserCard from './UserCard';
 import { getList, setTarget, setList } from '../../actions';
 
 import {
-	API_SUCCESS
+	API_SUCCESS,
+	API_FAIL,
+
+	LIST_FAIL
 } from '../../apiConstants';
 
 
@@ -36,30 +39,41 @@ class UserList extends React.Component {
 
 	componentDidUpdate() {
 
+		/* Destructure props */
 		const { listResponse, setList } = this.props;
 
+		/* Pass the list to the state if list is fetched successfully */
 		if (listResponse.code === API_SUCCESS) {
 			setList(listResponse.users);
 		}
-		else {
-			console.log('COULD NOT FETCH LIST');
+		/* If list fetch failed, show to the user */
+		else if (listResponse.code === API_FAIL) {
+			setList(LIST_FAIL);
 		}
-
 	}
+
+
 	componentDidMount() {
 
+		/* Get list when component mounts */
 		const { getList, id, pw } = this.props;
 		getList(id, pw);
 	}
 
 	render() {
 
+		/* Destructure props */
 		const { list, setTarget } = this.props;
+
+		/* Check if there is a user list */
 		let userArray;
 		if (list !== 'empty') {
 			userArray = list.map((user,i) => {
 				return <UserCard key = {i} first = {list[i].first} last = {list[i].last} id = {list[i].id} setTarget = { setTarget } />
 			});
+		}
+		else if (list === LIST_FAIL) {
+			userArray = 'Could not fetch list';
 		}
 
 		return (

@@ -73,7 +73,7 @@ class RegistrationForm extends React.Component {
 				const user = {
 					first : apiResponse.first,
 					last : apiResponse.last,
-					email : apiResponse.email,
+					id : apiResponse.id,
 					pw : this.props.pw
 				}
 				loadUser(user);

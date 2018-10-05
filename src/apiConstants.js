@@ -11,6 +11,9 @@ export const LIST_SUCCESS = 'LIST_SUCCESS';
 export const LIST_FAIL = 'LIST_FAIL';
 export const LIST_READ = 'LIST_READ';
 
+export const PROFILE_FETCHED = 'PROFILE_FETCHED';
+export const PROFILE_FAIL = 'PROFILE_FAIL';
+
 /* Sign in */
 export const SIGN_IN_PENDING = 'SIGN_IN_PENDING';
 export const SIGN_IN_FAIL = 'SIGN_IN_FAIL';
