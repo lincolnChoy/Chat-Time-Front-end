@@ -1,0 +1,14 @@
+.profileBox {
+	background : #E8E8E8;
+	
+}
+
+.dp {
+	border-top-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+}
+
+.underline {
+	text-decoration: underline;
+	background : #E8E8E8;
+}

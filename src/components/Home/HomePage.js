@@ -11,7 +11,8 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state) => {
 
 	return {
-		profile : state.loadUser.profile
+		profile : state.loadUser.profile,
+		target : state.setTarget.target
 	}
 } 
 
@@ -27,26 +28,31 @@ class HomePage extends React.Component {
 
 	render() {
 
-		const { profile } = this.props;
+		/* Destructure props */
+		const { profile, target } = this.props;
 
 		let section;
+		/* Read the target's profile */
 		if (profile !== '') {
 			section = <ProfileSection 
 				birthday = { profile.birthday } 
 				location = { profile.location } 
 				blurb = { profile.blurb }
 				occupation = { profile.occupation }
-
+				name = { target.first + ' ' + target.last }
 			 />;
 		}
 		return (
 			<div>
 				<NavBar />
 				<div className = 'home'>
-					<UserList />
+					<div className = 'w-20 h-100'>
+						<UserList />
+						{ section }
+					</div>
 					<Messenger />
 				</div>
-				{ section }
+				
 			</div>
 		)	
 	}

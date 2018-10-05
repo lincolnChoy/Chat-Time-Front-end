@@ -45,10 +45,11 @@ class Messenger extends React.Component {
 
 	componentDidUpdate() {
 
+		/* Only update if there is an unread API result */
 		if (!this.props.resultWasRead) {
 
 			/* Destructure props */
-			const { profileResponse, loadProfile } = this.props;
+			const { profileResponse, loadProfile, readAPI } = this.props;
 
 			if (profileResponse.code === PROFILE_FETCHED) {
 				loadProfile(profileResponse);
@@ -63,8 +64,10 @@ class Messenger extends React.Component {
 
 	render() {
 
+		/* Determine who the user clicked on */
 		const { messageTarget } = this.props;
 
+		/* Show the user the relevant chat */
 		let messageBox;
 		if (messageTarget) {
 			messageBox = 

@@ -23,6 +23,7 @@ export const NOT_VERIFIED = 'NOT_VERIFIED';
 
 export const LOAD_USER = 'LOAD_USER';
 export const LOAD_PROFILE = 'LOAD_PROFILE';
+export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 
 export const SET_TARGET = 'SET_TARGET';
 

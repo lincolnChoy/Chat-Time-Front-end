@@ -21,7 +21,8 @@ import {
 	LOAD_USER,
 	LOAD_PROFILE,
 	SET_TARGET,
-	SET_LIST
+	SET_LIST,
+	CLEAR_PROFILE
 
 } from './constants';
 
@@ -210,6 +211,8 @@ export const loadUser = (state = initialStateUser, action = {}) => {
 			return Object.assign({}, state, { user : action.payload, signedIn : true });
 		case LOAD_PROFILE : 
 			return Object.assign({}, state, { profile : action.payload, signedIn : true });
+		case CLEAR_PROFILE : 
+			return Object.assign({}, state, { profile : '' });
 		default : 
 			return state;
 	}

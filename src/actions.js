@@ -3,6 +3,7 @@ import * as API from './apiConstants';
 import {
 	LOAD_USER,
 	LOAD_PROFILE,
+	CLEAR_PROFILE,
 	
 	SET_TARGET,
 	SET_LIST
@@ -41,6 +42,13 @@ export const loadProfile = (profile) => {
 			location : profile.location,
 			blurb : profile.blurb
 		}
+	}
+}
+
+export const clearProfile = () => {
+
+	return {
+		type : CLEAR_PROFILE
 	}
 }
 
