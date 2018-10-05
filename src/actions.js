@@ -2,7 +2,8 @@ import * as API from './apiConstants';
 
 import {
 	LOAD_USER,
-	SET_TARGET
+	SET_TARGET,
+	SET_LIST
 } from './constants';
 
 
@@ -43,10 +44,10 @@ export const setFormState = (state) => {
 	}
 }
 
-export const setAPIRead = () => {
+export const readAPI = (type) => {
 
 	return {
-		type : API.API_READ
+		type : type
 	}
 }
 
@@ -97,7 +98,7 @@ export const register = (first, last, email, pw) => (dispatch) => {
 
 export const getList = (id, pw) => (dispatch) => {
 
-	dispatch({ type : API.API_PENDING });
+	dispatch({ type : API.LIST_PENDING });
 	/* Call the getList API */
 	//fetch('https://chat-time-api.herokuapp.com/getList', {
 	fetch('http://localhost:3000/getList', {
@@ -111,9 +112,37 @@ export const getList = (id, pw) => (dispatch) => {
 	/* Parse the json response */
 	.then(response => response.json())
 	.then(data => {
+		dispatch({ type: API.LIST_SUCCESS, payload: data });
+	})
+	.catch(err => dispatch({ type : API.LIST_FAIL, payload : err}));
+}
+
+export const setList = (list) => {
+
+	return {
+		type : SET_LIST,
+		payload : list
+	}
+}
+
+
+export const getProfile = (id, pw) => (dispatch) => {
+
+	dispatch({ type : API.API_PENDING });
+	/* Call the getProfile API */
+	//fetch('https://chat-time-api.herokuapp.com/getProfile?user=' + id, {
+	fetch('http://localhost:3000/getProfile?user=' + id, {
+		method :'get',
+		headers: {'Content-Type' : 'application/json'}
+	})
+	/* Parse the json response */
+	.then(response => response.json())
+	.then(data => {
+		console.log(data);
 		dispatch({ type: API.API_SUCCESS, payload: data });
 	})
 	.catch(err => dispatch({ type : API.API_FAIL, payload : err}));
+
 }
 
 export const setTarget = (first, last, id) => {

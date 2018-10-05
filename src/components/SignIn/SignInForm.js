@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LoadAnim from '../LoadAnim/LoadAnim';
 
-import { editField, changeRoute, signIn, setFormState, loadUser, setAPIRead } from '../../actions';
+import { editField, changeRoute, signIn, setFormState, loadUser, readAPI } from '../../actions';
 
 import { 
 
@@ -19,7 +19,8 @@ import {
 } from '../../constants';
 
 import {
-	SIGN_IN_SUCCESS
+	SIGN_IN_SUCCESS,
+	API_READ
 } from '../../apiConstants';
 
 
@@ -44,7 +45,7 @@ const mapDispatchToProps = (dispatch) => {
 		signIn : (email, pw) => dispatch(signIn(email, pw)),
 		setFormState : (state) => dispatch(setFormState(state)),
 		loadUser : (user) => dispatch(loadUser(user)),
-		setAPIRead :  () => dispatch(setAPIRead())
+		readAPI :  (type) => dispatch(readAPI(type))
 	}
 }
 
@@ -57,7 +58,7 @@ class SignInForm extends React.Component {
 		if (!this.props.resultWasRead) {
 
 			/* Destructure props */
-			const { signInResponse, setFormState, changeRoute, loadUser, setAPIRead } = this.props;
+			const { signInResponse, setFormState, changeRoute, loadUser, readAPI } = this.props;
 
 			if (signInResponse.code === SIGN_IN_SUCCESS) {
 				/* Save the user in state, then route change */
@@ -75,16 +76,10 @@ class SignInForm extends React.Component {
 			else if (signInResponse.code === WRONG_CRED) {
 				setFormState(WRONG_CRED);
 			}
-			/* Tentatively deprecated verification functionality
-			else if (signInResponse.code === NOT_VERIFIED) {
-				setFormState(RESET);
-				loadUser(signInResponse);
-				changeRoute(VERIFY);
-			}*/
 			else {
 				setFormState(RESET);
 			}
-			setAPIRead();
+			readAPI(API_READ);
 		}
 	}
 

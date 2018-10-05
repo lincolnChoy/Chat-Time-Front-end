@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'; 
 
+import { getProfile } from '../../actions';
+
+
 const mapStateToProps = (state) => {
 	return {
 		messageTarget : state.setTarget.target
@@ -9,11 +12,20 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		
+		getProfile : (id) => dispatch(getProfile(id)) 
 	}
 }
 
 class Messenger extends React.Component {
+
+	callGetProfile() {
+
+		const { messageTarget, getProfile } = this.props;
+
+		if (messageTarget) {
+			getProfile(messageTarget.id);
+		}	
+	}
 
 	render() {
 
@@ -24,7 +36,11 @@ class Messenger extends React.Component {
 			messageBox = 
 				<div className = 'w-100 pa3' style = {{ display : 'flex', justifyContent : 'space-around' }}>
 					<div className = 'pa3'>{ messageTarget.first + '  ' +  messageTarget.last }</div>
-					<div className = 'h-50 br3 pa3 pointer grow' style = {{ border : '1px solid blue' }}>View Profile</div>
+					<div className = 'h-50 br3 pa3 pointer grow' style = {{ border : '1px solid blue' }}
+						onClick = { () => {
+							this.callGetProfile();
+						}
+					}>View Profile</div>
 					<div className = 'message w-100'>
 						<input className = 'b pa2 input-reset ba bg-transparent hover-white w-90' type = 'text' />
 						<input className = 'ml2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Send' />

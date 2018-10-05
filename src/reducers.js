@@ -19,7 +19,8 @@ import {
 	RESET,
 
 	LOAD_USER,
-	SET_TARGET
+	SET_TARGET,
+	SET_LIST
 
 } from './constants';
 
@@ -27,7 +28,11 @@ import {
 	API_PENDING,
 	API_SUCCESS,
 	API_FAIL,
-	API_READ
+	API_READ,
+	LIST_PENDING,
+	LIST_SUCCESS,
+	LIST_FAIL,
+	LIST_READ
 } from './apiConstants';
 
 
@@ -122,6 +127,36 @@ export const callAPI = (state = APIResults, action = {}) => {
 			return state;
 	}
 }
+
+const initialUserList = {
+
+	listPending : false,
+	resultRead : true,
+	resp : '',
+	list : 'empty'
+}
+
+export const getList = (state = initialUserList, action = {}) => {
+
+	switch(action.type) {
+
+		case LIST_PENDING : 
+			return Object.assign({}, state, { listPending : true });
+		case LIST_SUCCESS :
+			return Object.assign({}, state, { resp : action.payload , listPending : false, resultRead : false });
+		case LIST_FAIL :
+			return Object.assign({}, state, { resp : action.payload , listPending : false, resultRead : false });
+		case LIST_READ : 
+			return Object.assign({}, state, { resultRead : true });
+		case SET_LIST :
+			return Object.assign({}, state, { list : action.payload });
+		default : 
+			return state;
+	}
+
+}
+
+
 
 const initialFormState = {
 

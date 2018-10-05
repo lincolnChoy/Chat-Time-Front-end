@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 
 import Scroll from '../Scroll/Scroll';
 import UserCard from './UserCard';
-import { getList, setTarget } from '../../actions';
+import { getList, setTarget, setList } from '../../actions';
+
+import {
+	API_SUCCESS
+} from '../../apiConstants';
 
 
 const mapStateToProps = (state) => {
@@ -12,7 +16,8 @@ const mapStateToProps = (state) => {
 	return {
 		id : state.loadUser.user.id,
 		pw : state.loadUser.user.pw,
-		list : state.callAPI.resp.users
+		listResponse : state.getList.resp,
+		list : state.getList.list
 	}
 
 }
@@ -21,13 +26,26 @@ const mapDispatchToProps = (dispatch) => {
 
 	return {
 		getList : (id, pw) => dispatch(getList(id, pw)),
-		setTarget : (first, last, id) => dispatch(setTarget(first, last, id))
+		setTarget : (first, last, id) => dispatch(setTarget(first, last, id)),
+		setList : (list) => dispatch(setList(list))
 	}
 }
 
 class UserList extends React.Component {
 
 
+	componentDidUpdate() {
+
+		const { listResponse, setList } = this.props;
+
+		if (listResponse.code === API_SUCCESS) {
+			setList(listResponse.users);
+		}
+		else {
+			console.log('COULD NOT FETCH LIST');
+		}
+
+	}
 	componentDidMount() {
 
 		const { getList, id, pw } = this.props;
@@ -38,7 +56,7 @@ class UserList extends React.Component {
 
 		const { list, setTarget } = this.props;
 		let userArray;
-		if (list !== undefined) {
+		if (list !== 'empty') {
 			userArray = list.map((user,i) => {
 				return <UserCard key = {i} first = {list[i].first} last = {list[i].last} id = {list[i].id} setTarget = { setTarget } />
 			});

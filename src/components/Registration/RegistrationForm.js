@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LoadAnim from '../LoadAnim/LoadAnim';
 
-import { editField, changeRoute, register, setFormState, loadUser, setAPIRead } from '../../actions';
+import { editField, changeRoute, register, setFormState, loadUser, readAPI } from '../../actions';
 
 import { 
 
@@ -22,7 +22,8 @@ import {
 } from '../../constants';
 
 import {
-	REGISTRATION_SUCCESS
+	REGISTRATION_SUCCESS,
+	API_READ
 } from '../../apiConstants';
 
 
@@ -50,7 +51,7 @@ const mapDispatchToProps = (dispatch) => {
 		register : (first, last, email, pw) => dispatch(register(first, last, email, pw)),
 		setFormState : (state) => dispatch(setFormState(state)),
 		loadUser : (user) => dispatch(loadUser(user)),
-		setAPIRead :  () => dispatch(setAPIRead())
+		readAPI :  (type) => dispatch(readAPI(type))
 	}
 }
 
@@ -63,7 +64,7 @@ class RegistrationForm extends React.Component {
 		if (!this.props.resultWasRead) {
 
 			/* Destructure props */
-			const { apiResponse, setFormState, changeRoute, loadUser, setAPIRead } = this.props;
+			const { apiResponse, setFormState, changeRoute, loadUser, readAPI } = this.props;
 
 			if (apiResponse.code === REGISTRATION_SUCCESS) {
 				/* Save the user in state, then route change */
@@ -84,7 +85,7 @@ class RegistrationForm extends React.Component {
 			else {
 				setFormState(RESET);
 			}
-			setAPIRead();
+			readAPI(API_READ);
 		}
 	}
 

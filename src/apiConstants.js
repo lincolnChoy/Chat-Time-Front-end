@@ -6,6 +6,11 @@ export const API_SUCCESS = 'API_SUCCESS';
 export const API_FAIL = 'API_FAIL';
 export const API_READ = 'API_READ';
 
+export const LIST_PENDING = 'LIST_PENDING';
+export const LIST_SUCCESS = 'LIST_SUCCESS';
+export const LIST_FAIL = 'LIST_FAIL';
+export const LIST_READ = 'LIST_READ';
+
 /* Sign in */
 export const SIGN_IN_PENDING = 'SIGN_IN_PENDING';
 export const SIGN_IN_FAIL = 'SIGN_IN_FAIL';
