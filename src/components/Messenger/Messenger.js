@@ -17,8 +17,7 @@ const mapStateToProps = (state) => {
 		messageTarget : state.setTarget.target,
 		profileResponse : state.callAPI.resp,
 		isPending : state.callAPI.isPending,
-		resultWasRead : state.callAPI.resultRead,
-		//profile : state.loadUser.profile
+		resultWasRead : state.callAPI.resultRead
 	}
 }
 

@@ -70,8 +70,8 @@ export const readAPI = (type) => {
 export const signIn = (email,pw) => (dispatch) => {
 
 	dispatch({ type: API.API_PENDING });
-	//fetch('https://chat-time-api.herokuapp.com/signIn', {
-	fetch('http://localhost:3000/signIn', {
+	fetch('https://chat-time-api.herokuapp.com/signIn', {
+	//fetch('http://localhost:3000/signIn', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -93,8 +93,8 @@ export const register = (first, last, email, pw) => (dispatch) => {
 	dispatch({ type : API.API_PENDING });
 
 	/* Call the registration API */
-	//fetch('https://chat-time-api.herokuapp.com/register', {
-	fetch('http://localhost:3000/register', {
+	fetch('https://chat-time-api.herokuapp.com/register', {
+	//fetch('http://localhost:3000/register', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -116,8 +116,8 @@ export const getList = (id, pw) => (dispatch) => {
 
 	dispatch({ type : API.LIST_PENDING });
 	/* Call the getList API */
-	//fetch('https://chat-time-api.herokuapp.com/getList', {
-	fetch('http://localhost:3000/getList', {
+	fetch('https://chat-time-api.herokuapp.com/getList', {
+	//fetch('http://localhost:3000/getList', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -146,8 +146,8 @@ export const getProfile = (id, pw) => (dispatch) => {
 
 	dispatch({ type : API.API_PENDING });
 	/* Call the getProfile API */
-	//fetch('https://chat-time-api.herokuapp.com/getProfile?user=' + id, {
-	fetch('http://localhost:3000/getProfile?user=' + id, {
+	fetch('https://chat-time-api.herokuapp.com/getProfile?user=' + id, {
+	//fetch('http://localhost:3000/getProfile?user=' + id, {
 		method :'get',
 		headers: {'Content-Type' : 'application/json'}
 	})
