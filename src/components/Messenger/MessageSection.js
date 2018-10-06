@@ -41,6 +41,7 @@ class MessageSection extends React.Component {
 
 	componentDidMount() {
 		this.refreshMessages();
+		this.interval = setInterval(() => this.refreshMessages(), 1000);
 	}
 
 

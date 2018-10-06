@@ -56,7 +56,7 @@ class UserList extends React.Component {
 		const { getList, id, pw } = this.props;
 		getList(id, pw);
 
-		this.interval = setInterval(() => this.refreshList(), 100000);
+		this.interval = setInterval(() => this.refreshList(), 10000);
 
 	}
 

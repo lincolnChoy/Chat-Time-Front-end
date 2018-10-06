@@ -7,7 +7,6 @@ import {
 	SUCCESS,
 	API_READ,
 
-	LOAD_USER_PROFILE,
 	LOAD_TARGET_PROFILE
 } from '../../constants';
 
