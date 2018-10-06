@@ -22,6 +22,8 @@ Home page (still being worked on):
     
 ![home page](http://puu.sh/BG7AL/a155933725.jpg)    
     
-![profile view](https://puu.sh/BGa7Q/ae28d2ccf1.jpg)
+![profile view](https://puu.sh/BGa7Q/ae28d2ccf1.jpg)    
+    
+![messaging](http://puu.sh/BGEGt/e9d1a36a2d.jpg)
 
 
