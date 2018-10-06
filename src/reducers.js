@@ -16,6 +16,7 @@ import {
 	VERIFIED,
 	PW_MISMATCH,
 	NOT_VERIFIED,
+	INVALID_EMAIL,
 	RESET,
 
 	LOAD_USER,
@@ -182,6 +183,8 @@ export const setFormState = (state = initialFormState, action = {}) => {
 		case PW_MISMATCH :
 			return Object.assign({} , state, { formState : action.payload });
 		case NOT_VERIFIED :
+			return Object.assign({} , state, { formState : action.payload });
+		case INVALID_EMAIL :
 			return Object.assign({} , state, { formState : action.payload });
 		case RESET : 
 			return initialFormState;

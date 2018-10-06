@@ -17,6 +17,7 @@ import {
 
 	NOT_COMPLETE,
 	EXISTING_EMAIL,
+	INVALID_EMAIL,
 
 	RESET
 } from '../../constants';
@@ -100,7 +101,14 @@ class RegistrationForm extends React.Component {
 		}
 		/* If so, call API */
 		else {
-			register(first, last, email, pw);
+			/* Make sure email entered is valid (using regular expression) */
+			var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
+			if (regex.test(email)) {
+				register(first, last, email, pw);
+			}
+			else {
+				setFormState(INVALID_EMAIL);
+			}
 		}
 	}
 
@@ -123,6 +131,9 @@ class RegistrationForm extends React.Component {
 		}
 		else if (formState === NOT_COMPLETE) {
 			formError = <p className = 'f4 pa1 bg-light-red br3 white'>Please fill in all fields.</p>;
+		}
+		else if (formState === INVALID_EMAIL) {
+			formError = <p className = 'f4 pa1 bg-light-red br3 white'>Please enter a valid email address.</p>;
 		}
 
 		return (

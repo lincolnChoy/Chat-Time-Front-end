@@ -20,6 +20,7 @@ export const VERIFIED = 'VERIFIED';
 export const RESET = 'RESET';
 export const PW_MISMATCH = 'PW_MISMATCH';
 export const NOT_VERIFIED = 'NOT_VERIFIED';
+export const INVALID_EMAIL = 'INVALID_EMAIL';
 
 export const LOAD_USER = 'LOAD_USER';
 export const LOAD_PROFILE = 'LOAD_PROFILE';
