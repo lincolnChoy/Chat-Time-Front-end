@@ -70,24 +70,17 @@ class Messenger extends React.Component {
 		let messageBox;
 		if (messageTarget) {
 			messageBox = 
-				<div className = 'w-100 pa3'>
+				<div className = 'w-100'>
 					<MessengerTopBar />
 					<div className = 'mt3 w-100'>
 						<MessageSection />
 					</div>
 					<div className = 'message w-100'>
-						<input 
-							onChange = { (event) => {
+						<input onChange = { (event) => {
 									editField(event.target.value, EDIT_MSG);
 								}
 							}
-							onKeyPress = {
-								(event) => {
-									if (event.key === 'Enter') {
-										this.callSendMessage();
-									}
-								}
-							}
+							onKeyPress = { (event) => { if (event.key === 'Enter') { this.callSendMessage(); }}}
 							className = 'b pa2 input-reset ba bg-transparent hover-white w-90' type = 'text' />
 						<input
 							onClick = {

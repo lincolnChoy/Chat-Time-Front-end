@@ -29,10 +29,11 @@ export const NOT_VERIFIED = 'NOT_VERIFIED';
 export const INVALID_EMAIL = 'INVALID_EMAIL';
 
 export const LOAD_USER = 'LOAD_USER';
+export const LOAD_USER_PROFILE = 'LOAD_USER_PROFILE';
+export const LOAD_TARGET_PROFILE = 'LOAD_TARGET_PROFILE';
 export const LOAD_MESSAGES = 'LOAD_MESSAGES';
 
 /* Profile action constants */
-export const LOAD_PROFILE = 'LOAD_PROFILE';
 export const EDIT_BIRTHDAY = 'EDIT_BIRTHDAY';
 export const EDIT_LOCATION = 'EDIT_LOCATION';
 export const EDIT_OCCUPATION = 'EDIT_OCCUPATION';

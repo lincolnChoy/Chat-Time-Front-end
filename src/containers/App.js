@@ -57,7 +57,7 @@ class App extends Component {
 		}
 
 		return (
-			<div style = {{ height : '100%' }} >
+			<div>
 				<Particles className = 'particles' params = { particlesOptions } />
 				{ page } 
 			</div>

@@ -19,7 +19,8 @@ import {
 	RESET,
 
 	LOAD_USER,
-	LOAD_PROFILE,
+	LOAD_USER_PROFILE,
+	LOAD_TARGET_PROFILE,
 	LOAD_MESSAGES,
 	SET_TARGET,
 	SET_LIST,
@@ -237,7 +238,7 @@ export const loadUser = (state = initialStateUser, action = {}) => {
 
 		case LOAD_USER : 
 			return Object.assign({}, state, { user : action.payload, signedIn : true });
-		case LOAD_PROFILE : 
+		case LOAD_USER_PROFILE : 
 			return Object.assign({}, state, { profile : action.payload, signedIn : true });
 		case CLEAR_PROFILE : 
 			return Object.assign({}, state, { profile : '' });
@@ -248,7 +249,8 @@ export const loadUser = (state = initialStateUser, action = {}) => {
 
 const initialTarget = {
 
-	target : ''
+	target : '',
+	profile : ''
 }
 
 export const setTarget = (state = initialTarget, action = {}) => {
@@ -257,6 +259,8 @@ export const setTarget = (state = initialTarget, action = {}) => {
 
 		case SET_TARGET : 
 			return Object.assign({}, state, { target : action.payload });
+		case LOAD_TARGET_PROFILE : 
+			return Object.assign({}, state, { profile : action.payload });
 		default : 
 			return state;
 	}

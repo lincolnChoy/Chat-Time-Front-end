@@ -5,7 +5,10 @@ import { getProfile, loadProfile } from '../../actions';
 
 import {
 	SUCCESS,
-	API_READ
+	API_READ,
+
+	LOAD_USER_PROFILE,
+	LOAD_TARGET_PROFILE
 } from '../../constants';
 
 const mapStateToProps = (state) => {
@@ -24,7 +27,7 @@ const mapDispatchToProps = (dispatch) => {
 
 	return {
 		getProfile : (id) => dispatch(getProfile(id)),
-		loadProfile : (profile) => dispatch(loadProfile(profile)),
+		loadProfile : (type,profile) => dispatch(loadProfile(type,profile)),
 		readAPI : (type) => dispatch({ type : type })
 	}
 }
@@ -53,7 +56,7 @@ class MessengerTopBar extends React.Component {
 			const { code } = profileResponse;
 
 			if (code === SUCCESS) {
-				loadProfile(profileResponse);
+				loadProfile(LOAD_TARGET_PROFILE,profileResponse);
 			}
 			readAPI(API_READ);
 		}

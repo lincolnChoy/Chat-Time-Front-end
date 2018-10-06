@@ -1,6 +1,7 @@
 import {
 	LOAD_USER,
-	LOAD_PROFILE,
+	LOAD_USER_PROFILE,
+	LOAD_TARGET_PROFILE,
 	CLEAR_PROFILE,
 	LOAD_MESSAGES,
 	
@@ -47,10 +48,10 @@ export const loadUser = (user) => {
 	}
 }
 
-export const loadProfile = (profile) => {
+export const loadProfile = (type,profile) => {
 
 	return {
-		type : LOAD_PROFILE,
+		type : type,
 		payload : {
 			id : profile.id,
 			occupation : profile.occupation,
@@ -63,7 +64,6 @@ export const loadProfile = (profile) => {
 
 export const editProfileField = (field, text) => {
 
-	console.log('hi there @@');
 	return {
 		type : field,
 		payload : text

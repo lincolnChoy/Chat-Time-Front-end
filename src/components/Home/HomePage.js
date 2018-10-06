@@ -10,7 +10,7 @@ import './home.css';
 const mapStateToProps = (state) => {
 
 	return {
-		profile : state.loadUser.profile,
+		profile : state.setTarget.profile,
 		target : state.setTarget.target
 	}
 } 
