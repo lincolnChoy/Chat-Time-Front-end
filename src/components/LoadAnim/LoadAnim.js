@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Loading from 'react-loading-animation';
 import './loadAnim.css';
 

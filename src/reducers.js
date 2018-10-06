@@ -4,39 +4,53 @@ import {
 	EDIT_LAST_NAME,
 	EDIT_PW,
 	EDIT_PW2,
+	EDIT_MSG,
 
 	SIGN_IN,
 	REGISTRATION,
 	HOME,
+	PROFILE,
 
 	NOT_COMPLETE,
 	WRONG_CRED,
 	EXISTING_EMAIL,
-	WRONG_CODE,
-	VERIFIED,
 	PW_MISMATCH,
-	NOT_VERIFIED,
 	INVALID_EMAIL,
 	RESET,
 
 	LOAD_USER,
 	LOAD_PROFILE,
+	LOAD_MESSAGES,
 	SET_TARGET,
 	SET_LIST,
-	CLEAR_PROFILE
 
-} from './constants';
+	EDIT_BIRTHDAY,
+	EDIT_LOCATION,
+	EDIT_OCCUPATION,
+	EDIT_BLURB,
+	CLEAR_PROFILE,
 
-import {
 	API_PENDING,
 	API_SUCCESS,
 	API_FAIL,
 	API_READ,
+
 	LIST_PENDING,
 	LIST_SUCCESS,
 	LIST_FAIL,
-	LIST_READ
-} from './apiConstants';
+	LIST_READ,
+
+	MSG_FETCH_PENDING,
+	MSG_FETCH_SUCCESS,
+	MSG_FETCH_FAIL,
+	MSG_READ,
+
+	SENDING_MSG,
+	MSG_SENT,
+	MSG_SEND_FAIL,
+	CLEAR_MSG
+
+} from './constants';
 
 
 const initialRouteState = {
@@ -52,6 +66,8 @@ export const changeRoute = (state = initialRouteState, action = {}) => {
 		case REGISTRATION : 
 			return Object.assign({}, state, { route : action.payload });
 		case HOME : 
+			return Object.assign({}, state, { route : action.payload });
+		case PROFILE : 
 			return Object.assign({}, state, { route : action.payload });
 		default : 
 			return state;
@@ -101,6 +117,20 @@ export const registrationForm = (state = initialRegistrationForm, action = {}) =
 		case EDIT_PW2 : 
 			return Object.assign({}, state, { pw2 : action.payload });
 		default :
+			return state;
+	}
+}
+
+const initialMessageBox = {
+	message : ''
+}
+
+export const editMessenger = (state = initialMessageBox, action = {}) => {
+
+	switch(action.type) {
+		case EDIT_MSG : 
+			return Object.assign({}, state, { message : action.payload });
+		default : 
 			return state;
 	}
 }
@@ -176,13 +206,7 @@ export const setFormState = (state = initialFormState, action = {}) => {
 			return Object.assign({} , state, { formState : action.payload });
 		case EXISTING_EMAIL :
 			return Object.assign({} , state, { formState : action.payload });
-		case WRONG_CODE :
-			return Object.assign({} , state, { formState : action.payload });
-		case VERIFIED : 
-			return Object.assign({} , state, { formState : action.payload });
 		case PW_MISMATCH :
-			return Object.assign({} , state, { formState : action.payload });
-		case NOT_VERIFIED :
 			return Object.assign({} , state, { formState : action.payload });
 		case INVALID_EMAIL :
 			return Object.assign({} , state, { formState : action.payload });
@@ -199,7 +223,8 @@ const initialStateUser = {
 	user : {
 		first : '',
 		last : '',
-		id : ''
+		id : '',
+		pw : ''
 	},
 	profile : '',
 	signedIn : false
@@ -232,6 +257,82 @@ export const setTarget = (state = initialTarget, action = {}) => {
 
 		case SET_TARGET : 
 			return Object.assign({}, state, { target : action.payload });
+		default : 
+			return state;
+	}
+}
+
+const initialProfileForm = {
+
+	birthday : '',
+	location : '',
+	occupation : '',
+	blurb : ''
+
+}
+
+export const editProfile = (state = initialProfileForm, action = {}) => {
+
+	switch(action.type) {
+		case EDIT_BIRTHDAY : 
+			return Object.assign({}, state, { birthday : action.payload });
+		case EDIT_LOCATION : 
+			return Object.assign({}, state, { location : action.payload });
+		case EDIT_OCCUPATION : 
+			return Object.assign({}, state, { occupation : action.payload });
+		case EDIT_BLURB : 
+			return Object.assign({}, state, { blurb : action.payload });
+		default : 	
+			return state;
+	}
+}
+
+const initialMessages = {
+
+	isPending : false,
+	resultRead : false,
+	resp : '',
+	messages : ''
+}
+
+export const fetchMessages = (state = initialMessages, action = {}) => {
+
+	switch(action.type) {
+
+		case MSG_FETCH_PENDING : 
+			return Object.assign({}, state, { isPending : true });
+		case MSG_FETCH_SUCCESS :
+			return Object.assign({}, state, { resp : action.payload , isPending : false, resultRead : false });
+		case MSG_FETCH_FAIL :
+			return Object.assign({}, state, { resp : action.payload , isPending : false, resultRead : false });
+		case MSG_READ : 
+			return Object.assign({}, state, { resultRead : true });		
+		case LOAD_MESSAGES :
+			return Object.assign({}, state, { messages : action.payload });
+		default : 
+			return state;
+	}
+}
+
+const msgResults = {
+
+	isPending : false,
+	resultRead : false,
+	resp : '',
+	messageSent : true
+}
+
+export const sendMessage = (state = msgResults, action = {}) => {
+
+	switch(action.type) {
+		case SENDING_MSG :
+			return Object.assign({}, state, { isPending : true });
+		case MSG_SENT : 
+			return Object.assign({}, state, { resp : action.payload , isPending : false, resultRead : false, messageSent : true });
+		case MSG_SEND_FAIL : 
+			return Object.assign({}, state, { resp : action.payload , isPending : false, resultRead : false });
+		case CLEAR_MSG : 
+			return Object.assign({}, state, { messageSent : false, resultRead : true });
 		default : 
 			return state;
 	}

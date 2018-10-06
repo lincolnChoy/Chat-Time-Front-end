@@ -1,12 +1,28 @@
-import * as API from './apiConstants';
-
 import {
 	LOAD_USER,
 	LOAD_PROFILE,
 	CLEAR_PROFILE,
+	LOAD_MESSAGES,
 	
 	SET_TARGET,
-	SET_LIST
+	SET_LIST,
+
+	API_PENDING,
+	API_SUCCESS,
+	API_FAIL,
+	
+	LIST_PENDING,
+	LIST_SUCCESS,
+	LIST_FAIL,
+
+	MSG_FETCH_PENDING,
+	MSG_FETCH_SUCCESS,
+	MSG_FETCH_FAIL,
+
+	SENDING_MSG,
+	MSG_SENT,
+	MSG_SEND_FAIL
+	
 } from './constants';
 
 
@@ -45,6 +61,15 @@ export const loadProfile = (profile) => {
 	}
 }
 
+export const editProfileField = (field, text) => {
+
+	console.log('hi there @@');
+	return {
+		type : field,
+		payload : text
+	}
+}
+
 export const clearProfile = () => {
 
 	return {
@@ -77,7 +102,7 @@ export const readAPI = (type) => {
 
 export const signIn = (email,pw) => (dispatch) => {
 
-	dispatch({ type: API.API_PENDING });
+	dispatch({ type: API_PENDING });
 	fetch('https://chat-time-api.herokuapp.com/signIn', {
 	//fetch('http://localhost:3000/signIn', {
 		method :'post',
@@ -90,15 +115,15 @@ export const signIn = (email,pw) => (dispatch) => {
 	/* Parse the json response */
 	.then(response => response.json())
 	.then(data => {
-		dispatch({ type: API.API_SUCCESS, payload: data});
+		dispatch({ type: API_SUCCESS, payload: data});
 	})
-	.catch(err => dispatch({ type: API.API_FAIL, payload: err }));
+	.catch(err => dispatch({ type: API_FAIL, payload: err }));
 }
 
 
 export const register = (first, last, email, pw) => (dispatch) => {
 
-	dispatch({ type : API.API_PENDING });
+	dispatch({ type : API_PENDING });
 
 	/* Call the registration API */
 	fetch('https://chat-time-api.herokuapp.com/register', {
@@ -115,14 +140,14 @@ export const register = (first, last, email, pw) => (dispatch) => {
 	/* Parse the json response */
 	.then(response => response.json())
 	.then(data => {
-		dispatch({ type: API.API_SUCCESS, payload: data });
+		dispatch({ type: API_SUCCESS, payload: data });
 	})
-	.catch(err => dispatch({ type : API.API_FAIL, payload : err}));
+	.catch(err => dispatch({ type : API_FAIL, payload : err}));
 }
 
 export const getList = (id, pw) => (dispatch) => {
 
-	dispatch({ type : API.LIST_PENDING });
+	dispatch({ type : LIST_PENDING });
 	/* Call the getList API */
 	fetch('https://chat-time-api.herokuapp.com/getList', {
 	//fetch('http://localhost:3000/getList', {
@@ -136,9 +161,9 @@ export const getList = (id, pw) => (dispatch) => {
 	/* Parse the json response */
 	.then(response => response.json())
 	.then(data => {
-		dispatch({ type: API.LIST_SUCCESS, payload: data });
+		dispatch({ type: LIST_SUCCESS, payload: data });
 	})
-	.catch(err => dispatch({ type : API.LIST_FAIL, payload : err}));
+	.catch(err => dispatch({ type : LIST_FAIL, payload : err}));
 }
 
 export const setList = (list) => {
@@ -152,7 +177,7 @@ export const setList = (list) => {
 
 export const getProfile = (id, pw) => (dispatch) => {
 
-	dispatch({ type : API.API_PENDING });
+	dispatch({ type : API_PENDING });
 	/* Call the getProfile API */
 	fetch('https://chat-time-api.herokuapp.com/getProfile?user=' + id, {
 	//fetch('http://localhost:3000/getProfile?user=' + id, {
@@ -162,10 +187,92 @@ export const getProfile = (id, pw) => (dispatch) => {
 	/* Parse the json response */
 	.then(response => response.json())
 	.then(data => {
-		dispatch({ type: API.API_SUCCESS, payload: data });
+		dispatch({ type: API_SUCCESS, payload: data });
 	})
-	.catch(err => dispatch({ type : API.API_FAIL, payload : err}));
+	.catch(err => dispatch({ type : API_FAIL, payload : err}));
 
+}
+
+export const saveProfile = (id, pw, birthday, location, occupation, blurb) => (dispatch) => {
+
+	dispatch({ type : API_PENDING });
+
+	/* Call the saveProfile API */
+	fetch('https://chat-time-api.herokuapp.com/saveProfile', {
+	//fetch('http://localhost:3000/saveProfile', {
+		method :'post',
+		headers: {'Content-Type' : 'application/json'},
+		body: JSON.stringify({
+			id : id,
+			pw: pw,
+			birthday : birthday,
+			location : location,
+			occupation : occupation,
+			blurb : blurb
+		})
+	})
+	/* Parse the json response */
+	.then(response => response.json())
+	.then(data => {
+		dispatch({ type: API_SUCCESS, payload: data });
+	})
+	.catch(err => dispatch({ type : API_FAIL, payload : err}));
+
+}
+
+export const getMessages = (sender, destination, pw) => (dispatch) => {
+
+	dispatch({ type : MSG_FETCH_PENDING });
+	/* Call the getList API */
+	fetch('https://chat-time-api.herokuapp.com/getMessages', {
+	//fetch('http://localhost:3000/getMessages', {
+		method :'post',
+		headers: {'Content-Type' : 'application/json'},
+		body: JSON.stringify({
+			sender : sender,
+			destination : destination,
+			pw: pw
+		})
+	})
+	/* Parse the json response */
+	.then(response => response.json())
+	.then(data => {
+		dispatch({ type: MSG_FETCH_SUCCESS, payload: data });
+	})
+	.catch(err => dispatch({ type : MSG_FETCH_FAIL, payload : err}));
+
+}
+
+export const sendMessage = (sender, destination, pw, message) => (dispatch) => {
+
+	dispatch({ type : SENDING_MSG });
+	/* Call the getList API */
+	fetch('https://chat-time-api.herokuapp.com/sendMessage', {
+	//fetch('http://localhost:3000/sendMessage', {
+		method :'post',
+		headers: {'Content-Type' : 'application/json'},
+		body: JSON.stringify({
+			sender : sender,
+			destination : destination,
+			message : message,
+			pw: pw
+		})
+	})
+	/* Parse the json response */
+	.then(response => response.json())
+	.then(data => {
+		dispatch({ type: MSG_SENT, payload: data });
+	})
+	.catch(err => dispatch({ type : MSG_SEND_FAIL, payload : err}));
+
+}
+
+export const loadMessages = (messages) => {
+
+	return {
+		type : LOAD_MESSAGES,
+		payload : messages
+	}
 }
 
 export const setTarget = (first, last, id) => {

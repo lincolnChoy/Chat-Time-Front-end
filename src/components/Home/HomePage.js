@@ -1,12 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import UserList from './UserList';
 import Messenger from '../Messenger/Messenger';
 import NavBar from '../NavBar/NavBar';
 import ProfileSection from '../Profile/ProfileSection';
-
 import './home.css';
-
-import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
 
@@ -17,11 +16,7 @@ const mapStateToProps = (state) => {
 } 
 
 const mapDispatchToProps = (dispatch) => {
-
-	return {
-
-
-	}
+	return {}
 }
 
 class HomePage extends React.Component {

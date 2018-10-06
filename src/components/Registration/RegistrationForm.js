@@ -16,16 +16,13 @@ import {
 	EDIT_PW2,
 
 	NOT_COMPLETE,
-	EXISTING_EMAIL,
 	INVALID_EMAIL,
+	EXISTING_EMAIL,
+	SUCCESS,
+	API_READ,
 
 	RESET
 } from '../../constants';
-
-import {
-	REGISTRATION_SUCCESS,
-	API_READ
-} from '../../apiConstants';
 
 
 const mapStateToProps = (state) => {
@@ -67,7 +64,7 @@ class RegistrationForm extends React.Component {
 			/* Destructure props */
 			const { apiResponse, setFormState, changeRoute, loadUser, readAPI } = this.props;
 
-			if (apiResponse.code === REGISTRATION_SUCCESS) {
+			if (apiResponse.code === SUCCESS) {
 				/* Save the user in state, then route change */
 				/* Signed in */
 				setFormState(RESET);
@@ -82,6 +79,9 @@ class RegistrationForm extends React.Component {
 			}
 			else if (apiResponse.code === EXISTING_EMAIL) {
 				setFormState(EXISTING_EMAIL);
+			}
+			else if (apiResponse.code === NOT_COMPLETE) {
+				setFormState(NOT_COMPLETE);
 			}
 			else {
 				setFormState(RESET);
@@ -183,7 +183,6 @@ class RegistrationForm extends React.Component {
 								<input onClick = { 
 										() => {
 											this.callRegister();
-											
 										}
 									} 
 									className = 'mt2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Sign in' />

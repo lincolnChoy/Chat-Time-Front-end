@@ -1,17 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-
 import Scroll from '../Scroll/Scroll';
 import UserCard from './UserCard';
 import { getList, setTarget, setList, clearProfile } from '../../actions';
-
-import {
-	API_SUCCESS,
-	API_FAIL,
-
-	LIST_FAIL
-} from '../../apiConstants';
+import { SUCCESS } from '../../constants';
 
 
 const mapStateToProps = (state) => {
@@ -42,15 +35,13 @@ class UserList extends React.Component {
 
 		/* Destructure props */
 		const { listResponse, setList } = this.props;
+		const { code } = listResponse;
 
 		/* Pass the list to the state if list is fetched successfully */
-		if (listResponse.code === API_SUCCESS) {
+		if (code === SUCCESS) {
 			setList(listResponse.users);
 		}
-		/* If list fetch failed, show to the user */
-		else if (listResponse.code === API_FAIL) {
-			setList(LIST_FAIL);
-		}
+
 	}
 
 	refreshList() {
@@ -65,7 +56,7 @@ class UserList extends React.Component {
 		const { getList, id, pw } = this.props;
 		getList(id, pw);
 
-		this.interval = setInterval(() => this.refreshList(), 10000);
+		this.interval = setInterval(() => this.refreshList(), 100000);
 
 	}
 
@@ -86,9 +77,6 @@ class UserList extends React.Component {
 			userArray = list.map((user,i) => {
 				return <UserCard key = {i} first = {list[i].first} last = {list[i].last} id = {list[i].id} setTarget = { setTarget } clearProfile = { clearProfile } />
 			});
-		}
-		else if (list === LIST_FAIL) {
-			userArray = 'Could not fetch list';
 		}
 
 		return (

@@ -12,16 +12,15 @@ import {
 	EDIT_EMAIL,
 	EDIT_PW,
 
+	SUCCESS,
 	NOT_COMPLETE,
 	WRONG_CRED,
+	USER_NOT_EXIST,
+
+	API_READ,
 
 	RESET
 } from '../../constants';
-
-import {
-	SIGN_IN_SUCCESS,
-	API_READ
-} from '../../apiConstants';
 
 
 const mapStateToProps = (state) => {
@@ -59,8 +58,9 @@ class SignInForm extends React.Component {
 
 			/* Destructure props */
 			const { signInResponse, setFormState, changeRoute, loadUser, readAPI } = this.props;
+			const { code } = signInResponse;
 
-			if (signInResponse.code === SIGN_IN_SUCCESS) {
+			if (code === SUCCESS) {
 				/* Save the user in state, then route change */
 				/* Signed in */
 				setFormState(RESET);
@@ -73,7 +73,7 @@ class SignInForm extends React.Component {
 				loadUser(user);
 				changeRoute(HOME);
 			}
-			else if (signInResponse.code === WRONG_CRED) {
+			else if (code === WRONG_CRED || code === USER_NOT_EXIST) {
 				setFormState(WRONG_CRED);
 			}
 			else {
@@ -139,11 +139,22 @@ class SignInForm extends React.Component {
 									</div>
 									<div className = 'mv3'>
 										<label className = 'db fw6 lh-copy f4'>Password</label>
-										<input onChange = { 
+										<input 
+										onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_PW);
-											} 
-										} className = 'b pa2 input-reset ba bg-transparent hover-white w-100' type = 'password' />
+											}
+
+										}
+										onKeyPress = {
+											(event) => {
+												if (event.key === 'Enter') {
+													this.callSignIn();
+												}
+											}
+										}
+										 className = 'b pa2 input-reset ba bg-transparent hover-white w-100' type = 'password' />
+										
 									</div>
 								</div>
 

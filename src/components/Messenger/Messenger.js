@@ -1,46 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux'; 
 
-import { getProfile, loadProfile, readAPI } from '../../actions';
+import MessageSection from './MessageSection';
+import MessengerTopBar from './MessengerTopBar';
 
+import { readAPI, sendMessage, editField } from '../../actions';
 import {
+	SUCCESS,
 	API_READ,
-
-	PROFILE_FETCHED,
-	PROFILE_FAIL
-} from '../../apiConstants';
-
+	EDIT_MSG
+} from '../../constants';
 
 const mapStateToProps = (state) => {
 
 	return {
+
+		id : state.loadUser.user.id,
+		pw : state.loadUser.user.pw,
 		messageTarget : state.setTarget.target,
-		profileResponse : state.callAPI.resp,
-		isPending : state.callAPI.isPending,
-		resultWasRead : state.callAPI.resultRead
+		message : state.editMessenger.message,
+
+		msgResp : state.sendMessage.resp,
+		isPending : state.sendMessage.isPending,
+		resultWasRead : state.sendMessage.resultRead
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 
 	return {
-		getProfile : (id) => dispatch(getProfile(id)),
-		loadProfile : (profile) => dispatch(loadProfile(profile)),
-		readAPI : (type) => dispatch(readAPI(type))
+		readAPI : (type) => dispatch(readAPI(type)),
+		editField : (type,text) => dispatch(editField(type,text)),
+		sendMessage : (sender, destination, pw, message) => dispatch(sendMessage(sender, destination, pw, message))
 	}
 }
 
 class Messenger extends React.Component {
 
-	callGetProfile() {
+	callSendMessage() {
 
-		/* Destructure props */
-		const { messageTarget, getProfile } = this.props;
+		const { sendMessage, id, messageTarget, pw, message } = this.props;
+		sendMessage(id, messageTarget.id, pw, message);
 
-		/* Make sure that the target is loaded into state before requesting profile */
-		if (messageTarget) {
-			getProfile(messageTarget.id);
-		}	
 	}
 
 	componentDidUpdate() {
@@ -49,13 +50,11 @@ class Messenger extends React.Component {
 		if (!this.props.resultWasRead) {
 
 			/* Destructure props */
-			const { profileResponse, loadProfile, readAPI } = this.props;
+			const { msgResp, readAPI } = this.props;
+			const { code } = msgResp;
 
-			if (profileResponse.code === PROFILE_FETCHED) {
-				loadProfile(profileResponse);
-			}
-			else if (profileResponse.code === PROFILE_FAIL) {
-				console.log('PROFILE DOES NOT EXIST');
+			if (code === SUCCESS) {
+				console.log('code is success');
 			}
 			readAPI(API_READ);
 		}
@@ -65,22 +64,38 @@ class Messenger extends React.Component {
 	render() {
 
 		/* Determine who the user clicked on */
-		const { messageTarget } = this.props;
+		const { messageTarget, editField } = this.props;
 
 		/* Show the user the relevant chat */
 		let messageBox;
 		if (messageTarget) {
 			messageBox = 
-				<div className = 'w-100 pa3' style = {{ display : 'flex', justifyContent : 'space-around' }}>
-					<div className = 'pa3'>{ messageTarget.first + '  ' +  messageTarget.last }</div>
-					<div className = 'h-50 br3 pa3 pointer grow' style = {{ border : '1px solid blue' }}
-						onClick = { () => {
-							this.callGetProfile();
-						}
-					}>View Profile</div>
+				<div className = 'w-100 pa3'>
+					<MessengerTopBar />
+					<div className = 'mt3 w-100'>
+						<MessageSection />
+					</div>
 					<div className = 'message w-100'>
-						<input className = 'b pa2 input-reset ba bg-transparent hover-white w-90' type = 'text' />
-						<input className = 'ml2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Send' />
+						<input 
+							onChange = { (event) => {
+									editField(event.target.value, EDIT_MSG);
+								}
+							}
+							onKeyPress = {
+								(event) => {
+									if (event.key === 'Enter') {
+										this.callSendMessage();
+									}
+								}
+							}
+							className = 'b pa2 input-reset ba bg-transparent hover-white w-90' type = 'text' />
+						<input
+							onClick = {
+								() => {
+									this.callSendMessage();
+								}
+							}
+							className = 'ml2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Send' />
 					</div>
 				</div>
 		}
@@ -89,7 +104,7 @@ class Messenger extends React.Component {
 		}
 
 		return (
-			<div className = 'w-80 wrapper'>
+			<div className = 'w-80 wrapper' style = {{ height : '850px'}}>
 				{ messageBox }
 			</div>
 		)

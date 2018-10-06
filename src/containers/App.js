@@ -7,11 +7,13 @@ import { particlesOptions } from '../particleConfig';
 import SignInForm from '../components/SignIn/SignInForm';
 import RegistrationForm from '../components/Registration/RegistrationForm';
 import HomePage from '../components/Home/HomePage';
+import OwnProfile from '../components/Profile/OwnProfile';
 
 import { 
 	REGISTRATION,
 	SIGN_IN,
-	HOME
+	HOME,
+	PROFILE
 } from '../constants';
 
 
@@ -46,6 +48,9 @@ class App extends Component {
 				break;
 			case HOME : 
 				page = <HomePage />;
+				break;
+			case PROFILE : 
+				page = <OwnProfile />;
 				break;
 			default : 
 				page = '';
