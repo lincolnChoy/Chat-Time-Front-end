@@ -183,6 +183,7 @@ class RegistrationForm extends React.Component {
 								<input onClick = { 
 										() => {
 											this.callRegister();
+											
 										}
 									} 
 									className = 'mt2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Sign in' />

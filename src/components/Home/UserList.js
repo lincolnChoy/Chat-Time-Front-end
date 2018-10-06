@@ -53,12 +53,26 @@ class UserList extends React.Component {
 		}
 	}
 
+	refreshList() {
+		/* Get list when component mounts */
+		const { getList, id, pw } = this.props;
+		getList(id, pw);
+	}
 
 	componentDidMount() {
 
 		/* Get list when component mounts */
 		const { getList, id, pw } = this.props;
 		getList(id, pw);
+
+		this.interval = setInterval(() => this.refreshList(), 10000);
+
+	}
+
+
+	componentWillUnmount() {
+
+		clearInterval(this.interval);
 	}
 
 	render() {
