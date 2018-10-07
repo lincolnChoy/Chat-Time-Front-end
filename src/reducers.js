@@ -46,6 +46,17 @@ import {
 	MSG_FETCH_FAIL,
 	MSG_READ,
 
+	USER_PROFILE_PENDING,
+	USER_PROFILE_SUCCESS,
+	USER_PROFILE_FAIL,
+	USER_PROFILE_READ,
+
+
+	TARGET_PROFILE_PENDING,
+	TARGET_PROFILE_SUCCESS,
+	TARGET_PROFILE_FAIL,
+	TARGET_PROFILE_READ,
+
 	SENDING_MSG,
 	MSG_SENT,
 	MSG_SEND_FAIL,
@@ -227,7 +238,6 @@ const initialStateUser = {
 		id : '',
 		pw : ''
 	},
-	profile : '',
 	signedIn : false
 }
 
@@ -238,22 +248,46 @@ export const loadUser = (state = initialStateUser, action = {}) => {
 
 		case LOAD_USER : 
 			return Object.assign({}, state, { user : action.payload, signedIn : true });
-		case LOAD_USER_PROFILE : 
-			return Object.assign({}, state, { profile : action.payload, signedIn : true });
-		case CLEAR_PROFILE : 
-			return Object.assign({}, state, { profile : '' });
 		default : 
 			return state;
 	}
 }
 
+const initialUserProfile = {
+
+	profile : '',
+	isPending : false,
+	isLoaded : true
+}
+
+
+export const getUserProfile = (state = initialUserProfile, action = {}) => {
+
+	switch(action.type) {
+		case USER_PROFILE_PENDING : 
+			return Object.assign({}, state, { isPending : true });
+		case USER_PROFILE_SUCCESS : 
+			return Object.assign({}, state, { profile : action.payload, isPending : false, isLoaded : false });
+		case USER_PROFILE_FAIL : 
+			return Object.assign({}, state, { profile : action.payload, isPending : false, isLoaded : false});
+		case USER_PROFILE_READ : 
+			return Object.assign({}, state, { isLoaded : true });
+		default : 
+			return state;
+	}
+}
+
+
+
 const initialTarget = {
 
 	target : '',
-	profile : ''
+	profile : '',
+	isPending : false,
+	isLoaded : true
 }
 
-export const setTarget = (state = initialTarget, action = {}) => {
+export const loadTarget = (state = initialTarget, action = {}) => {
 
 	switch (action.type) {
 
@@ -261,6 +295,14 @@ export const setTarget = (state = initialTarget, action = {}) => {
 			return Object.assign({}, state, { target : action.payload });
 		case LOAD_TARGET_PROFILE : 
 			return Object.assign({}, state, { profile : action.payload });
+		case TARGET_PROFILE_PENDING : 
+			return Object.assign({}, state, { isPending : true });
+		case TARGET_PROFILE_SUCCESS : 
+			return Object.assign({}, state, { profile : action.payload, isPending : false, isLoaded : false });
+		case TARGET_PROFILE_FAIL : 
+			return Object.assign({}, state, { profile : action.payload, isPending : false, isLoaded : false});
+		case TARGET_PROFILE_READ : 
+			return Object.assign({}, state, { isLoaded : true });
 		default : 
 			return state;
 	}

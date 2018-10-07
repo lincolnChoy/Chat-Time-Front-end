@@ -1,33 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getProfile, loadProfile } from '../../actions';
+import { getTargetProfile, loadProfile } from '../../actions';
 
 import {
 	SUCCESS,
 	API_READ,
 
-	LOAD_TARGET_PROFILE
+	TARGET_PROFILE_READ
 } from '../../constants';
 
 const mapStateToProps = (state) => {
 
 	return {
 
-		messageTarget : state.setTarget.target,
+		messageTarget : state.loadTarget.target,
 
-		profileResponse : state.callAPI.resp,
-		isPending : state.callAPI.isPending,
-		resultWasRead : state.callAPI.resultRead
+		profile : state.loadTarget.profile,
+		isLoaded : state.loadTarget.isLoaded
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 
 	return {
-		getProfile : (id) => dispatch(getProfile(id)),
-		loadProfile : (type,profile) => dispatch(loadProfile(type,profile)),
-		readAPI : (type) => dispatch({ type : type })
+		getTargetProfile : (id) => dispatch(getTargetProfile(id)),
+		loadProfile : () => dispatch({ type : TARGET_PROFILE_READ }),
 	}
 }
 
@@ -37,27 +35,19 @@ class MessengerTopBar extends React.Component {
 	callGetProfile() {
 
 		/* Destructure props */
-		const { messageTarget, getProfile } = this.props;
+		const { messageTarget, getTargetProfile } = this.props;
 
 		/* Make sure that the target is loaded into state before requesting profile */
 		if (messageTarget) {
-			getProfile(messageTarget.id);
+			getTargetProfile(messageTarget.id);
 		}	
 	}
 
 	componentDidUpdate() {
 
-		/* Only update if there is an unread API result */
-		if (!this.props.resultWasRead) {
 
-			/* Destructure props */
-			const { profileResponse, loadProfile, readAPI } = this.props;
-			const { code } = profileResponse;
-
-			if (code === SUCCESS) {
-				loadProfile(LOAD_TARGET_PROFILE,profileResponse);
-			}
-			readAPI(API_READ);
+		if (!this.props.isLoaded) {
+			this.props.loadProfile();
 		}
 
 	}

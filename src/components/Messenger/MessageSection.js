@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 	return {
 		id : state.loadUser.user.id,
 		pw : state.loadUser.user.pw,
-		target : state.setTarget.target,
+		target : state.loadTarget.target,
 		messages : state.fetchMessages.resp.messages,
 		fetchResp : state.fetchMessages.resp,
 		resultWasRead : state.fetchMessages.resultRead,
@@ -41,7 +41,7 @@ class MessageSection extends React.Component {
 
 	componentDidMount() {
 		this.refreshMessages();
-		this.interval = setInterval(() => this.refreshMessages(), 1000);
+		//this.interval = setInterval(() => this.refreshMessages(), 1000);
 	}
 
 

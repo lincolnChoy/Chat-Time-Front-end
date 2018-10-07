@@ -18,9 +18,21 @@ import {
 	MSG_FETCH_SUCCESS,
 	MSG_FETCH_FAIL,
 
+	USER_PROFILE_PENDING,
+	USER_PROFILE_SUCCESS,
+	USER_PROFILE_FAIL,
+
+	TARGET_PROFILE_PENDING,
+	TARGET_PROFILE_SUCCESS,
+	TARGET_PROFILE_FAIL,
+	TARGET_PROFILE_READ,
+
+
 	SENDING_MSG,
 	MSG_SENT,
-	MSG_SEND_FAIL
+	MSG_SEND_FAIL,
+
+	DOMAIN
 	
 } from './constants';
 
@@ -101,8 +113,8 @@ export const readAPI = (type) => {
 export const signIn = (email,pw) => (dispatch) => {
 
 	dispatch({ type: API_PENDING });
-	fetch('https://chat-time-api.herokuapp.com/signIn', {
-	//fetch('http://localhost:3000/signIn', {
+
+	fetch(DOMAIN + '/signIn', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -124,8 +136,7 @@ export const register = (first, last, email, pw) => (dispatch) => {
 	dispatch({ type : API_PENDING });
 
 	/* Call the registration API */
-	fetch('https://chat-time-api.herokuapp.com/register', {
-	//fetch('http://localhost:3000/register', {
+	fetch(DOMAIN + '/register', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -147,8 +158,7 @@ export const getList = (id, pw) => (dispatch) => {
 
 	dispatch({ type : LIST_PENDING });
 	/* Call the getList API */
-	fetch('https://chat-time-api.herokuapp.com/getList', {
-	//fetch('http://localhost:3000/getList', {
+	fetch(DOMAIN + '/getList', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -173,21 +183,38 @@ export const setList = (list) => {
 }
 
 
-export const getProfile = (id, pw) => (dispatch) => {
-
-	dispatch({ type : API_PENDING });
+export const getUserProfile = (id) => (dispatch) => {
+	console.log('here');
+	dispatch({ type : USER_PROFILE_PENDING });
 	/* Call the getProfile API */
-	fetch('https://chat-time-api.herokuapp.com/getProfile?user=' + id, {
-	//fetch('http://localhost:3000/getProfile?user=' + id, {
+	fetch(DOMAIN + '/getProfile?user=' + id, {
 		method :'get',
 		headers: {'Content-Type' : 'application/json'}
 	})
 	/* Parse the json response */
 	.then(response => response.json())
 	.then(data => {
-		dispatch({ type: API_SUCCESS, payload: data });
+		dispatch({ type: USER_PROFILE_SUCCESS, payload: data });
 	})
-	.catch(err => dispatch({ type : API_FAIL, payload : err}));
+	.catch(err => dispatch({ type : USER_PROFILE_FAIL, payload : err}));
+
+}
+
+
+export const getTargetProfile = (id) => (dispatch) => {
+
+	dispatch({ type : TARGET_PROFILE_PENDING });
+	/* Call the getProfile API */
+	fetch(DOMAIN + '/getProfile?user=' + id, {
+		method :'get',
+		headers: {'Content-Type' : 'application/json'}
+	})
+	/* Parse the json response */
+	.then(response => response.json())
+	.then(data => {
+		dispatch({ type: TARGET_PROFILE_SUCCESS, payload: data });
+	})
+	.catch(err => dispatch({ type : TARGET_PROFILE_FAIL, payload : err}));
 
 }
 
@@ -196,8 +223,7 @@ export const saveProfile = (id, pw, birthday, location, occupation, blurb) => (d
 	dispatch({ type : API_PENDING });
 
 	/* Call the saveProfile API */
-	fetch('https://chat-time-api.herokuapp.com/saveProfile', {
-	//fetch('http://localhost:3000/saveProfile', {
+	fetch(DOMAIN + '/saveProfile', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -222,8 +248,7 @@ export const getMessages = (sender, destination, pw) => (dispatch) => {
 
 	dispatch({ type : MSG_FETCH_PENDING });
 	/* Call the getList API */
-	fetch('https://chat-time-api.herokuapp.com/getMessages', {
-	//fetch('http://localhost:3000/getMessages', {
+	fetch(DOMAIN + '/getMessages', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -245,8 +270,7 @@ export const sendMessage = (sender, destination, pw, message) => (dispatch) => {
 
 	dispatch({ type : SENDING_MSG });
 	/* Call the getList API */
-	fetch('https://chat-time-api.herokuapp.com/sendMessage', {
-	//fetch('http://localhost:3000/sendMessage', {
+	fetch(DOMAIN + '/sendMessage', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -266,6 +290,9 @@ export const sendMessage = (sender, destination, pw, message) => (dispatch) => {
 }
 
 export const loadMessages = (messages) => {
+
+
+
 
 	return {
 		type : LOAD_MESSAGES,

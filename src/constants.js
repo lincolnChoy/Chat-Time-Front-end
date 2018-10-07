@@ -56,13 +56,25 @@ export const MSG_FETCH_SUCCESS = 'MSG_FETCH_SUCCESS';
 export const MSG_FETCH_FAIL = 'MSG_FETCH_FAIL';
 export const MSG_READ = 'MSG_READ';
 
-
 export const LIST_PENDING = 'LIST_PENDING';
 export const LIST_SUCCESS = 'LIST_SUCCESS';
 export const LIST_FAIL = 'LIST_FAIL';
 export const LIST_READ = 'LIST_READ';
 
+export const USER_PROFILE_PENDING = 'USER_PROFILE_PENDING';
+export const USER_PROFILE_SUCCESS = 'USER_PROFILE_SUCCESS';
+export const USER_PROFILE_FAIL = 'USER_PROFILE_FAIL';
+export const USER_PROFILE_READ = 'USER_PROFILE_READ';
+
+export const TARGET_PROFILE_PENDING = 'TARGET_PROFILE_PENDING';
+export const TARGET_PROFILE_SUCCESS = 'TARGET_PROFILE_SUCCESS';
+export const TARGET_PROFILE_FAIL = 'TARGET_PROFILE_FAIL';
+export const TARGET_PROFILE_READ = 'TARGET_PROFILE_READ';
+
 export const SENDING_MSG = 'SENDING_MSG';
 export const MSG_SENT = 'MSG_SENT';
 export const MSG_SEND_FAIL = 'MSG_SEND_FAIL';
 export const CLEAR_MSG = 'CLEAR_MSG';
+
+export const DOMAIN = 'https://chat-time-api.herokuapp.com';
+//export const DOMAIN = 'http://localhost:3000'

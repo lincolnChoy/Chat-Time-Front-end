@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { editProfileField, saveProfile, changeRoute, getProfile, loadProfile, readAPI } from '../../actions';
+import { editProfileField, saveProfile, changeRoute, getUserProfile, loadProfile, readAPI } from '../../actions';
 import {
 	EDIT_BIRTHDAY,
 	EDIT_LOCATION,
@@ -12,7 +12,8 @@ import {
 
 	SUCCESS,
 	API_READ,
-	LOAD_USER_PROFILE
+	LOAD_USER_PROFILE,
+	USER_PROFILE_READ
 } from '../../constants';
 
 
@@ -23,12 +24,11 @@ const mapStateToProps = (state) => {
 		location : state.editProfile.location,
 		occupation : state.editProfile.occupation,
 		blurb : state.editProfile.blurb,
-		profile : state.loadUser.profile,
 		id : state.loadUser.user.id,
-		pw : state.loadUser.user.pw,
 
-		resultWasRead : state.callAPI.resultRead,
-		profileResponse : state.callAPI.resp
+		isPending : state.getUserProfile.isPending,
+		profile : state.getUserProfile.profile,
+		profileLoaded : state.getUserProfile.isLoaded
 	}
 }
 
@@ -38,9 +38,8 @@ const mapDispatchToProps = (dispatch) => {
 		editProfileField : (field, text) => dispatch(editProfileField(field, text)),
 		saveProfile : (id, pw, birthday, location, occupation, blurb) => dispatch(saveProfile(id, pw, birthday, location, occupation, blurb)),
 		changeRoute : (route) => dispatch(changeRoute(route)),
-		getProfile : (id) => dispatch(getProfile(id)),
-		loadProfile : (type,profile) => dispatch(loadProfile(type,profile)),
-		readAPI : (type) => dispatch(readAPI(type))
+		getUserProfile : (id) => dispatch(getUserProfile(id)),
+		loadProfile : () => dispatch({ type : USER_PROFILE_READ })
 	}
 }
 
@@ -58,27 +57,22 @@ class OwnProfile extends React.Component {
 
 	componentDidMount() {
 		
-		const { getProfile, id } = this.props;
-		getProfile(id);
+		const { getUserProfile, id } = this.props;
+		getUserProfile(id);
 	}
 
 	componentDidUpdate() {
 
-		if (!this.props.resultWasRead) {
+		if (!this.props.profileLoaded) {
+			const { profile, loadProfile, editProfileField } = this.props;
 
-			const { profileResponse, loadProfile, readAPI, editProfileField } = this.props;
-
-			if (profileResponse.code === SUCCESS) {
-
-				loadProfile(LOAD_USER_PROFILE,profileResponse);
-				editProfileField(EDIT_OCCUPATION, profileResponse.occupation)
-				editProfileField(EDIT_LOCATION, profileResponse.location)
-				editProfileField(EDIT_BIRTHDAY, profileResponse.birthday)
-				editProfileField(EDIT_BLURB, profileResponse.blurb)
-			}
-			readAPI(API_READ);
+			//loadProfile(LOAD_USER_PROFILE,profileResponse);
+			editProfileField(EDIT_OCCUPATION, profile.occupation);
+			editProfileField(EDIT_LOCATION, profile.location);
+			editProfileField(EDIT_BIRTHDAY, profile.birthday);
+			editProfileField(EDIT_BLURB, profile.blurb);
+			loadProfile();
 		}
-
 	}
 
 	render() {
@@ -106,7 +100,7 @@ class OwnProfile extends React.Component {
 					<input onChange = {(event) => { editProfileField(EDIT_BLURB, event.target.value);}}
 						className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' placeholder = { blurb }/>
 
-					<input onClick = { () => {this.saveChanges();}} 
+					<input onClick = { () => {this.saveChanges(); changeRoute(HOME);}} 
 						className = 'mt3 ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Save changes' />
 					<input onClick = { () => { changeRoute(HOME);}} 
 						className = 'mt3 ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Go back' />

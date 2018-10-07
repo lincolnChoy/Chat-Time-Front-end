@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 
 		id : state.loadUser.user.id,
 		pw : state.loadUser.user.pw,
-		messageTarget : state.setTarget.target,
+		messageTarget : state.loadTarget.target,
 		message : state.editMessenger.message,
 
 		msgResp : state.sendMessage.resp,
