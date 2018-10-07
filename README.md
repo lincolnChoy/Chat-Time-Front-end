@@ -22,9 +22,7 @@ Home page (still being worked on):
     
 ![home page](http://puu.sh/BG7Ay/5f4bee41a0.jpg)    
     
-![home page](http://puu.sh/BG7AL/a155933725.jpg)    
-    
-![profile view](https://puu.sh/BGa7Q/ae28d2ccf1.jpg)    
+![home page](http://puu.sh/BG7AL/a155933725.jpg)       
     
 ![messaging](http://puu.sh/BHajE/b9d5b2a3d9.jpg)    
     
