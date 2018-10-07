@@ -1,0 +1,18 @@
+.msgCard {
+	display : flex;
+	align-items : center;
+}
+
+
+.chatHead {
+	width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius : 100%;
+}
+
+.chatHead img {
+	height: 100%;
+	width : 100%;
+	object-fit: cover;
+}

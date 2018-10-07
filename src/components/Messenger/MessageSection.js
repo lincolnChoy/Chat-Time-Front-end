@@ -42,7 +42,7 @@ class MessageSection extends React.Component {
 
 	componentDidMount() {
 		this.refreshMessages();
-		//this.interval = setInterval(() => this.refreshMessages(), 1000);
+		this.interval = setInterval(() => this.refreshMessages(), 2000);
 	}
 
 
@@ -76,14 +76,14 @@ class MessageSection extends React.Component {
 
 	render() {
 
-		const { messages, id } = this.props;
+		const { messages, id, target } = this.props;
 
 		/* Check if there are messages */
 		let conversation;
 		if (messages !== '' && messages!== undefined) {
 			conversation = messages.map((message,i) => {
 				let isSending = (message.sender === id)
-				return <MessageCard key = {i} isSending = { isSending } message = { message.message } />
+				return <MessageCard key = {i} user = { id } target = { target.picture } isSending = { isSending } message = { message.message } />
 			});
 		}
 		return (

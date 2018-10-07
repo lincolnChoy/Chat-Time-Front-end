@@ -104,7 +104,7 @@ export const signIn = (email,pw) => (dispatch) => {
 
 	dispatch({ type: API_PENDING });
 
-	fetch(DOMAIN + '/signIn', {
+	fetch(DOMAIN + 'signIn', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -126,7 +126,7 @@ export const register = (first, last, email, pw) => (dispatch) => {
 	dispatch({ type : API_PENDING });
 
 	/* Call the registration API */
-	fetch(DOMAIN + '/register', {
+	fetch(DOMAIN + 'register', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -148,7 +148,7 @@ export const getList = (id, pw) => (dispatch) => {
 
 	dispatch({ type : LIST_PENDING });
 	/* Call the getList API */
-	fetch(DOMAIN + '/getList', {
+	fetch(DOMAIN + 'getList', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -179,7 +179,7 @@ export const getUserProfile = (id) => (dispatch) => {
 	dispatch({ type : USER_PROFILE_PENDING });
 	
 	/* Call the getProfile API */
-	fetch(DOMAIN + '/getProfile?user=' + id, {
+	fetch(DOMAIN + 'getProfile?user=' + id, {
 		method :'get',
 		headers: {'Content-Type' : 'application/json'}
 	})
@@ -197,7 +197,7 @@ export const getTargetProfile = (id) => (dispatch) => {
 
 	dispatch({ type : TARGET_PROFILE_PENDING });
 	/* Call the getProfile API */
-	fetch(DOMAIN + '/getProfile?user=' + id, {
+	fetch(DOMAIN + 'getProfile?user=' + id, {
 		method :'get',
 		headers: {'Content-Type' : 'application/json'}
 	})
@@ -214,7 +214,7 @@ export const saveProfile = (id, pw, birthday, location, occupation, blurb, pictu
 
 	dispatch({ type : API_PENDING });
 	/* Call the saveProfile API */
-	fetch(DOMAIN + '/saveProfile', {
+	fetch(DOMAIN + 'saveProfile', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -240,7 +240,7 @@ export const getMessages = (sender, destination, pw) => (dispatch) => {
 
 	dispatch({ type : MSG_FETCH_PENDING });
 	/* Call the getList API */
-	fetch(DOMAIN + '/getMessages', {
+	fetch(DOMAIN + 'getMessages', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({
@@ -262,7 +262,7 @@ export const sendMessage = (sender, destination, pw, message) => (dispatch) => {
 
 	dispatch({ type : SENDING_MSG });
 	/* Call the getList API */
-	fetch(DOMAIN + '/sendMessage', {
+	fetch(DOMAIN + 'sendMessage', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
 		body: JSON.stringify({

@@ -101,8 +101,8 @@ class OwnProfile extends React.Component {
 
 	render() {
 
-		const { editProfileField, changeRoute, id } = this.props;
-		const { birthday, occupation, location, blurb } = this.props.profile;
+		const { editProfileField, changeRoute } = this.props;
+		const { birthday, occupation, location, blurb, picture } = this.props.profile;
 		return (
 			<div>
 				<div className = 'ma5 pa3 w-80' style = {{ display : 'flex', justifyContent : 'space-around' }}>
@@ -130,11 +130,11 @@ class OwnProfile extends React.Component {
 						<input onClick = { () => { changeRoute(HOME);}} 
 							className = 'mt3 ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Go back' />
 					</div>
-					<div>
+					<div className = 'ma5'>
 						<img 
-						className = 'mt5 br3 dp' style = {{ border : '1px solid black'}} 
-						src = { DOMAIN + '/' + id.toString() + '.jpg'}
-						alt = 'target avatar' height = '500px'/>
+						className = 'br3 dp' style = {{ border : '1px solid black'}} 
+						src = { DOMAIN + picture }
+						alt = 'user avatar' height = '500px'/>
 						<br/>
 						<p>Choose a new profile picture</p>
 						<input type = 'file'

@@ -3,16 +3,16 @@ import './profile.css';
 import {
 	DOMAIN 
 } from '../../constants';
-const ProfileSection = ({ id, name, birthday, location, occupation, blurb }) => {
+const ProfileSection = ({ picture, name, birthday, location, occupation, blurb }) => {
 
 	return (
 
 		<div className = 'ma2 w-90 h-50 br3 profileBox'>
 			<div className = 'bg-white tc dp'>
 				<img 
-					className = 'mt2 br3 dpS' style = {{ border : '1px solid black'}} 
-					src = { DOMAIN + '/' + id.toString() + '.jpg'}
-					alt = 'target avatar' />
+					className = 'mt2 br3' style = {{ border : '1px solid black'}} 
+					src = { DOMAIN + picture }
+					alt = { DOMAIN + 'anon.jpg' } height = '200px'/>
 			</div>
 			<div className = 'underline'>
 				<p className = 'mv2 tc'>Name : { name } </p>
