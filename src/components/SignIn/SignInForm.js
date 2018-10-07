@@ -68,6 +68,7 @@ class SignInForm extends React.Component {
 					first : signInResponse.first,
 					last : signInResponse.last,
 					id : signInResponse.id,
+					picture : signInResponse.picture,
 					pw : this.props.pw
 				}
 				loadUser(user);

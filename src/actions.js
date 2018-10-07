@@ -50,7 +50,8 @@ export const loadUser = (user) => {
 			first: user.first,
 			last: user.last,
 			id: user.id,
-			pw : user.pw
+			pw : user.pw,
+			picture : user.picture
 		}
 	}
 }
@@ -292,12 +293,13 @@ export const loadMessages = (messages) => {
 	}
 }
 
-export const setTarget = (first, last, id) => {
+export const setTarget = (first, last, id, picture) => {
 
 	const user = {
 		first : first,
 		last : last,
-		id : id
+		id : id,
+		picture : picture
 	}
 	return {
 		type : SET_TARGET,

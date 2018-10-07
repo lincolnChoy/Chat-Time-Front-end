@@ -5,7 +5,7 @@ import {
 
 import './message.css';
 
-const MessageCard = ({ user, targetPic, isSending, message }) => {
+const MessageCard = ({ userPic, targetPic, isSending, message }) => {
 
 	if (isSending) {
 		return (
@@ -15,8 +15,8 @@ const MessageCard = ({ user, targetPic, isSending, message }) => {
 				</div>
 				<div className = 'chatHead ma2' style = {{ border : '1px solid black'}} >
 					<img 
-						src = { DOMAIN + user.toString() + '.jpg'}
-						alt = { DOMAIN + 'anon.jpg' }/>
+						src = { DOMAIN + userPic }
+						alt = 'user dp'/>
 				</div>
 			</div>
 		)
@@ -27,7 +27,7 @@ const MessageCard = ({ user, targetPic, isSending, message }) => {
 				<div className = 'chatHead ma2' style = {{ border : '1px solid black'}} >
 					<img 
 						src = { DOMAIN + targetPic }
-						alt = { DOMAIN + 'anon.jpg' }/>
+						alt = 'target dp'/>
 				</div>
 				<div className = 'msgCard v-mid bg-light-blue br4 ph3 pv2 ma2'>
 					{ message }

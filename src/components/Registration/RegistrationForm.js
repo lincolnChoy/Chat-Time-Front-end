@@ -72,6 +72,7 @@ class RegistrationForm extends React.Component {
 					first : apiResponse.first,
 					last : apiResponse.last,
 					id : apiResponse.id,
+					picture : apiResponse.picture,
 					pw : this.props.pw
 				}
 				loadUser(user);

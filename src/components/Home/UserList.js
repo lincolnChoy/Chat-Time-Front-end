@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 
 	return {
 		getList : (id, pw) => dispatch(getList(id, pw)),
-		setTarget : (first, last, id) => dispatch(setTarget(first, last, id)),
+		setTarget : (first, last, id, picture) => dispatch(setTarget(first, last, id, picture)),
 		setList : (list) => dispatch(setList(list)),
 		clearProfile : () => dispatch({ type : CLEAR_TARGET_PROFILE })
 	}
@@ -83,7 +83,13 @@ class UserList extends React.Component {
 		let userArray;
 		if (list !== '') {
 			userArray = list.map((user,i) => {
-				return <UserCard key = {i} first = {list[i].first} last = {list[i].last} id = {list[i].id} setTarget = { setTarget } clearProfile = { clearProfile } />
+				return <UserCard key = {i} 
+								first = {list[i].first} 
+								last = {list[i].last} 
+								id = {list[i].id} 
+								picture = { list[i].picture } 
+								setTarget = { setTarget } 
+								clearProfile = { clearProfile } />
 			});
 		}
 

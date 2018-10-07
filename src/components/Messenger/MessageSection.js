@@ -16,6 +16,7 @@ const mapStateToProps = (state) => {
 	return {
 		id : state.loadUser.user.id,
 		pw : state.loadUser.user.pw,
+		userPicture : state.loadUser.user.picture,
 		target : state.loadTarget.target,
 		messages : state.fetchMessages.resp.messages,
 		fetchResp : state.fetchMessages.resp,
@@ -76,14 +77,14 @@ class MessageSection extends React.Component {
 
 	render() {
 
-		const { messages, id, target } = this.props;
+		const { messages, userPicture , target, id } = this.props;
 
 		/* Check if there are messages */
 		let conversation;
 		if (messages !== '' && messages!== undefined) {
 			conversation = messages.map((message,i) => {
 				let isSending = (message.sender === id)
-				return <MessageCard key = {i} user = { id } target = { target.picture } isSending = { isSending } message = { message.message } />
+				return <MessageCard key = {i} userPic = { userPicture } targetPic = { target.picture } isSending = { isSending } message = { message.message } />
 			});
 		}
 		return (
