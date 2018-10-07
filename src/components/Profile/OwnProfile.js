@@ -65,7 +65,6 @@ class OwnProfile extends React.Component {
 
 	uploadFile(event) {
 		let file = event.target.files[0];
-        console.log(file);
 
         var reader = new FileReader();
 		reader.readAsDataURL(file);

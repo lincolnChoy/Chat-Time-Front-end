@@ -5,6 +5,8 @@ Front-end of a communications app.
 Currently uses the back-end of the Interngrate website for faster prototyping.        
 Uses the React framework.    
 API-server for this website can be found [here.](https://github.com/lincolnChoy/Chat-Time-API)    
+Website may feel slow sometimes as the back-end server is deployed with a free plan.    
+
 Middleware :    
 .Redux    
 .Redux logger     
@@ -24,6 +26,12 @@ Home page (still being worked on):
     
 ![profile view](https://puu.sh/BGa7Q/ae28d2ccf1.jpg)    
     
-![messaging](http://puu.sh/BGEGt/e9d1a36a2d.jpg)
+![messaging](http://puu.sh/BHajE/b9d5b2a3d9.jpg)    
+    
+![messaging](http://puu.sh/BHaiO/b87b3c6482.jpg)    
+   
+![editingprofile](http://puu.sh/BHacN/0e3bb97bc1.jpg)    
+
+
 
 
