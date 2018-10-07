@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 
 import { editProfileField, saveProfile, changeRoute, getUserProfile } from '../../actions';
 import {
-
-	DOMAIN,
-
+	
 	EDIT_BIRTHDAY,
 	EDIT_LOCATION,
 	EDIT_OCCUPATION,
