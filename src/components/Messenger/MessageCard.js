@@ -5,7 +5,7 @@ const MessageCard = ({ isSending, message }) => {
 	if (isSending) {
 		return (
 			<div style = {{ display : 'flex', justifyContent : 'flex-end'}}>
-				<div className = 'msgCard tr bg-light-red br4 pa3 ma2'>
+				<div className = 'msgCard tr bg-light-red br4 ph3 pv2 white ma2'>
 					{ message }
 				</div>
 			</div>
