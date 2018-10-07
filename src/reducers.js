@@ -27,6 +27,7 @@ import {
 	EDIT_LOCATION,
 	EDIT_OCCUPATION,
 	EDIT_BLURB,
+	EDIT_PICTURE,
 
 	API_PENDING,
 	API_SUCCESS,
@@ -307,7 +308,8 @@ const initialProfileForm = {
 	birthday : '',
 	location : '',
 	occupation : '',
-	blurb : ''
+	blurb : '',
+	picture : ''
 
 }
 
@@ -322,6 +324,8 @@ export const editProfile = (state = initialProfileForm, action = {}) => {
 			return Object.assign({}, state, { occupation : action.payload });
 		case EDIT_BLURB : 
 			return Object.assign({}, state, { blurb : action.payload });
+		case EDIT_PICTURE : 
+			return Object.assign({}, state, { picture : action.payload });
 		default : 	
 			return state;
 	}

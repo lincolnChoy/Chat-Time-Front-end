@@ -6,6 +6,15 @@
 .dp {
 	border-top-left-radius: 0.5rem;
 	border-top-right-radius: 0.5rem;
+	max-width: 400px;
+	max-height: 400px;
+}
+
+.dpS {
+	border-top-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+	max-width: 200px;
+    max-height: 200px;
 }
 
 .underline {

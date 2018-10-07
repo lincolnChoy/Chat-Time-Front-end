@@ -7,7 +7,6 @@ import MessengerTopBar from './MessengerTopBar';
 import { sendMessage, editField } from '../../actions';
 
 import {
-	SUCCESS,
 	CLEAR_MSG,
 	EDIT_MSG
 } from '../../constants';

@@ -3,10 +3,14 @@ import { connect } from 'react-redux';
 
 import { editProfileField, saveProfile, changeRoute, getUserProfile } from '../../actions';
 import {
+
+	DOMAIN,
+
 	EDIT_BIRTHDAY,
 	EDIT_LOCATION,
 	EDIT_OCCUPATION,
 	EDIT_BLURB,
+	EDIT_PICTURE,
 
 	HOME,
 
@@ -21,6 +25,7 @@ const mapStateToProps = (state) => {
 		location : state.editProfile.location,
 		occupation : state.editProfile.occupation,
 		blurb : state.editProfile.blurb,
+		picture : state.editProfile.picture,
 		id : state.loadUser.user.id,
 		pw : state.loadUser.user.pw,
 
@@ -34,7 +39,7 @@ const mapDispatchToProps = (dispatch) => {
 
 	return {
 		editProfileField : (field, text) => dispatch(editProfileField(field, text)),
-		saveProfile : (id, pw, birthday, location, occupation, blurb) => dispatch(saveProfile(id, pw, birthday, location, occupation, blurb)),
+		saveProfile : (id, pw, birthday, location, occupation, blurb, picture) => dispatch(saveProfile(id, pw, birthday, location, occupation, blurb, picture)),
 		changeRoute : (route) => dispatch(changeRoute(route)),
 		getUserProfile : (id) => dispatch(getUserProfile(id)),
 		loadProfile : () => dispatch({ type : USER_PROFILE_READ })
@@ -44,13 +49,39 @@ const mapDispatchToProps = (dispatch) => {
 
 class OwnProfile extends React.Component {
 
+	constructor(props) {
+		super(props);
+		this.uploadFile = this.uploadFile.bind(this);
+	}
+
 
 	saveChanges() {
 
 		/* Destructure props */
-		const { birthday, location, occupation, blurb, saveProfile, id, pw } = this.props;
-		saveProfile(id, pw, birthday, location, occupation, blurb);
+		const { birthday, location, occupation, blurb, picture, saveProfile, id, pw } = this.props;
+		console.log('picture is here' + picture);
+		saveProfile(id, pw, birthday, location, occupation, blurb, picture);
 
+	}
+
+	uploadFile(event) {
+		let file = event.target.files[0];
+        console.log(file);
+
+        var reader = new FileReader();
+		reader.readAsDataURL(file);
+
+		const { editProfileField } = this.props;
+
+		reader.onload = function () {
+
+
+			var fileData = reader.result.toString();
+			console.log('here we go ' + reader.result);
+
+			editProfileField(EDIT_PICTURE, fileData);
+
+		}
 	}
 
 	componentDidMount() {
@@ -70,33 +101,45 @@ class OwnProfile extends React.Component {
 
 	render() {
 
-		const { editProfileField, changeRoute } = this.props;
+		const { editProfileField, changeRoute, id } = this.props;
 		const { birthday, occupation, location, blurb } = this.props.profile;
 		return (
 			<div>
-				<div className = 'ma3 pa3 w-70'>
-					<h1>My Profile</h1>
-					<label className = 'ma2 db fw6 lh-copy f4'>Occupation</label>
-					<input onChange = {(event) => { editProfileField(EDIT_OCCUPATION, event.target.value);}}
-						className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' placeholder = { occupation }/>
+				<div className = 'ma5 pa3 w-80' style = {{ display : 'flex', justifyContent : 'space-around' }}>
+					<div>
+						<h1>My Profile</h1>
+						<label className = 'ma2 db fw6 lh-copy f4'>Occupation</label>
+						<input onChange = {(event) => { editProfileField(EDIT_OCCUPATION, event.target.value);}}
+							className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' placeholder = { occupation }/>
 
-					<label className = 'ma2 db fw6 lh-copy f4'>Location</label>
-					<input 
-						onChange = {(event) => { editProfileField(EDIT_LOCATION, event.target.value);}}
-						className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' placeholder = { location }/>
+						<label className = 'ma2 db fw6 lh-copy f4'>Location</label>
+						<input 
+							onChange = {(event) => { editProfileField(EDIT_LOCATION, event.target.value);}}
+							className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' placeholder = { location }/>
 
-					<label className = 'ma2 db fw6 lh-copy f4'>Birthday</label>
-					<input onChange = {(event) => { editProfileField(EDIT_BIRTHDAY, event.target.value);}}
-						className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' placeholder = { birthday }/>
+						<label className = 'ma2 db fw6 lh-copy f4'>Birthday</label>
+						<input onChange = {(event) => { editProfileField(EDIT_BIRTHDAY, event.target.value);}}
+							className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' placeholder = { birthday }/>
 
-					<label className = 'ma2 db fw6 lh-copy f4'>Blurb</label>
-					<input onChange = {(event) => { editProfileField(EDIT_BLURB, event.target.value);}}
-						className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' placeholder = { blurb }/>
+						<label className = 'ma2 db fw6 lh-copy f4'>Blurb</label>
+						<input onChange = {(event) => { editProfileField(EDIT_BLURB, event.target.value);}}
+							className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' placeholder = { blurb }/>
 
-					<input onClick = { () => {this.saveChanges(); changeRoute(HOME);}} 
-						className = 'mt3 ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Save changes' />
-					<input onClick = { () => { changeRoute(HOME);}} 
-						className = 'mt3 ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Go back' />
+						<input onClick = { () => {this.saveChanges(); changeRoute(HOME);}} 
+							className = 'mt3 ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Save changes' />
+						<input onClick = { () => { changeRoute(HOME);}} 
+							className = 'mt3 ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Go back' />
+					</div>
+					<div>
+						<img 
+						className = 'mt5 br3 dp' style = {{ border : '1px solid black'}} 
+						src = { DOMAIN + '/' + id.toString() + '.jpg'}
+						alt = 'target avatar' height = '500px'/>
+						<br/>
+						<p>Choose a new profile picture</p>
+						<input type = 'file'
+							onChange= { this.uploadFile } />
+					</div>
 				</div>
 			</div>
 		)

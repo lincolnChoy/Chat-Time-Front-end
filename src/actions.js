@@ -210,10 +210,9 @@ export const getTargetProfile = (id) => (dispatch) => {
 
 }
 
-export const saveProfile = (id, pw, birthday, location, occupation, blurb) => (dispatch) => {
+export const saveProfile = (id, pw, birthday, location, occupation, blurb, picture) => (dispatch) => {
 
 	dispatch({ type : API_PENDING });
-
 	/* Call the saveProfile API */
 	fetch(DOMAIN + '/saveProfile', {
 		method :'post',
@@ -224,7 +223,8 @@ export const saveProfile = (id, pw, birthday, location, occupation, blurb) => (d
 			birthday : birthday,
 			location : location,
 			occupation : occupation,
-			blurb : blurb
+			blurb : blurb,
+			picture : picture
 		})
 	})
 	/* Parse the json response */

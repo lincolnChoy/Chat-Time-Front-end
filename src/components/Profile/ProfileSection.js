@@ -1,15 +1,17 @@
 import React from 'react';
 import './profile.css';
-
-const ProfileSection = ({ name, birthday, location, occupation, blurb }) => {
+import {
+	DOMAIN 
+} from '../../constants';
+const ProfileSection = ({ id, name, birthday, location, occupation, blurb }) => {
 
 	return (
 
 		<div className = 'ma2 w-90 h-50 br3 profileBox'>
 			<div className = 'bg-white tc dp'>
 				<img 
-					className = 'mt2 w-60 br3' style = {{ border : '1px solid black'}} 
-					src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWwKoEyYL3qPQjBhf7Ybi3JM07BM7E7s8qS-VTnCkWV_ydmjJr'
+					className = 'mt2 br3 dpS' style = {{ border : '1px solid black'}} 
+					src = { DOMAIN + '/' + id.toString() + '.jpg'}
 					alt = 'target avatar' />
 			</div>
 			<div className = 'underline'>

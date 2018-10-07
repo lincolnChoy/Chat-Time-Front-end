@@ -29,7 +29,8 @@ class HomePage extends React.Component {
 		let section;
 		/* Read the target's profile */
 		if (profile !== '') {
-			section = <ProfileSection 
+			section = <ProfileSection
+				id = { profile.id } 
 				birthday = { profile.birthday } 
 				location = { profile.location } 
 				blurb = { profile.blurb }

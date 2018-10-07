@@ -9,7 +9,7 @@ const UserCard = ({ first, last, id, setTarget, clearProfile }) => {
 				clearProfile();
 				setTarget(first, last, id);
 			}}
-			className = 'br3 pa2 ma2 pointer grow' style = {{ border : '1px solid white' }}>
+			className = 'br3 ma2 pointer grow' style = {{ border : '1px solid white' }}>
 				<p>{ first } { last } </p>
 			</div>
 		</div>
