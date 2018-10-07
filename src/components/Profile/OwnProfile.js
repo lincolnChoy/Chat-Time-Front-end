@@ -59,7 +59,6 @@ class OwnProfile extends React.Component {
 
 		/* Destructure props */
 		const { birthday, location, occupation, blurb, picture, saveProfile, id, pw } = this.props;
-		console.log('picture is here' + picture);
 		saveProfile(id, pw, birthday, location, occupation, blurb, picture);
 
 	}
@@ -75,10 +74,7 @@ class OwnProfile extends React.Component {
 
 		reader.onload = function () {
 
-
 			var fileData = reader.result.toString();
-			console.log('here we go ' + reader.result);
-
 			editProfileField(EDIT_PICTURE, fileData);
 
 		}
@@ -133,7 +129,7 @@ class OwnProfile extends React.Component {
 					<div className = 'ma5'>
 						<img 
 						className = 'br3 dp' style = {{ border : '1px solid black'}} 
-						src = { DOMAIN + picture }
+						src = { picture }
 						alt = 'user avatar' height = '500px'/>
 						<br/>
 						<p>Choose a new profile picture</p>

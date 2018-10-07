@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-	DOMAIN
-} from '../../constants';
 
 import './message.css';
 
@@ -15,7 +12,7 @@ const MessageCard = ({ userPic, targetPic, isSending, message }) => {
 				</div>
 				<div className = 'chatHead ma2' style = {{ border : '1px solid black'}} >
 					<img 
-						src = { DOMAIN + userPic }
+						src = { userPic }
 						alt = 'user dp'/>
 				</div>
 			</div>
@@ -26,7 +23,7 @@ const MessageCard = ({ userPic, targetPic, isSending, message }) => {
 			<div style = {{ display : 'flex', justifyContent : 'flex-start'}}>
 				<div className = 'chatHead ma2' style = {{ border : '1px solid black'}} >
 					<img 
-						src = { DOMAIN + targetPic }
+						src = { targetPic }
 						alt = 'target dp'/>
 				</div>
 				<div className = 'msgCard v-mid bg-light-blue br4 ph3 pv2 ma2'>

@@ -1,8 +1,6 @@
 import React from 'react';
 import './profile.css';
-import {
-	DOMAIN 
-} from '../../constants';
+
 const ProfileSection = ({ picture, name, birthday, location, occupation, blurb }) => {
 
 	return (
@@ -11,8 +9,8 @@ const ProfileSection = ({ picture, name, birthday, location, occupation, blurb }
 			<div className = 'bg-white tc dp'>
 				<img 
 					className = 'mt2 br3' style = {{ border : '1px solid black'}} 
-					src = { DOMAIN + picture }
-					alt = { DOMAIN + 'anon.jpg' } height = '200px'/>
+					src = { picture }
+					alt = 'target dp' height = '200px'/>
 			</div>
 			<div className = 'underline'>
 				<p className = 'mv2 tc'>Name : { name } </p>
