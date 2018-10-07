@@ -1,6 +1,5 @@
 import {
 	LOAD_USER,
-	CLEAR_PROFILE,
 	LOAD_MESSAGES,
 	
 	SET_TARGET,
@@ -25,8 +24,6 @@ import {
 	TARGET_PROFILE_PENDING,
 	TARGET_PROFILE_SUCCESS,
 	TARGET_PROFILE_FAIL,
-	TARGET_PROFILE_READ,
-
 
 	SENDING_MSG,
 	MSG_SENT,
@@ -77,13 +74,6 @@ export const editProfileField = (field, text) => {
 	return {
 		type : field,
 		payload : text
-	}
-}
-
-export const clearProfile = () => {
-
-	return {
-		type : CLEAR_PROFILE
 	}
 }
 
@@ -184,8 +174,10 @@ export const setList = (list) => {
 
 
 export const getUserProfile = (id) => (dispatch) => {
-	console.log('here');
+
+
 	dispatch({ type : USER_PROFILE_PENDING });
+	
 	/* Call the getProfile API */
 	fetch(DOMAIN + '/getProfile?user=' + id, {
 		method :'get',

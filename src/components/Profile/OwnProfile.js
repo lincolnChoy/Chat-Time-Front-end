@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { editProfileField, saveProfile, changeRoute, getUserProfile, loadProfile, readAPI } from '../../actions';
+import { editProfileField, saveProfile, changeRoute, getUserProfile } from '../../actions';
 import {
 	EDIT_BIRTHDAY,
 	EDIT_LOCATION,
@@ -10,9 +10,6 @@ import {
 
 	HOME,
 
-	SUCCESS,
-	API_READ,
-	LOAD_USER_PROFILE,
 	USER_PROFILE_READ
 } from '../../constants';
 
@@ -25,6 +22,7 @@ const mapStateToProps = (state) => {
 		occupation : state.editProfile.occupation,
 		blurb : state.editProfile.blurb,
 		id : state.loadUser.user.id,
+		pw : state.loadUser.user.pw,
 
 		isPending : state.getUserProfile.isPending,
 		profile : state.getUserProfile.profile,
@@ -63,14 +61,9 @@ class OwnProfile extends React.Component {
 
 	componentDidUpdate() {
 
+		/* Only load profile once after fetching */
 		if (!this.props.profileLoaded) {
-			const { profile, loadProfile, editProfileField } = this.props;
-
-			//loadProfile(LOAD_USER_PROFILE,profileResponse);
-			editProfileField(EDIT_OCCUPATION, profile.occupation);
-			editProfileField(EDIT_LOCATION, profile.location);
-			editProfileField(EDIT_BIRTHDAY, profile.birthday);
-			editProfileField(EDIT_BLURB, profile.blurb);
+			const { loadProfile } = this.props;
 			loadProfile();
 		}
 	}
@@ -78,7 +71,7 @@ class OwnProfile extends React.Component {
 	render() {
 
 		const { editProfileField, changeRoute } = this.props;
-		const { birthday, occupation, location, blurb } = this.props;
+		const { birthday, occupation, location, blurb } = this.props.profile;
 		return (
 			<div>
 				<div className = 'ma3 pa3 w-70'>

@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getTargetProfile, loadProfile } from '../../actions';
+import { getTargetProfile } from '../../actions';
 
 import {
-	SUCCESS,
-	API_READ,
-
 	TARGET_PROFILE_READ
 } from '../../constants';
 
@@ -15,9 +12,8 @@ const mapStateToProps = (state) => {
 	return {
 
 		messageTarget : state.loadTarget.target,
-
 		profile : state.loadTarget.profile,
-		isLoaded : state.loadTarget.isLoaded
+		profileLoaded : state.loadTarget.isLoaded
 	}
 }
 
@@ -45,8 +41,8 @@ class MessengerTopBar extends React.Component {
 
 	componentDidUpdate() {
 
-
-		if (!this.props.isLoaded) {
+		/* Only load profile once after fetching */
+		if (!this.props.profileLoaded) {
 			this.props.loadProfile();
 		}
 

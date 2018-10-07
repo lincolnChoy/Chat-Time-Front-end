@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 
 import MessageCard from './MessageCard';
 
-import { getMessages, readAPI } from '../../actions';
+import { getMessages } from '../../actions';
 
 import {
 	SUCCESS,
-	MSG_READ,
+	MSG_LOAD,
 	CLEAR_MSG
 } from '../../constants';
 
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
 		target : state.loadTarget.target,
 		messages : state.fetchMessages.resp.messages,
 		fetchResp : state.fetchMessages.resp,
-		resultWasRead : state.fetchMessages.resultRead,
+		messagesLoaded : state.fetchMessages.messagesLoaded,
 		messageSent : state.sendMessage.messageSent
 	}
 }
@@ -28,7 +28,8 @@ const mapDispatchToProps = (dispatch) => {
 
 	return {
 		getMessages : (sender, destination, pw) => dispatch(getMessages(sender, destination, pw)),
-		readAPI : (type) => dispatch(readAPI(type)),
+		clearReceivedFlag : () => dispatch({ type : MSG_LOAD }),
+		clearSentFlag : () => dispatch({ type : CLEAR_MSG })
 	}
 }
 
@@ -47,31 +48,30 @@ class MessageSection extends React.Component {
 
 	componentDidUpdate() {
 
-		const { readAPI } = this.props;
-
 		/* If message was sent by client, refresh messages and clear the flag */
 		if (this.props.messageSent) {
+			const { clearSentFlag } = this.props;
+			clearSentFlag();
 			this.refreshMessages();
 			this.scrollToBottom();
-			readAPI(CLEAR_MSG)
 		}
-		/* If a message fetch was called, check the results */
-		if (!this.props.resultWasRead) {
 
-			const { fetchResp } = this.props;
+		/* If a message fetch was called, check the results */
+		if (!this.props.messagesLoaded) {
+
+			const { fetchResp, clearReceivedFlag } = this.props;
 			const { code } = fetchResp;
 			/* If message fetch was successful, load the messages */
 			if (code === SUCCESS) {
-				//update messages
 				this.scrollToBottom();
 			}
 			/* Clear the flag so we know messages have been loaded */
-			readAPI(MSG_READ);
+			clearReceivedFlag();
 		}
 	}
 
 	scrollToBottom() {
-		this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+		this.messagesEnd.scrollIntoView({ behavior : 'smooth' });
 	}
 
 	render() {

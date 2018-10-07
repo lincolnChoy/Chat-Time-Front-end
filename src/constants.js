@@ -39,8 +39,6 @@ export const EDIT_LOCATION = 'EDIT_LOCATION';
 export const EDIT_OCCUPATION = 'EDIT_OCCUPATION';
 export const EDIT_BLURB = 'EDIT_BLURB';
 
-export const CLEAR_PROFILE = 'CLEAR_PROFILE';
-
 export const SET_TARGET = 'SET_TARGET';
 
 export const SET_LIST = 'SET_LIST';
@@ -54,7 +52,7 @@ export const API_READ = 'API_READ';
 export const MSG_FETCH_PENDING = 'MSG_FETCH_PENDING';
 export const MSG_FETCH_SUCCESS = 'MSG_FETCH_SUCCESS';
 export const MSG_FETCH_FAIL = 'MSG_FETCH_FAIL';
-export const MSG_READ = 'MSG_READ';
+export const MSG_LOAD = 'MSG_LOAD';
 
 export const LIST_PENDING = 'LIST_PENDING';
 export const LIST_SUCCESS = 'LIST_SUCCESS';
@@ -70,11 +68,13 @@ export const TARGET_PROFILE_PENDING = 'TARGET_PROFILE_PENDING';
 export const TARGET_PROFILE_SUCCESS = 'TARGET_PROFILE_SUCCESS';
 export const TARGET_PROFILE_FAIL = 'TARGET_PROFILE_FAIL';
 export const TARGET_PROFILE_READ = 'TARGET_PROFILE_READ';
+export const CLEAR_TARGET_PROFILE = 'CLEAR_TARGET_PROFILE';
+
 
 export const SENDING_MSG = 'SENDING_MSG';
 export const MSG_SENT = 'MSG_SENT';
 export const MSG_SEND_FAIL = 'MSG_SEND_FAIL';
 export const CLEAR_MSG = 'CLEAR_MSG';
 
-export const DOMAIN = 'https://chat-time-api.herokuapp.com';
-//export const DOMAIN = 'http://localhost:3000'
+//export const DOMAIN = 'https://chat-time-api.herokuapp.com';
+export const DOMAIN = 'http://localhost:3000'

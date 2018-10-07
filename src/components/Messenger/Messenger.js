@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import MessageSection from './MessageSection';
 import MessengerTopBar from './MessengerTopBar';
 
-import { readAPI, sendMessage, editField } from '../../actions';
+import { sendMessage, editField } from '../../actions';
+
 import {
 	SUCCESS,
-	API_READ,
+	CLEAR_MSG,
 	EDIT_MSG
 } from '../../constants';
 
@@ -20,16 +21,13 @@ const mapStateToProps = (state) => {
 		messageTarget : state.loadTarget.target,
 		message : state.editMessenger.message,
 
-		msgResp : state.sendMessage.resp,
-		isPending : state.sendMessage.isPending,
-		resultWasRead : state.sendMessage.resultRead
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 
 	return {
-		readAPI : (type) => dispatch(readAPI(type)),
+		confirmSent : () => dispatch({ type : CLEAR_MSG }),
 		editField : (type,text) => dispatch(editField(type,text)),
 		sendMessage : (sender, destination, pw, message) => dispatch(sendMessage(sender, destination, pw, message))
 	}
@@ -44,22 +42,6 @@ class Messenger extends React.Component {
 
 	}
 
-	componentDidUpdate() {
-
-		/* Only update if there is an unread API result */
-		if (!this.props.resultWasRead) {
-
-			/* Destructure props */
-			const { msgResp, readAPI } = this.props;
-			const { code } = msgResp;
-
-			if (code === SUCCESS) {
-				console.log('code is success');
-			}
-			readAPI(API_READ);
-		}
-
-	}
 
 	render() {
 

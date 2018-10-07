@@ -19,8 +19,6 @@ import {
 	RESET,
 
 	LOAD_USER,
-	LOAD_USER_PROFILE,
-	LOAD_TARGET_PROFILE,
 	LOAD_MESSAGES,
 	SET_TARGET,
 	SET_LIST,
@@ -29,7 +27,6 @@ import {
 	EDIT_LOCATION,
 	EDIT_OCCUPATION,
 	EDIT_BLURB,
-	CLEAR_PROFILE,
 
 	API_PENDING,
 	API_SUCCESS,
@@ -39,23 +36,22 @@ import {
 	LIST_PENDING,
 	LIST_SUCCESS,
 	LIST_FAIL,
-	LIST_READ,
 
 	MSG_FETCH_PENDING,
 	MSG_FETCH_SUCCESS,
 	MSG_FETCH_FAIL,
-	MSG_READ,
+	MSG_LOAD,
 
 	USER_PROFILE_PENDING,
 	USER_PROFILE_SUCCESS,
 	USER_PROFILE_FAIL,
 	USER_PROFILE_READ,
 
-
 	TARGET_PROFILE_PENDING,
 	TARGET_PROFILE_SUCCESS,
 	TARGET_PROFILE_FAIL,
 	TARGET_PROFILE_READ,
+	CLEAR_TARGET_PROFILE,
 
 	SENDING_MSG,
 	MSG_SENT,
@@ -175,10 +171,10 @@ export const callAPI = (state = APIResults, action = {}) => {
 
 const initialUserList = {
 
-	listPending : false,
-	resultRead : false,
+	isPending : false,
 	resp : '',
-	list : 'empty'
+	list : '',
+	isLoaded : true
 }
 
 export const getList = (state = initialUserList, action = {}) => {
@@ -188,13 +184,11 @@ export const getList = (state = initialUserList, action = {}) => {
 		case LIST_PENDING : 
 			return Object.assign({}, state, { listPending : true });
 		case LIST_SUCCESS :
-			return Object.assign({}, state, { resp : action.payload , listPending : false, resultRead : false });
+			return Object.assign({}, state, { resp : action.payload , listPending : false, isLoaded : false });
 		case LIST_FAIL :
-			return Object.assign({}, state, { resp : action.payload , listPending : false, resultRead : false });
-		case LIST_READ : 
-			return Object.assign({}, state, { resultRead : true });
+			return Object.assign({}, state, { resp : action.payload , listPending : false, isLoaded : false });
 		case SET_LIST :
-			return Object.assign({}, state, { list : action.payload });
+			return Object.assign({}, state, { list : action.payload, isLoaded : true });
 		default : 
 			return state;
 	}
@@ -293,8 +287,6 @@ export const loadTarget = (state = initialTarget, action = {}) => {
 
 		case SET_TARGET : 
 			return Object.assign({}, state, { target : action.payload });
-		case LOAD_TARGET_PROFILE : 
-			return Object.assign({}, state, { profile : action.payload });
 		case TARGET_PROFILE_PENDING : 
 			return Object.assign({}, state, { isPending : true });
 		case TARGET_PROFILE_SUCCESS : 
@@ -303,6 +295,8 @@ export const loadTarget = (state = initialTarget, action = {}) => {
 			return Object.assign({}, state, { profile : action.payload, isPending : false, isLoaded : false});
 		case TARGET_PROFILE_READ : 
 			return Object.assign({}, state, { isLoaded : true });
+		case CLEAR_TARGET_PROFILE : 	
+			return Object.assign({}, state, { profile : '' });
 		default : 
 			return state;
 	}
@@ -336,7 +330,7 @@ export const editProfile = (state = initialProfileForm, action = {}) => {
 const initialMessages = {
 
 	isPending : false,
-	resultRead : false,
+	messagesLoaded : false,
 	resp : '',
 	messages : ''
 }
@@ -348,11 +342,11 @@ export const fetchMessages = (state = initialMessages, action = {}) => {
 		case MSG_FETCH_PENDING : 
 			return Object.assign({}, state, { isPending : true });
 		case MSG_FETCH_SUCCESS :
-			return Object.assign({}, state, { resp : action.payload , isPending : false, resultRead : false });
+			return Object.assign({}, state, { resp : action.payload , isPending : false, messagesLoaded : false });
 		case MSG_FETCH_FAIL :
-			return Object.assign({}, state, { resp : action.payload , isPending : false, resultRead : false });
-		case MSG_READ : 
-			return Object.assign({}, state, { resultRead : true });		
+			return Object.assign({}, state, { resp : action.payload , isPending : false, messagesLoaded : false });
+		case MSG_LOAD : 
+			return Object.assign({}, state, { messagesLoaded : true });		
 		case LOAD_MESSAGES :
 			return Object.assign({}, state, { messages : action.payload });
 		default : 
@@ -363,9 +357,8 @@ export const fetchMessages = (state = initialMessages, action = {}) => {
 const msgResults = {
 
 	isPending : false,
-	resultRead : false,
 	resp : '',
-	messageSent : true
+	messageSent : false
 }
 
 export const sendMessage = (state = msgResults, action = {}) => {
@@ -374,11 +367,11 @@ export const sendMessage = (state = msgResults, action = {}) => {
 		case SENDING_MSG :
 			return Object.assign({}, state, { isPending : true });
 		case MSG_SENT : 
-			return Object.assign({}, state, { resp : action.payload , isPending : false, resultRead : false, messageSent : true });
+			return Object.assign({}, state, { resp : action.payload , isPending : false, messageSent : true });
 		case MSG_SEND_FAIL : 
-			return Object.assign({}, state, { resp : action.payload , isPending : false, resultRead : false });
+			return Object.assign({}, state, { resp : action.payload , isPending : false, messageSent : false });
 		case CLEAR_MSG : 
-			return Object.assign({}, state, { messageSent : false, resultRead : true });
+			return Object.assign({}, state, { messageSent : false });
 		default : 
 			return state;
 	}
