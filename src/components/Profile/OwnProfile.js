@@ -87,8 +87,12 @@ class OwnProfile extends React.Component {
 
 		/* Only load profile once after fetching */
 		if (!this.props.profileLoaded) {
-			const { loadProfile } = this.props;
+			const { loadProfile, profile, editProfileField } = this.props;
 			loadProfile();
+			editProfileField(EDIT_OCCUPATION, profile.occupation);
+			editProfileField(EDIT_LOCATION, profile.location);
+			editProfileField(EDIT_BIRTHDAY, profile.birthday);
+			editProfileField(EDIT_BLURB, profile.blurb);
 		}
 	}
 

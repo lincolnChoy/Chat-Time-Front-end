@@ -6,7 +6,8 @@ import UserCard from './UserCard';
 import { getList, setTarget, setList } from '../../actions';
 import { 
 	SUCCESS,
-	CLEAR_TARGET_PROFILE
+	CLEAR_TARGET_PROFILE,
+	CLEAR_MSG
 } from '../../constants';
 
 
@@ -28,7 +29,8 @@ const mapDispatchToProps = (dispatch) => {
 		getList : (id, pw) => dispatch(getList(id, pw)),
 		setTarget : (first, last, id, picture) => dispatch(setTarget(first, last, id, picture)),
 		setList : (list) => dispatch(setList(list)),
-		clearProfile : () => dispatch({ type : CLEAR_TARGET_PROFILE })
+		clearProfile : () => dispatch({ type : CLEAR_TARGET_PROFILE }),
+		clearMessages : () => dispatch({ type : CLEAR_MSG })
 	}
 }
 
@@ -77,7 +79,7 @@ class UserList extends React.Component {
 	render() {
 
 		/* Destructure props */
-		const { list, setTarget, clearProfile } = this.props;
+		const { list, setTarget, clearProfile, clearMessages } = this.props;
 
 		/* Check if there is a user list */
 		let userArray;
@@ -89,7 +91,8 @@ class UserList extends React.Component {
 								id = {list[i].id} 
 								picture = { list[i].picture } 
 								setTarget = { setTarget } 
-								clearProfile = { clearProfile } />
+								clearProfile = { clearProfile }
+								clearMessages = { clearMessages } />
 			});
 		}
 

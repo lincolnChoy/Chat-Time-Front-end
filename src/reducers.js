@@ -19,7 +19,6 @@ import {
 	RESET,
 
 	LOAD_USER,
-	LOAD_MESSAGES,
 	SET_TARGET,
 	SET_LIST,
 
@@ -286,7 +285,7 @@ export const loadTarget = (state = initialTarget, action = {}) => {
 
 	switch (action.type) {
 
-		case SET_TARGET : 
+		case SET_TARGET :
 			return Object.assign({}, state, { target : action.payload });
 		case TARGET_PROFILE_PENDING : 
 			return Object.assign({}, state, { isPending : true });
@@ -350,9 +349,9 @@ export const fetchMessages = (state = initialMessages, action = {}) => {
 		case MSG_FETCH_FAIL :
 			return Object.assign({}, state, { resp : action.payload , isPending : false, messagesLoaded : false });
 		case MSG_LOAD : 
-			return Object.assign({}, state, { messagesLoaded : true });		
-		case LOAD_MESSAGES :
-			return Object.assign({}, state, { messages : action.payload });
+			return Object.assign({}, state, { messages : action.payload, messagesLoaded : true });
+		case CLEAR_MSG : 
+			return Object.assign({}, state, { messages : '' })	
 		default : 
 			return state;
 	}

@@ -104,8 +104,7 @@ class RegistrationForm extends React.Component {
 		else {
 			/* Make sure email entered is valid (using regular expression) */
 			var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
-			//if (regex.test(email)) {
-			if (true) {
+			if (regex.test(email)) {
 				register(first, last, email, pw);
 			}
 			else {

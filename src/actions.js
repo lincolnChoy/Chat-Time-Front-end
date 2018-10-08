@@ -1,7 +1,6 @@
 import {
 	LOAD_USER,
-	LOAD_MESSAGES,
-	
+
 	SET_TARGET,
 	SET_LIST,
 
@@ -28,6 +27,8 @@ import {
 	SENDING_MSG,
 	MSG_SENT,
 	MSG_SEND_FAIL,
+
+	MSG_LOAD,
 
 	DOMAIN
 	
@@ -69,6 +70,7 @@ export const loadProfile = (type,profile) => {
 		}
 	}
 }
+
 
 export const editProfileField = (field, text) => {
 
@@ -284,11 +286,8 @@ export const sendMessage = (sender, destination, pw, message) => (dispatch) => {
 
 export const loadMessages = (messages) => {
 
-
-
-
 	return {
-		type : LOAD_MESSAGES,
+		type : MSG_LOAD,
 		payload : messages
 	}
 }

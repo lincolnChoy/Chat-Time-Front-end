@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 
 import MessageCard from './MessageCard';
 
-import { getMessages } from '../../actions';
+import { getMessages, loadMessages } from '../../actions';
 
 import {
 	SUCCESS,
-	MSG_LOAD,
 	CLEAR_MSG
 } from '../../constants';
 
@@ -18,7 +17,7 @@ const mapStateToProps = (state) => {
 		pw : state.loadUser.user.pw,
 		userPicture : state.loadUser.user.picture,
 		target : state.loadTarget.target,
-		messages : state.fetchMessages.resp.messages,
+		messages : state.fetchMessages.messages,
 		fetchResp : state.fetchMessages.resp,
 		messagesLoaded : state.fetchMessages.messagesLoaded,
 		messageSent : state.sendMessage.messageSent
@@ -29,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 
 	return {
 		getMessages : (sender, destination, pw) => dispatch(getMessages(sender, destination, pw)),
-		clearReceivedFlag : () => dispatch({ type : MSG_LOAD }),
+		loadMessages : (messages) => dispatch(loadMessages(messages)),
 		clearSentFlag : () => dispatch({ type : CLEAR_MSG })
 	}
 }
@@ -43,7 +42,12 @@ class MessageSection extends React.Component {
 
 	componentDidMount() {
 		this.refreshMessages();
-		this.interval = setInterval(() => this.refreshMessages(), 2000);
+		this.interval = setInterval(() => this.refreshMessages(), 1000);
+	}
+
+	componentWillUnmount() {
+
+		clearInterval(this.interval);
 	}
 
 
@@ -60,14 +64,16 @@ class MessageSection extends React.Component {
 		/* If a message fetch was called, check the results */
 		if (!this.props.messagesLoaded) {
 
-			const { fetchResp, clearReceivedFlag } = this.props;
-			const { code } = fetchResp;
+			const { fetchResp, loadMessages, target } = this.props;
+			const { code, messages } = fetchResp;
 			/* If message fetch was successful, load the messages */
 			if (code === SUCCESS) {
-				this.scrollToBottom();
+				if (messages[0].sender === target.id || messages[0].destination === target.id) {
+					/* Load messages and clear the flag so we know messages have been loaded */
+					loadMessages(messages);
+					this.scrollToBottom();
+				}
 			}
-			/* Clear the flag so we know messages have been loaded */
-			clearReceivedFlag();
 		}
 	}
 

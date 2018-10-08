@@ -1,11 +1,12 @@
 import React from 'react';
 
 
-const UserCard = ({ first, last, id, picture, setTarget, clearProfile }) => {
+const UserCard = ({ first, last, id, picture, setTarget, clearProfile, clearMessages }) => {
 
 	return (
 		<div>
 			<div onClick = { () => {
+				clearMessages();
 				clearProfile();
 				setTarget(first, last, id, picture);
 			}}
