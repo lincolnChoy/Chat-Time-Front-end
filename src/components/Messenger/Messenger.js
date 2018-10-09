@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux'; 
 
+
 import MessageSection from './MessageSection';
 import MessengerTopBar from './MessengerTopBar';
+import attach from './attach.png';
 
 import { sendMessage, editField } from '../../actions';
+
+
 
 import {
 	CLEAR_MSG,
@@ -34,11 +38,34 @@ const mapDispatchToProps = (dispatch) => {
 
 class Messenger extends React.Component {
 
+	constructor(props) {
+		super(props);
+		this.uploadFile = this.uploadFile.bind(this);
+	}
+
+
 	callSendMessage() {
 
 		const { sendMessage, id, messageTarget, pw, message } = this.props;
 		sendMessage(id, messageTarget.id, pw, message);
 
+	}
+
+
+	uploadFile(event) {
+		let file = event.target.files[0];
+
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+
+		const { editField } = this.props;
+
+		reader.onload = function () {
+
+			var fileData = reader.result.toString();
+			editField(fileData, EDIT_MSG);
+
+		}
 	}
 
 
@@ -56,13 +83,20 @@ class Messenger extends React.Component {
 					<div className = 'mt3 w-100'>
 						<MessageSection />
 					</div>
-					<div className = 'message w-100'>
+					<div className = 'message w-100' style = {{ display : 'flex', justifyContent : 'center'}}>
 						<input onChange = { (event) => {
 									editField(event.target.value, EDIT_MSG);
 								}
 							}
 							onKeyPress = { (event) => { if (event.key === 'Enter') { this.callSendMessage(); }}}
-							className = 'b pa2 input-reset ba bg-transparent hover-white w-90' type = 'text' />
+							className = 'b pa2 input-reset ba bg-transparent hover-white w-80' type = 'text' />
+
+						<div className = 'image-upload grow'>
+							<label htmlFor = 'file-input'>
+								<img className = 'pointer grow' src = { attach } width = '40px'/>
+							</label>
+							<input id = 'file-input' type = 'file'/>
+						</div>
 						<input
 							onClick = {
 								() => {
