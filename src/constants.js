@@ -10,6 +10,7 @@ export const SIGN_IN = 'SIGN_IN';
 export const REGISTRATION = 'REGISTRATION';
 export const HOME = 'HOME';
 export const PROFILE = 'PROFILE';
+export const TARGET_PROFILE = 'TARGET_PROFILE';
 
 
 /* Form state */

@@ -8,12 +8,14 @@ import SignInForm from '../components/SignIn/SignInForm';
 import RegistrationForm from '../components/Registration/RegistrationForm';
 import HomePage from '../components/Home/HomePage';
 import OwnProfile from '../components/Profile/OwnProfile';
+import TargetProfile from '../components/Profile/TargetProfile';
 
 import { 
 	REGISTRATION,
 	SIGN_IN,
 	HOME,
-	PROFILE
+	PROFILE,
+	TARGET_PROFILE
 } from '../constants';
 
 
@@ -51,6 +53,9 @@ class App extends Component {
 				break;
 			case PROFILE : 
 				page = <OwnProfile />;
+				break;
+			case TARGET_PROFILE : 
+				page = <TargetProfile />
 				break;
 			default : 
 				page = '';

@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getTargetProfile } from '../../actions';
+import { getTargetProfile, changeRoute } from '../../actions';
 
 import {
-	TARGET_PROFILE_READ
+	TARGET_PROFILE_READ,
+	TARGET_PROFILE
 } from '../../constants';
 
 const mapStateToProps = (state) => {
@@ -22,6 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		getTargetProfile : (id) => dispatch(getTargetProfile(id)),
 		loadProfile : () => dispatch({ type : TARGET_PROFILE_READ }),
+		changeRoute : (route) => dispatch(changeRoute(route))
 	}
 }
 
@@ -51,7 +53,7 @@ class MessengerTopBar extends React.Component {
 
 	render() {
 
-		const { messageTarget } = this.props;
+		const { messageTarget, changeRoute } = this.props;
 
 		return (
 			
@@ -60,6 +62,7 @@ class MessengerTopBar extends React.Component {
 				<div className = 'h-50 br3 pa3 pointer grow' style = {{ border : '1px solid black' }}
 					onClick = { () => {
 						this.callGetProfile();
+						changeRoute(TARGET_PROFILE);
 					}
 				}>View Profile</div>
 			</div>

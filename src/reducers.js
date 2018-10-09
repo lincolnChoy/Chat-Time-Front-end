@@ -10,6 +10,7 @@ import {
 	REGISTRATION,
 	HOME,
 	PROFILE,
+	TARGET_PROFILE,
 
 	NOT_COMPLETE,
 	WRONG_CRED,
@@ -76,6 +77,8 @@ export const changeRoute = (state = initialRouteState, action = {}) => {
 		case HOME : 
 			return Object.assign({}, state, { route : action.payload });
 		case PROFILE : 
+			return Object.assign({}, state, { route : action.payload });
+		case TARGET_PROFILE : 
 			return Object.assign({}, state, { route : action.payload });
 		default : 
 			return state;

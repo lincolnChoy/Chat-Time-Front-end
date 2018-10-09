@@ -10,7 +10,7 @@ const MessageCard = ({ userPic, targetPic, isSending, message }) => {
 				<div className = 'msgCard bg-light-red br4 ph3 pv2 white ma2'>
 					{ message }
 				</div>
-				<div className = 'chatHead ma2' style = {{ border : '1px solid black'}} >
+				<div className = 'chatHead ma2'>
 					<img 
 						src = { userPic }
 						alt = 'user dp'/>
@@ -21,7 +21,7 @@ const MessageCard = ({ userPic, targetPic, isSending, message }) => {
 	else {
 		return (
 			<div style = {{ display : 'flex', justifyContent : 'flex-start'}}>
-				<div className = 'chatHead ma2' style = {{ border : '1px solid black'}} >
+				<div className = 'chatHead ma2'>
 					<img 
 						src = { targetPic }
 						alt = 'target dp'/>

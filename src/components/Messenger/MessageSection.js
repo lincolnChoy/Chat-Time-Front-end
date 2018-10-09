@@ -68,10 +68,12 @@ class MessageSection extends React.Component {
 			const { code, messages } = fetchResp;
 			/* If message fetch was successful, load the messages */
 			if (code === SUCCESS) {
-				if (messages[0].sender === target.id || messages[0].destination === target.id) {
-					/* Load messages and clear the flag so we know messages have been loaded */
-					loadMessages(messages);
-					this.scrollToBottom();
+				if (messages.length > 0) {
+					if (messages[0].sender === target.id || messages[0].destination === target.id) {
+						/* Load messages and clear the flag so we know messages have been loaded */
+						loadMessages(messages);
+						this.scrollToBottom();
+					}
 				}
 			}
 		}
