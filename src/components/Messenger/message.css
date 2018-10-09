@@ -1,6 +1,9 @@
 .msgCard {
-	display : flex;
-	align-items : center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	max-width: 500px;
+	word-wrap: break-word;
 }
 
 

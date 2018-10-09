@@ -7,7 +7,7 @@ const MessageCard = ({ userPic, targetPic, isSending, message }) => {
 	if (isSending) {
 		return (
 			<div style = {{ display : 'flex', justifyContent : 'flex-end'}}>
-				<div className = 'msgCard v-mid bg-light-red br4 ph3 pv2 white ma2'>
+				<div className = 'msgCard bg-light-red br4 ph3 pv2 white ma2'>
 					{ message }
 				</div>
 				<div className = 'chatHead ma2' style = {{ border : '1px solid black'}} >
@@ -26,7 +26,7 @@ const MessageCard = ({ userPic, targetPic, isSending, message }) => {
 						src = { targetPic }
 						alt = 'target dp'/>
 				</div>
-				<div className = 'msgCard v-mid bg-light-blue br4 ph3 pv2 ma2'>
+				<div className = 'msgCard bg-light-blue br4 ph3 pv2 ma2'>
 					{ message }
 				</div>
 			</div>
