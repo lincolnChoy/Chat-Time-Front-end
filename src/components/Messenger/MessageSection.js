@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import MessageCard from './MessageCard';
 
-import { getMessages, loadMessages } from '../../actions';
+import { getMessages, loadMessages, loadOldMessages } from '../../actions';
 
 import {
 	SUCCESS,
@@ -18,6 +18,7 @@ const mapStateToProps = (state) => {
 		userPicture : state.loadUser.user.picture,
 		target : state.loadTarget.target,
 		messages : state.fetchMessages.messages,
+		prevMessages : state.fetchMessages.prevMessages,
 		fetchResp : state.fetchMessages.resp,
 		messagesLoaded : state.fetchMessages.messagesLoaded,
 		messageSent : state.sendMessage.messageSent
@@ -29,7 +30,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		getMessages : (sender, destination, pw) => dispatch(getMessages(sender, destination, pw)),
 		loadMessages : (messages) => dispatch(loadMessages(messages)),
-		clearSentFlag : () => dispatch({ type : CLEAR_MSG })
+		clearSentFlag : () => dispatch({ type : CLEAR_MSG }),
+		loadOldMessages : (messages) => dispatch(loadOldMessages(messages)) 
 	}
 }
 
@@ -40,9 +42,16 @@ class MessageSection extends React.Component {
 		getMessages(id, target.id, pw);
 	}
 
+	loadOldMsg() {
+
+		const { messages, loadOldMessages } = this.props;
+		loadOldMessages(messages);
+	}
+
 	componentDidMount() {
 		this.refreshMessages();
-		this.interval = setInterval(() => this.refreshMessages(), 1000);
+		this.scrollToBottom();
+		this.interval = setInterval(() => { this.refreshMessages(); this.loadOldMsg() }, 1000);
 	}
 
 	componentWillUnmount() {
@@ -53,18 +62,16 @@ class MessageSection extends React.Component {
 
 	componentDidUpdate() {
 
-		/* If message was sent by client, refresh messages and clear the flag */
+		/* If message was sent by client, clear the flag */
 		if (this.props.messageSent) {
 			const { clearSentFlag } = this.props;
 			clearSentFlag();
-			this.refreshMessages();
-			this.scrollToBottom();
 		}
 
 		/* If a message fetch was called, check the results */
 		if (!this.props.messagesLoaded) {
 
-			const { fetchResp, loadMessages, target } = this.props;
+			const { fetchResp, loadMessages, target, prevMessages } = this.props;
 			const { code, messages } = fetchResp;
 			/* If message fetch was successful, load the messages */
 			if (code === SUCCESS) {
@@ -72,7 +79,14 @@ class MessageSection extends React.Component {
 					if (messages[0].sender === target.id || messages[0].destination === target.id) {
 						/* Load messages and clear the flag so we know messages have been loaded */
 						loadMessages(messages);
-						this.scrollToBottom();
+						if (prevMessages.length > 0) {
+							if (messages.length !== prevMessages.length) {
+								this.scrollToBottom();							
+							}
+						}
+						else {
+							this.scrollToBottom();
+						}
 					}
 				}
 			}

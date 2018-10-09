@@ -93,7 +93,7 @@ class Messenger extends React.Component {
 
 						<div className = 'image-upload grow'>
 							<label htmlFor = 'file-input'>
-								<img className = 'pointer grow' src = { attach } width = '40px'/>
+								<img className = 'pointer grow' src = { attach } alt = 'paperclip' width = '40px'/>
 							</label>
 							<input id = 'file-input' type = 'file'/>
 						</div>

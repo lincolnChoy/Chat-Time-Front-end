@@ -29,6 +29,7 @@ import {
 	MSG_SEND_FAIL,
 
 	MSG_LOAD,
+	LOAD_OLD_MSG,
 
 	DOMAIN
 	
@@ -288,6 +289,15 @@ export const loadMessages = (messages) => {
 
 	return {
 		type : MSG_LOAD,
+		payload : messages
+	}
+}
+
+export const loadOldMessages = (messages) => {
+
+	return {
+
+		type : LOAD_OLD_MSG,
 		payload : messages
 	}
 }

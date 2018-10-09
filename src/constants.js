@@ -33,6 +33,7 @@ export const LOAD_USER = 'LOAD_USER';
 export const LOAD_USER_PROFILE = 'LOAD_USER_PROFILE';
 export const LOAD_TARGET_PROFILE = 'LOAD_TARGET_PROFILE';
 export const LOAD_MESSAGES = 'LOAD_MESSAGES';
+export const LOAD_OLD_MSG = 'LOAD_OLD_MSG';
 
 /* Profile action constants */
 export const EDIT_BIRTHDAY = 'EDIT_BIRTHDAY';
@@ -78,6 +79,7 @@ export const MSG_SENT = 'MSG_SENT';
 export const MSG_SEND_FAIL = 'MSG_SEND_FAIL';
 export const CLEAR_MSG = 'CLEAR_MSG';
 
-//export const DOMAIN = 'https://chat-time-api.herokuapp.com/';
+
+export const DOMAIN = 'https://chat-time-api.herokuapp.com/';
 //export const DOMAIN = 'http://ip:3000/';
-export const DOMAIN = 'http://localhost:3000/';
+//export const DOMAIN = 'http://localhost:3000/';
