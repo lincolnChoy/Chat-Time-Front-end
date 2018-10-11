@@ -106,7 +106,12 @@ class MessageSection extends React.Component {
 		if (messages !== '' && messages!== undefined) {
 			conversation = messages.map((message,i) => {
 				let isSending = (message.sender === id)
-				return <MessageCard key = {i} userPic = { userPicture } targetPic = { target.picture } isSending = { isSending } message = { message.message } />
+				return <MessageCard key = {i}
+								userPic = { userPicture } 
+								targetPic = { target.picture } 
+								isSending = { isSending } 
+								message = { message.message } 
+								fileCode = { message.filecode } />
 			});
 		}
 		return (
