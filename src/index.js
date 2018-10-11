@@ -26,8 +26,6 @@ import {
 	sendMessage 
 } from './reducers';
 	
-/* Prepare redux logger */
-
 
 const rootReducer = combineReducers({ changeRoute, 
 									signInForm, 

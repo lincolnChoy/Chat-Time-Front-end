@@ -64,7 +64,6 @@ class Messenger extends React.Component {
 		reader.onload = function () {
 
 			var fileData = reader.result.toString();
-			
 			editField(fileData, EDIT_MSG);
 
 		}
