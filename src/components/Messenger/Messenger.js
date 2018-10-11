@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
 
 	return {
 		confirmSent : () => dispatch({ type : CLEAR_MSG }),
-		editField : (type,text) => dispatch(editField(type,text)),
+		editField : (text,type) => dispatch(editField(text,type)),
 		sendMessage : (sender, destination, pw, message) => dispatch(sendMessage(sender, destination, pw, message))
 	}
 }
@@ -53,6 +53,7 @@ class Messenger extends React.Component {
 
 
 	uploadFile(event) {
+
 		let file = event.target.files[0];
 
 		var reader = new FileReader();
@@ -63,6 +64,7 @@ class Messenger extends React.Component {
 		reader.onload = function () {
 
 			var fileData = reader.result.toString();
+			
 			editField(fileData, EDIT_MSG);
 
 		}
@@ -95,7 +97,8 @@ class Messenger extends React.Component {
 							<label htmlFor = 'file-input'>
 								<img className = 'pointer grow' src = { attach } alt = 'paperclip' width = '40px'/>
 							</label>
-							<input id = 'file-input' type = 'file'/>
+							<input id = 'file-input' type = 'file'
+								onChange = { this.uploadFile }/>
 						</div>
 						<input
 							onClick = {
