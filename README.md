@@ -20,9 +20,11 @@ Registration pages :
     
 Home page (still being worked on):    
     
-![home page](http://puu.sh/BG7Ay/5f4bee41a0.jpg)          
+![home page](https://puu.sh/BJSMF/93bd7e811c.jpg)          
     
 ![messaging](https://puu.sh/BJSIe/ed4c3f3852.jpg)       
+
+![viewingprofile](https://puu.sh/BJSL1/37b7ec8d05.jpg)
    
 ![editingprofile](http://puu.sh/BHacN/0e3bb97bc1.jpg)    
 
