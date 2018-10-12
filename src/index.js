@@ -26,7 +26,8 @@ import {
 	sendMessage 
 } from './reducers';
 	
-
+/* Prepare redux logger */
+const logger = createLogger();
 
 const rootReducer = combineReducers({ changeRoute, 
 									signInForm, 
@@ -44,7 +45,7 @@ const rootReducer = combineReducers({ changeRoute,
 
 /* Create store to contain state, also add redux-logger for debugging and thunk middleware for async actions
  The store uses the root reducer to create the store/ the object tree of the state */
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 /* Wrap container in Provider and pass store down */
 ReactDOM.render(
