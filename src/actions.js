@@ -262,7 +262,7 @@ export const getMessages = (sender, destination, pw) => (dispatch) => {
 
 }
 
-export const sendMessage = (sender, destination, pw, message) => (dispatch) => {
+export const sendMessage = (sender, destination, pw, message, isFile) => (dispatch) => {
 
 	dispatch({ type : SENDING_MSG });
 	/* Call the getList API */
@@ -273,7 +273,8 @@ export const sendMessage = (sender, destination, pw, message) => (dispatch) => {
 			sender : sender,
 			destination : destination,
 			message : message,
-			pw: pw
+			pw: pw,
+			isFile : isFile
 		})
 	})
 	/* Parse the json response */

@@ -8,21 +8,22 @@ import attach from './attach.png';
 
 import { sendMessage, editField } from '../../actions';
 
-
-
 import {
+	EMPTY_MSG,
 	CLEAR_MSG,
 	EDIT_MSG
+	// SET_FILE,
+	// CLEAR_FILE
+
 } from '../../constants';
 
 const mapStateToProps = (state) => {
 
 	return {
-
 		id : state.loadUser.user.id,
 		pw : state.loadUser.user.pw,
 		messageTarget : state.loadTarget.target,
-		message : state.editMessenger.message,
+		message : state.editMessenger.message
 
 	}
 }
@@ -32,7 +33,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		confirmSent : () => dispatch({ type : CLEAR_MSG }),
 		editField : (text,type) => dispatch(editField(text,type)),
-		sendMessage : (sender, destination, pw, message) => dispatch(sendMessage(sender, destination, pw, message))
+		sendMessage : (sender, destination, pw, message, isFile) => dispatch(sendMessage(sender, destination, pw, message, isFile)),
+		clearMessage : () => dispatch({ type : EMPTY_MSG })
+		//setFile : () => dispatch({ type : SET_FILE }),
+		// clearFile : () => dispatch({ type : CLEAR_FILE })
 	}
 }
 
@@ -46,26 +50,28 @@ class Messenger extends React.Component {
 
 	callSendMessage() {
 
-		const { sendMessage, id, messageTarget, pw, message } = this.props;
-		sendMessage(id, messageTarget.id, pw, message);
+		const { sendMessage, id, messageTarget, pw, message, isFile, clearMessage } = this.props;
+		sendMessage(id, messageTarget.id, pw, message, isFile);
+		clearMessage();
 
 	}
 
 
 	uploadFile(event) {
 
+		/* Grab the file and read as a base64 string */
 		let file = event.target.files[0];
-
 		var reader = new FileReader();
 		reader.readAsDataURL(file);
 
-		const { editField } = this.props;
+		
+		const { sendMessage, id, messageTarget, pw } = this.props;
 
+		/* When b64 string is ready, send it to the back-end */
 		reader.onload = function () {
 
 			var fileData = reader.result.toString();
-			editField(fileData, EDIT_MSG);
-
+			sendMessage(id, messageTarget.id, pw, fileData, 1);
 		}
 	}
 
@@ -89,7 +95,9 @@ class Messenger extends React.Component {
 									editField(event.target.value, EDIT_MSG);
 								}
 							}
+							value = { this.props.message }
 							onKeyPress = { (event) => { if (event.key === 'Enter') { this.callSendMessage(); }}}
+							
 							className = 'b pa2 input-reset ba bg-transparent hover-white w-80' type = 'text' />
 
 						<div className = 'image-upload grow'>

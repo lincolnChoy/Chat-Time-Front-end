@@ -8,6 +8,7 @@ import { getMessages, loadMessages, loadOldMessages } from '../../actions';
 import {
 	SUCCESS,
 	CLEAR_MSG
+
 } from '../../constants';
 
 const mapStateToProps = (state) => {
@@ -37,6 +38,7 @@ const mapDispatchToProps = (dispatch) => {
 
 class MessageSection extends React.Component {
 
+
 	refreshMessages() {
 		const { id, pw, target, getMessages } = this.props;
 		getMessages(id, target.id, pw);
@@ -50,7 +52,6 @@ class MessageSection extends React.Component {
 
 	componentDidMount() {
 		this.refreshMessages();
-		this.scrollToBottom();
 		this.interval = setInterval(() => { this.refreshMessages(); this.loadOldMsg() }, 1000);
 	}
 
@@ -79,13 +80,18 @@ class MessageSection extends React.Component {
 					if (messages[0].sender === target.id || messages[0].destination === target.id) {
 						/* Load messages and clear the flag so we know messages have been loaded */
 						loadMessages(messages);
+
 						if (prevMessages.length > 0) {
 							if (messages.length !== prevMessages.length) {
-								this.scrollToBottom();							
+								this.scrollToBottom();						
 							}
 						}
 						else {
-							this.scrollToBottom();
+							setTimeout(() => { 
+								var elem = document.getElementById('bottom');
+  								elem.scrollTop = elem.scrollHeight;
+							}, 50);
+							
 						}
 					}
 				}
@@ -93,9 +99,11 @@ class MessageSection extends React.Component {
 		}
 	}
 
-	scrollToBottom() {
-		this.messagesEnd.scrollIntoView({ behavior : 'smooth' });
-	}
+	/* Hacky scroll method */
+    scrollToBottom() {
+		var elem = document.getElementById('bottom');
+  		elem.scrollTop = elem.scrollHeight;
+    }
 
 	render() {
 
@@ -115,13 +123,12 @@ class MessageSection extends React.Component {
 			});
 		}
 		return (
-
-			<div style = {{ overflowY : 'scroll', height : '700px'}}>
-				{ conversation }
-				<div style={{ float:"left", clear: "both" }}
-             		ref={(el) => { this.messagesEnd = el; }}>
-        		</div>
+			<div id = 'bottom' style = {{ overflowY : 'scroll',  height : '700px'}}>
+				<div className = 'mb5'>
+					{ conversation }
+				</div>
 			</div>
+
 		)
 	}
 }

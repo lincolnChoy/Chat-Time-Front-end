@@ -58,7 +58,11 @@ import {
 	SENDING_MSG,
 	MSG_SENT,
 	MSG_SEND_FAIL,
-	CLEAR_MSG
+	CLEAR_MSG,
+
+	SET_FILE,
+	CLEAR_FILE,
+	EMPTY_MSG
 
 } from './constants';
 
@@ -134,7 +138,8 @@ export const registrationForm = (state = initialRegistrationForm, action = {}) =
 }
 
 const initialMessageBox = {
-	message : ''
+	message : '',
+	isFile : 0
 }
 
 export const editMessenger = (state = initialMessageBox, action = {}) => {
@@ -142,6 +147,12 @@ export const editMessenger = (state = initialMessageBox, action = {}) => {
 	switch(action.type) {
 		case EDIT_MSG : 
 			return Object.assign({}, state, { message : action.payload });
+		case EMPTY_MSG : 
+			return Object.assign({}, state, { message : '' });
+		case SET_FILE : 
+			return Object.assign({}, state, { isFile : 1 });
+		case CLEAR_FILE : 
+			return Object.assign({}, state, { isFile : 0 });
 		default : 
 			return state;
 	}

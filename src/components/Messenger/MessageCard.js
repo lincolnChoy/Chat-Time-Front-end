@@ -10,7 +10,7 @@ const MessageCard = ({ userPic, targetPic, isSending, message, fileCode }) => {
 	if (fileCode === 0 || fileCode === 1) {
 		finalMessage = 
 		<div className = 'msgCard br4 pv2 ma2' >
-			<img src = { message } alt = 'msgImg'width = '200px' />
+			<img src = { message } alt = 'msgImg' width = '200px' />
 		</div>
 	}
 	/* If message is an mp3 file */
