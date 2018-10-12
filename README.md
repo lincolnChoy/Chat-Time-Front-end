@@ -1,9 +1,9 @@
 # Chat time    
 
     
-Front-end of a communications app.    
-Currently uses the back-end of the Interngrate website for faster prototyping.        
+Front-end of a communications app.           
 Uses the React framework.    
+State management is handled using Redux.    
 API-server for this website can be found [here.](https://github.com/lincolnChoy/Chat-Time-API)    
 Website may feel slow sometimes as the back-end server is deployed with a free plan.    
 
@@ -20,15 +20,13 @@ Registration pages :
     
 Home page (still being worked on):    
     
-![home page](http://puu.sh/BG7Ay/5f4bee41a0.jpg)    
+![home page](https://puu.sh/BJSMF/93bd7e811c.jpg)          
     
-![home page](http://puu.sh/BG7AL/a155933725.jpg)       
-    
-![messaging](http://puu.sh/BHajE/b9d5b2a3d9.jpg)    
-    
-![messaging](http://puu.sh/BHaiO/b87b3c6482.jpg)    
+![messaging](https://puu.sh/BJSIe/ed4c3f3852.jpg)       
+
+![viewingprofile](https://puu.sh/BJSL1/37b7ec8d05.jpg)
    
-![editingprofile](http://puu.sh/BHacN/0e3bb97bc1.jpg)    
+![editingprofile](https://puu.sh/BJSNG/4568b232d9.jpg)    
 
 
 
