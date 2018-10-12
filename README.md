@@ -1,9 +1,9 @@
 # Chat time    
 
     
-Front-end of a communications app.    
-Currently uses the back-end of the Interngrate website for faster prototyping.        
+Front-end of a communications app.           
 Uses the React framework.    
+State management is handled using Redux.    
 API-server for this website can be found [here.](https://github.com/lincolnChoy/Chat-Time-API)    
 Website may feel slow sometimes as the back-end server is deployed with a free plan.    
 
