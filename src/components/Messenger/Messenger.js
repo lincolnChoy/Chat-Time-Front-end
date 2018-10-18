@@ -113,12 +113,12 @@ class Messenger extends React.Component {
 									this.callSendMessage();
 								}
 							}
-							className = 'ml2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Send' />
+							className = 'ml2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib br3' type = 'submit' value = 'Send' />
 					</div>
 				</div>
 		}
 		else {
-			messageBox = <h1 className = 'mt7 tc white'>Click on a user to message them!</h1>;
+			messageBox = <h1 className = 'mt7 tc black'>Click on a user to message them!</h1>;
 		}
 
 		return (

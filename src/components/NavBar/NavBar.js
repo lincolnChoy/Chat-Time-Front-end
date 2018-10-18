@@ -28,8 +28,8 @@ class NavBar extends React.Component {
 		return (
 
 			<div className = 'navBar' style = {{ display : 'flex', justifyContent : 'flex-end'}}>
-				<div className = 'w-30 mr5' style = {{ display : 'flex', justifyContent : 'space-between'}}>	
-					<img className = 'pointer grow' src = { notification } alt = 'noti' height = '50px'/>
+				<div className = 'w-30 mr5' style = {{ display : 'flex', justifyContent : 'flex-end'}}>	
+					{ /*<img className = 'pointer grow' src = { notification } alt = 'noti' height = '50px'/>*/}
 					<p onClick = { 
 							() => {
 								changeRoute(PROFILE);

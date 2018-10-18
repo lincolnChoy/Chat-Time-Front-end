@@ -62,7 +62,7 @@ class RegistrationForm extends React.Component {
 		if (!this.props.resultWasRead) {
 
 			/* Destructure props */
-			const { apiResponse, setFormState, changeRoute, loadUser, readAPI } = this.props;
+			const { apiResponse, setFormState, changeRoute, loadUser, readAPI, pw } = this.props;
 
 			if (apiResponse.code === SUCCESS) {
 				/* Save the user in state, then route change */
@@ -73,7 +73,7 @@ class RegistrationForm extends React.Component {
 					last : apiResponse.last,
 					id : apiResponse.id,
 					picture : apiResponse.picture,
-					pw : this.props.pw
+					pw : pw
 				}
 				loadUser(user);
 				changeRoute(HOME);
@@ -153,31 +153,31 @@ class RegistrationForm extends React.Component {
 											(event) => {
 												editField(event.target.value, EDIT_FIRST_NAME);
 											} 
-										} className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' />
+										} className = 'pa2 input-reset ba bg-transparent w-100' type = 'text' />
 										<label className = 'db fw6 lh-copy f4'>Last name</label>
 										<input onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_LAST_NAME);
 											} 
-										} className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'text' />
+										} className = 'pa2 input-reset ba bg-transparent w-100' type = 'text' />
 										<label className = 'db fw6 lh-copy f4'>Email</label>
 										<input onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_EMAIL);
 											} 
-										} className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'email' />
+										} className = 'pa2 input-reset ba bg-transparent w-100' type = 'email' />
 										<label className = 'db fw6 lh-copy f4'>Password</label>
 										<input onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_PW);
 											} 
-										} className = 'b pa2 input-reset ba bg-transparent hover-white w-100' type = 'password' />
+										} className = 'pa2 input-reset ba bg-transparent w-100' type = 'password' />
 										<label className = 'db fw6 lh-copy f4'>Confirm Password</label>
 										<input onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_PW2);
 											} 
-										} className = 'b pa2 input-reset ba bg-transparent hover-white w-100' type = 'password' />
+										} className = 'pa2 input-reset ba bg-transparent w-100' type = 'password' />
 									</div>
 								</div>
 
@@ -186,7 +186,7 @@ class RegistrationForm extends React.Component {
 											this.callRegister();
 										}
 									} 
-									className = 'mt2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Sign in' />
+									className = 'mt2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib br3' type = 'submit' value = 'Register' />
 								<div className = 'lh-copy mt3'>
 									<p onClick = { 
 										() => {

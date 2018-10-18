@@ -123,7 +123,7 @@ class MessageSection extends React.Component {
 			});
 		}
 		return (
-			<div id = 'bottom' style = {{ overflowY : 'scroll',  height : '700px'}}>
+			<div id = 'bottom'>
 				<div className = 'mb5'>
 					{ conversation }
 				</div>

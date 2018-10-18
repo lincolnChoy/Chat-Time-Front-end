@@ -34,7 +34,7 @@ class TargetProfile extends React.Component {
 			<div>
 				<div style = {{ display : 'flex', justifyContent : 'flex-end' }}>
 					<input onClick = { () => { changeRoute(HOME);}} 
-						className = 'mt3 mr3 ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Go back' />
+						className = 'mt3 mr3 ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib br3' type = 'submit' value = 'Go back' />
 				</div>
 				<div style = {{ display : 'flex', justifyContent : 'center' }}>
 					<div className = 'pa3 w-80' style = {{ display : 'flex', justifyContent : 'space-around' }}>

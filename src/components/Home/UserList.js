@@ -97,8 +97,8 @@ class UserList extends React.Component {
 		}
 
 		return (
-			<div className = 'ma2 w-90 h-60'>
-				<p className = 'f4 ph5 pv3 br3 tc'>Online Users</p>
+			<div className = 'ml1 w-100 h-60'>
+				<p className = 'w-100 f4 ph5 pv3 br3 tc'>Online Users</p>
 					<Scroll>
 						<div className = 'tc'>
 							{ userArray }

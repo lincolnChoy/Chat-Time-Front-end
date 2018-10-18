@@ -4,17 +4,24 @@ html {
 
 
 body {
-	font-family: main;
+	font-family: segoe;
 	margin: 0;
 	padding: 0;
 	height : 100%;
 	width: 100%;
-	background : linear-gradient(90deg, #33ccff 0%,#ff99cc 100%);
+	/*background : linear-gradient(90deg, #ffe259 0%,#ffa751 100%);*/
+	background : #ffa751;
 
 }
 
 h1 {
-	font-family : main;
+	font-family : segoe;
+}
+
+
+
+.form {
+	background-color : rgba(255,255,255,0.1);
 }
 
 @font-face {

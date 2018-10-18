@@ -26,13 +26,13 @@ const MessageCard = ({ userPic, targetPic, isSending, message, fileCode }) => {
 	else {
 		if (isSending) {
 			finalMessage = 
-			<div className = 'msgCard bg-light-red br4 ph3 pv2 white ma2'>
+			<div className = 'msgCard sender br4 ph3 pv2 white ma2'>
 				{ message }
 			</div>
 		}
 		else {
 			finalMessage = 
-			<div className = 'msgCard bg-light-blue br4 ph3 pv2 ma2'>
+			<div className = 'msgCard receiver br4 ph3 pv2 ma2'>
 				{ message }
 			</div>
 		}

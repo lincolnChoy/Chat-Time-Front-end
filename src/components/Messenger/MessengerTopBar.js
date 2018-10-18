@@ -57,14 +57,13 @@ class MessengerTopBar extends React.Component {
 
 		return (
 			
-			<div className = 'w-100 h-100' style = {{ display : 'flex', justifyContent : 'space-around' }} >
-				<div className = 'pa3'>{ messageTarget.first + '  ' +  messageTarget.last }</div>
-				<div className = 'h-50 br3 pa3 pointer grow' style = {{ border : '1px solid black' }}
-					onClick = { () => {
-						this.callGetProfile();
-						changeRoute(TARGET_PROFILE);
-					}
-				}>View Profile</div>
+			<div className = 'w-100 h-100 pointer' style = {{ backgroundColor : 'rgba(255,255,255,0.2)', display : 'flex', justifyContent : 'space-around' }} 
+				onClick = { () => {
+							this.callGetProfile();
+							changeRoute(TARGET_PROFILE);
+						}}
+			>
+			<div className = 'pa3' >{ messageTarget.first + '  ' +  messageTarget.last }</div>
 			</div>
 		)
 	}

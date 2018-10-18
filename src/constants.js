@@ -83,6 +83,6 @@ export const CLEAR_FILE = 'CLEAR_FILE';
 export const EMPTY_MSG = 'EMPTY_MSG';
 
 
-//export const DOMAIN = 'https://chat-time-api.herokuapp.com/';
-export const DOMAIN = 'http://222.155.97.124:3000/';
+export const DOMAIN = 'https://chat-time-api.herokuapp.com/';
+//export const DOMAIN = 'http://222.155.97.124:3000/';
 //export const DOMAIN = 'http://localhost:3000/';

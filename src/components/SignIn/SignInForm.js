@@ -121,11 +121,11 @@ class SignInForm extends React.Component {
 		}
 
 		return (
-			<div className = 'tc'>
+			<div className = 'tc signIn'>
 				{ loading }
 				<div className = 'mt6'>
 					<h1 className = 'f1 white'>Chat Time</h1>
-					<div className = 'br3 ba shadow-5 b--black-10 mv4 w-100 w-50-m w-25-l mw6 center'>
+					<div className = 'br3 ba shadow-5 b--black-10 mv4 w-100 w-50-m w-25-l mw6 center form'>
 						<div className = 'pa4 black-80'>
 							<div className = 'measure'>
 								<div className = 'ba b--transparent ph0 mh0'>
@@ -136,7 +136,7 @@ class SignInForm extends React.Component {
 											(event) => {
 												editField(event.target.value, EDIT_EMAIL);
 											} 
-										} className = 'pa2 input-reset ba bg-transparent hover-white w-100' type = 'email' />
+										} className = 'pa2 input-reset ba bg-transparent w-100 black ' type = 'email' />
 									</div>
 									<div className = 'mv3'>
 										<label className = 'db fw6 lh-copy f4'>Password</label>
@@ -154,7 +154,7 @@ class SignInForm extends React.Component {
 												}
 											}
 										}
-										 className = 'b pa2 input-reset ba bg-transparent hover-white w-100' type = 'password' />
+										 className = 'b pa2 input-reset ba bg-transparent w-100' type = 'password' />
 										
 									</div>
 								</div>
@@ -164,7 +164,7 @@ class SignInForm extends React.Component {
 											this.callSignIn();
 										}
 									} 
-									className = 'b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib' type = 'submit' value = 'Sign in' />
+									className = 'b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib br3' type = 'submit' value = 'Sign in' />
 
 								<div className = 'lh-copy mt3'>
 									<p onClick = { 
