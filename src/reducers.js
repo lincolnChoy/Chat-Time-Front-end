@@ -62,7 +62,14 @@ import {
 
 	SET_FILE,
 	CLEAR_FILE,
-	EMPTY_MSG
+	EMPTY_MSG,
+
+	CREATE_GROUP,
+	CANCEL_CREATE,
+	ADD_USER,
+	GROUP_PENDING,
+	GROUP_CREATED,
+	GROUP_FAILED
 
 } from './constants';
 
@@ -391,6 +398,35 @@ export const sendMessage = (state = msgResults, action = {}) => {
 			return Object.assign({}, state, { resp : action.payload , isPending : false, messageSent : false });
 		case CLEAR_MSG : 
 			return Object.assign({}, state, { messageSent : false });
+		default : 
+			return state;
+	}
+}
+
+const initialCreateGroup = {
+
+	isPending : false,
+	resp : '',
+	createGroup : false,
+	group : []
+
+}
+
+export const createGroup = (state = initialCreateGroup, action = {}) => {
+
+	switch(action.type) {
+		case CREATE_GROUP : 
+			return Object.assign({}, state, { createGroup : true, group : [] });
+		case ADD_USER : 
+			return Object.assign({}, state, { group : action.payload });
+		case CANCEL_CREATE : 
+			return Object.assign({}, state, { createGroup : false, group : [] });
+		case GROUP_PENDING : 
+			return Object.assign({}, state, { isPending : true });
+		case GROUP_CREATED :
+			return Object.assign({}, state, { isPending : false, resp : action.payload, group : [] });
+		case GROUP_FAILED :
+			return Object.assign({}, state, { isPending : false, resp : action.payload, group : [] });
 		default : 
 			return state;
 	}

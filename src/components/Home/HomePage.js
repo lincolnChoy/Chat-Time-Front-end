@@ -14,7 +14,7 @@ const HomePage = () => {
 			<div className = 'home'>
 				<div className = 'w-20 h-100'>
 					<UserList />
-				</div>
+				</div> 
 				<Messenger />
 			</div>	
 		</div>	

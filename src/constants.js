@@ -82,7 +82,17 @@ export const SET_FILE = 'SET_FILE';
 export const CLEAR_FILE = 'CLEAR_FILE';
 export const EMPTY_MSG = 'EMPTY_MSG';
 
+export const OPEN = 'OPEN';
+export const CLOSE = 'CLOSE';
+export const CREATE_GROUP = 'CREATE_GROUP';
+export const CANCEL_CREATE = 'CANCEL_CREATE';
+export const ADD_USER = 'ADD_USER';
 
-export const DOMAIN = 'https://chat-time-api.herokuapp.com/';
-//export const DOMAIN = 'http://222.155.97.124:3000/';
+export const GROUP_PENDING = 'GROUP_PENDING';
+export const GROUP_CREATED = 'GROUP_CREATED';
+export const GROUP_FAILED = 'GROUP_FAILED';
+
+
+//export const DOMAIN = 'https://chat-time-api.herokuapp.com/';
+export const DOMAIN = 'http://222.155.4.117:3000/';
 //export const DOMAIN = 'http://localhost:3000/';

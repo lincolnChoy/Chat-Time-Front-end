@@ -23,7 +23,8 @@ import {
 	editProfile,
 	fetchMessages,
 	editMessenger,
-	sendMessage 
+	sendMessage,
+	createGroup
 } from './reducers';
 	
 /* Prepare redux logger */
@@ -41,7 +42,8 @@ const rootReducer = combineReducers({ changeRoute,
 									editProfile, 
 									fetchMessages, 
 									editMessenger,
-									sendMessage });
+									sendMessage,
+									createGroup });
 
 /* Create store to contain state, also add redux-logger for debugging and thunk middleware for async actions
  The store uses the root reducer to create the store/ the object tree of the state */

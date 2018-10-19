@@ -95,6 +95,9 @@ class MessageSection extends React.Component {
 						}
 					}
 				}
+				else {
+					loadMessages(messages);
+				}
 			}
 		}
 	}
@@ -123,8 +126,8 @@ class MessageSection extends React.Component {
 			});
 		}
 		return (
-			<div id = 'bottom'>
-				<div className = 'mb5'>
+			<div id = 'bottom' style = {{ overflowY : 'scroll', height : '700px'}}>
+				<div className = 'mb5' >
 					{ conversation }
 				</div>
 			</div>

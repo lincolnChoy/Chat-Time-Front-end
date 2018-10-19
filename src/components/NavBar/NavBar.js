@@ -5,7 +5,7 @@ import { changeRoute } from '../../actions';
 import { PROFILE } from '../../constants';
 
 import './navBar.css';
-import notification from './notification.png';
+// import notification from './notification.png';
 
 
 const mapStateToProps = (state) => {

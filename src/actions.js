@@ -31,7 +31,12 @@ import {
 	MSG_LOAD,
 	LOAD_OLD_MSG,
 
-	DOMAIN
+	DOMAIN,
+	ADD_USER,
+
+	GROUP_PENDING,
+	GROUP_CREATED,
+	GROUP_FAILED
 	
 } from './constants';
 
@@ -217,6 +222,7 @@ export const getTargetProfile = (id) => (dispatch) => {
 export const saveProfile = (id, pw, birthday, location, occupation, blurb, picture) => (dispatch) => {
 
 	dispatch({ type : API_PENDING });
+
 	/* Call the saveProfile API */
 	fetch(DOMAIN + 'saveProfile', {
 		method :'post',
@@ -243,7 +249,7 @@ export const saveProfile = (id, pw, birthday, location, occupation, blurb, pictu
 export const getMessages = (sender, destination, pw) => (dispatch) => {
 
 	dispatch({ type : MSG_FETCH_PENDING });
-	/* Call the getList API */
+	/* Call the getMessages API */
 	fetch(DOMAIN + 'getMessages', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
@@ -265,7 +271,7 @@ export const getMessages = (sender, destination, pw) => (dispatch) => {
 export const sendMessage = (sender, destination, pw, message, isFile) => (dispatch) => {
 
 	dispatch({ type : SENDING_MSG });
-	/* Call the getList API */
+	/* Call the sendMessage API */
 	fetch(DOMAIN + 'sendMessage', {
 		method :'post',
 		headers: {'Content-Type' : 'application/json'},
@@ -283,6 +289,34 @@ export const sendMessage = (sender, destination, pw, message, isFile) => (dispat
 		dispatch({ type: MSG_SENT, payload: data });
 	})
 	.catch(err => dispatch({ type : MSG_SEND_FAIL, payload : err}));
+
+}
+
+export const callCreateGroup = (id, pw, group) => (dispatch) => {
+
+	if (group.length > 0) {
+
+		group.push(id);
+
+		dispatch({ type : GROUP_PENDING });
+		/* Call the createGroup API */
+		fetch(DOMAIN + 'createGroup', {
+			method :'post',
+			headers: {'Content-Type' : 'application/json'},
+			body: JSON.stringify({
+				id : id,
+				pw : pw,
+				members : group
+			})
+		})
+		/* Parse the json response */
+		.then(response => response.json())
+		.then(data => {
+			dispatch({ type: GROUP_CREATED, payload: data });
+		})
+		.catch(err => dispatch({ type : GROUP_FAILED, payload : err}));
+	}
+	
 
 }
 
@@ -314,5 +348,13 @@ export const setTarget = (first, last, id, picture) => {
 	return {
 		type : SET_TARGET,
 		payload : user
+	}
+}
+
+export const addUser = (users) => {
+
+	return {
+		type : ADD_USER,
+		payload : users
 	}
 }

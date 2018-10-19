@@ -1,13 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import plus from './plus.png';
+import close from './close.png';
+
 import Scroll from '../Scroll/Scroll';
 import UserCard from './UserCard';
-import { getList, setTarget, setList } from '../../actions';
+import { getList, setTarget, setList, addUser, callCreateGroup } from '../../actions';
 import { 
 	SUCCESS,
 	CLEAR_TARGET_PROFILE,
-	CLEAR_MSG
+	CLEAR_MSG,
+	CREATE_GROUP,
+	CANCEL_CREATE
 } from '../../constants';
 
 
@@ -18,7 +23,9 @@ const mapStateToProps = (state) => {
 		pw : state.loadUser.user.pw,
 		listResponse : state.getList.resp,
 		list : state.getList.list,
-		listLoaded : state.getList.isLoaded
+		listLoaded : state.getList.isLoaded,
+		shouldCreate : state.createGroup.createGroup,
+		group : state.createGroup.group
 	}
 
 }
@@ -30,7 +37,11 @@ const mapDispatchToProps = (dispatch) => {
 		setTarget : (first, last, id, picture) => dispatch(setTarget(first, last, id, picture)),
 		setList : (list) => dispatch(setList(list)),
 		clearProfile : () => dispatch({ type : CLEAR_TARGET_PROFILE }),
-		clearMessages : () => dispatch({ type : CLEAR_MSG })
+		clearMessages : () => dispatch({ type : CLEAR_MSG }),
+		createGroup : () => dispatch({ type : CREATE_GROUP }),
+		cancelCreate : () => dispatch({ type : CANCEL_CREATE }),
+		addUser : (user) => dispatch(addUser(user)),
+		submitGroup : (id, pw, group) => dispatch(callCreateGroup(id, pw, group))
 	}
 }
 
@@ -79,7 +90,7 @@ class UserList extends React.Component {
 	render() {
 
 		/* Destructure props */
-		const { list, setTarget, clearProfile, clearMessages } = this.props;
+		const { id, pw, list, setTarget, clearProfile, clearMessages, createGroup, cancelCreate, shouldCreate, addUser, submitGroup, group } = this.props;
 
 		/* Check if there is a user list */
 		let userArray;
@@ -92,18 +103,66 @@ class UserList extends React.Component {
 								picture = { list[i].picture } 
 								setTarget = { setTarget } 
 								clearProfile = { clearProfile }
-								clearMessages = { clearMessages } />
+								clearMessages = { clearMessages }
+								shouldCreate = { shouldCreate }
+								addUser = { addUser }
+								 />
 			});
 		}
 
-		return (
-			<div className = 'ml1 w-100 h-60'>
-				<p className = 'w-100 f4 ph5 pv3 br3 tc'>Online Users</p>
-					<Scroll>
-						<div className = 'tc'>
-							{ userArray }
+		/* Determine what goes in the user list div */
+		let content;
+		if (shouldCreate) {
+			content = 
+				<div>
+					<p className = 'w-100 f4 ph5 pv3 br3 tc'>Create a group chat</p>
+						<Scroll>
+							<div className = 'tc'>
+								{ userArray }
+							</div>
+						</Scroll>
+						<div style = {{ display : 'flex', justifyContent : 'space-between' }}>
+							<img src = { close } alt = 'plus' 
+								className = 'ml3 pointer grow'
+								onClick = { 
+									() => {
+										cancelCreate();
+									}
+								} 
+							/>
+							<input
+								onClick = { 
+											() => {
+												submitGroup(id, pw, group);
+											}
+										} 
+								className = 'b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib br3' type = 'submit' value = 'Create group' />
 						</div>
-					</Scroll>
+				</div>
+		}
+		else {
+			content =
+				<div>
+					<p className = 'w-100 f4 ph5 pv3 br3 tc'>Online Users</p>
+						<Scroll>
+							<div className = 'tc'>
+								{ userArray }
+							</div>
+						</Scroll>
+					<img src = { plus } alt = 'plus' 
+						className = 'ml3 pointer grow'
+						onClick = { 
+							() => {
+								createGroup();
+							}
+						} 
+					/>
+				</div>
+		}
+		return (
+			
+			<div className = 'ml1 w-100 h-60'>
+				{ content }
 			</div>
 		)
 	}
