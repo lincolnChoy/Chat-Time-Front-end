@@ -22,6 +22,7 @@ import {
 	LOAD_USER,
 	SET_TARGET,
 	SET_LIST,
+	SET_GROUP_LIST,
 
 	EDIT_BIRTHDAY,
 	EDIT_LOCATION,
@@ -196,6 +197,7 @@ const initialUserList = {
 	isPending : false,
 	resp : '',
 	list : '',
+	groupList : '',
 	isLoaded : true
 }
 
@@ -211,6 +213,8 @@ export const getList = (state = initialUserList, action = {}) => {
 			return Object.assign({}, state, { resp : action.payload , listPending : false, isLoaded : false });
 		case SET_LIST :
 			return Object.assign({}, state, { list : action.payload, isLoaded : true });
+		case SET_GROUP_LIST :
+			return Object.assign({}, state, { groupList : action.payload, isLoaded : true });
 		default : 
 			return state;
 	}
@@ -300,7 +304,7 @@ const initialTarget = {
 	target : '',
 	profile : '',
 	isPending : false,
-	isLoaded : true
+	isLoaded : true,
 }
 
 export const loadTarget = (state = initialTarget, action = {}) => {

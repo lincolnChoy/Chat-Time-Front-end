@@ -3,10 +3,13 @@ import { connect } from 'react-redux';
 
 import plus from './plus.png';
 import close from './close.png';
+import tick from './tick.png';
 
 import Scroll from '../Scroll/Scroll';
 import UserCard from './UserCard';
-import { getList, setTarget, setList, addUser, callCreateGroup } from '../../actions';
+import GroupCard from './GroupCard';
+
+import { getList, setTarget, setList, setGroupList, addUser, callCreateGroup } from '../../actions';
 import { 
 	SUCCESS,
 	CLEAR_TARGET_PROFILE,
@@ -23,6 +26,7 @@ const mapStateToProps = (state) => {
 		pw : state.loadUser.user.pw,
 		listResponse : state.getList.resp,
 		list : state.getList.list,
+		groupList : state.getList.groupList,
 		listLoaded : state.getList.isLoaded,
 		shouldCreate : state.createGroup.createGroup,
 		group : state.createGroup.group
@@ -34,14 +38,15 @@ const mapDispatchToProps = (dispatch) => {
 
 	return {
 		getList : (id, pw) => dispatch(getList(id, pw)),
-		setTarget : (first, last, id, picture) => dispatch(setTarget(first, last, id, picture)),
+		setTarget : (first, last, id, picture, isGroup) => dispatch(setTarget(first, last, id, picture, isGroup)),
 		setList : (list) => dispatch(setList(list)),
+		setGroupList : (list) => dispatch(setGroupList(list)),
 		clearProfile : () => dispatch({ type : CLEAR_TARGET_PROFILE }),
 		clearMessages : () => dispatch({ type : CLEAR_MSG }),
 		createGroup : () => dispatch({ type : CREATE_GROUP }),
 		cancelCreate : () => dispatch({ type : CANCEL_CREATE }),
 		addUser : (user) => dispatch(addUser(user)),
-		submitGroup : (id, pw, group) => dispatch(callCreateGroup(id, pw, group))
+		submitGroup : (id, pw, group) => dispatch(callCreateGroup(id, pw, group)),
 	}
 }
 
@@ -53,11 +58,12 @@ class UserList extends React.Component {
 		/* Only load list once after list is fetched */
 		if (!this.props.listLoaded) {
 			/* Destructure props */
-			const { listResponse, setList } = this.props;
+			const { listResponse, setList, setGroupList } = this.props;
 			const { code } = listResponse;
 			/* Pass the list to the state if list is fetched successfully */
 			if (code === SUCCESS) {
 				setList(listResponse.users);
+				setGroupList(listResponse.groups);
 			}
 		}
 
@@ -90,10 +96,11 @@ class UserList extends React.Component {
 	render() {
 
 		/* Destructure props */
-		const { id, pw, list, setTarget, clearProfile, clearMessages, createGroup, cancelCreate, shouldCreate, addUser, submitGroup, group } = this.props;
+		const { id, pw, list, groupList, setTarget, clearProfile, clearMessages, createGroup, cancelCreate, shouldCreate, addUser, submitGroup, group } = this.props;
 
 		/* Check if there is a user list */
 		let userArray;
+		let groupArray;
 		if (list !== '') {
 			userArray = list.map((user,i) => {
 				return <UserCard key = {i} 
@@ -106,6 +113,17 @@ class UserList extends React.Component {
 								clearMessages = { clearMessages }
 								shouldCreate = { shouldCreate }
 								addUser = { addUser }
+								 />
+			});
+		}
+		if (groupList !== '') {
+			groupArray = groupList.map((user,i) => {
+				return <GroupCard key = {i} 
+								id = {groupList[i].id} 
+								picture = { '' } 
+								setTarget = { setTarget } 
+								clearProfile = { clearProfile }
+								clearMessages = { clearMessages }
 								 />
 			});
 		}
@@ -122,7 +140,7 @@ class UserList extends React.Component {
 							</div>
 						</Scroll>
 						<div style = {{ display : 'flex', justifyContent : 'space-between' }}>
-							<img src = { close } alt = 'plus' 
+							<img src = { close } alt = 'x' 
 								className = 'ml3 pointer grow'
 								onClick = { 
 									() => {
@@ -130,13 +148,14 @@ class UserList extends React.Component {
 									}
 								} 
 							/>
-							<input
+							<img src = { tick } alt = 'tick' 
+								className = 'ml3 pointer grow'
 								onClick = { 
-											() => {
-												submitGroup(id, pw, group);
-											}
-										} 
-								className = 'b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib br3' type = 'submit' value = 'Create group' />
+									() => {
+										submitGroup(id, pw, group);
+									}
+								} 
+							/>
 						</div>
 				</div>
 		}
@@ -147,6 +166,7 @@ class UserList extends React.Component {
 						<Scroll>
 							<div className = 'tc'>
 								{ userArray }
+								{ groupArray }
 							</div>
 						</Scroll>
 					<img src = { plus } alt = 'plus' 

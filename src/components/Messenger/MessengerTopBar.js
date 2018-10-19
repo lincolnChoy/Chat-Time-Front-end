@@ -55,15 +55,27 @@ class MessengerTopBar extends React.Component {
 
 		const { messageTarget, changeRoute } = this.props;
 
-		return (
-			
+		let nameBar;
+		if (messageTarget.isGroup) {
+			nameBar = 
+				<div className = 'w-100 h-100' style = {{ backgroundColor : 'rgba(255,255,255,0.2)', display : 'flex', justifyContent : 'space-around' }} >
+				<div className = 'pa3' >{ 'Group ' + messageTarget.id.toString() }</div>
+				</div>
+		}
+		else {
+			nameBar = 
 			<div className = 'w-100 h-100 pointer' style = {{ backgroundColor : 'rgba(255,255,255,0.2)', display : 'flex', justifyContent : 'space-around' }} 
 				onClick = { () => {
 							this.callGetProfile();
 							changeRoute(TARGET_PROFILE);
 						}}
-			>
-			<div className = 'pa3' >{ messageTarget.first + '  ' +  messageTarget.last }</div>
+				>
+				<div className = 'pa3' >{ messageTarget.first + '  ' +  messageTarget.last }</div>
+			</div>
+		}
+		return (
+			<div>
+				{ nameBar }
 			</div>
 		)
 	}

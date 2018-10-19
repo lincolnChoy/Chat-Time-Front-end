@@ -25,7 +25,7 @@ class UserCard extends React.Component {
 					if (!shouldCreate) {
 						clearMessages();
 						clearProfile();
-						setTarget(first, last, id, picture);
+						setTarget(first, last, id, picture, 0);
 					}
 					else {
 						let tempGroup = group;

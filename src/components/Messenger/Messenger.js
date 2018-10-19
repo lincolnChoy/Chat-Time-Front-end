@@ -23,7 +23,7 @@ const mapStateToProps = (state) => {
 		id : state.loadUser.user.id,
 		pw : state.loadUser.user.pw,
 		messageTarget : state.loadTarget.target,
-		message : state.editMessenger.message
+		message : state.editMessenger.message,
 
 	}
 }
@@ -33,10 +33,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		confirmSent : () => dispatch({ type : CLEAR_MSG }),
 		editField : (text,type) => dispatch(editField(text,type)),
-		sendMessage : (sender, destination, pw, message, isFile) => dispatch(sendMessage(sender, destination, pw, message, isFile)),
+		sendMessage : (sender, destination, pw, message, isFile, isGroup) => dispatch(sendMessage(sender, destination, pw, message, isFile, isGroup)),
 		clearMessage : () => dispatch({ type : EMPTY_MSG })
-		//setFile : () => dispatch({ type : SET_FILE }),
-		// clearFile : () => dispatch({ type : CLEAR_FILE })
 	}
 }
 
@@ -51,7 +49,7 @@ class Messenger extends React.Component {
 	callSendMessage() {
 
 		const { sendMessage, id, messageTarget, pw, message, isFile, clearMessage } = this.props;
-		sendMessage(id, messageTarget.id, pw, message, isFile);
+		sendMessage(id, messageTarget.id, pw, message, isFile, messageTarget.isGroup);
 		clearMessage();
 
 	}
@@ -71,7 +69,7 @@ class Messenger extends React.Component {
 		reader.onload = function () {
 
 			var fileData = reader.result.toString();
-			sendMessage(id, messageTarget.id, pw, fileData, 1);
+			sendMessage(id, messageTarget.id, pw, fileData, 1, messageTarget.isGroup);
 		}
 	}
 

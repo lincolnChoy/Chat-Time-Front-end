@@ -29,7 +29,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
 	return {
-		getMessages : (sender, destination, pw) => dispatch(getMessages(sender, destination, pw)),
+		getMessages : (sender, destination, pw, isGroup) => dispatch(getMessages(sender, destination, pw, isGroup)),
 		loadMessages : (messages) => dispatch(loadMessages(messages)),
 		clearSentFlag : () => dispatch({ type : CLEAR_MSG }),
 		loadOldMessages : (messages) => dispatch(loadOldMessages(messages)) 
@@ -41,7 +41,7 @@ class MessageSection extends React.Component {
 
 	refreshMessages() {
 		const { id, pw, target, getMessages } = this.props;
-		getMessages(id, target.id, pw);
+		getMessages(id, target.id, pw, target.isGroup);
 	}
 
 	loadOldMsg() {
@@ -77,21 +77,38 @@ class MessageSection extends React.Component {
 			/* If message fetch was successful, load the messages */
 			if (code === SUCCESS) {
 				if (messages.length > 0) {
-					if (messages[0].sender === target.id || messages[0].destination === target.id) {
-						/* Load messages and clear the flag so we know messages have been loaded */
+					if (target.isGroup) {
 						loadMessages(messages);
-
 						if (prevMessages.length > 0) {
-							if (messages.length !== prevMessages.length) {
-								this.scrollToBottom();						
+								if (messages.length !== prevMessages.length) {
+									this.scrollToBottom();						
+								}
 							}
-						}
-						else {
-							setTimeout(() => { 
-								var elem = document.getElementById('bottom');
-  								elem.scrollTop = elem.scrollHeight;
-							}, 50);
-							
+							else {
+								setTimeout(() => { 
+									var elem = document.getElementById('bottom');
+	  								elem.scrollTop = elem.scrollHeight;
+								}, 50);
+								
+							}
+					}
+					else {
+						if (messages[0].sender === target.id || messages[0].destination === target.id) {
+							/* Load messages and clear the flag so we know messages have been loaded */
+							loadMessages(messages);
+
+							if (prevMessages.length > 0) {
+								if (messages.length !== prevMessages.length) {
+									this.scrollToBottom();						
+								}
+							}
+							else {
+								setTimeout(() => { 
+									var elem = document.getElementById('bottom');
+	  								elem.scrollTop = elem.scrollHeight;
+								}, 50);
+								
+							}
 						}
 					}
 				}

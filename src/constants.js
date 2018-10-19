@@ -45,6 +45,7 @@ export const EDIT_PICTURE = 'EDIT_PICTURE';
 export const SET_TARGET = 'SET_TARGET';
 
 export const SET_LIST = 'SET_LIST';
+export const SET_GROUP_LIST = 'SET_GROUP_LIST';
 
 /* For reducers */
 export const API_PENDING = 'API_PENDING';
@@ -93,6 +94,6 @@ export const GROUP_CREATED = 'GROUP_CREATED';
 export const GROUP_FAILED = 'GROUP_FAILED';
 
 
-//export const DOMAIN = 'https://chat-time-api.herokuapp.com/';
-export const DOMAIN = 'http://222.155.4.117:3000/';
+export const DOMAIN = 'https://chat-time-api.herokuapp.com/';
+//export const DOMAIN = 'http://222.155.4.117:3000/';
 //export const DOMAIN = 'http://localhost:3000/';

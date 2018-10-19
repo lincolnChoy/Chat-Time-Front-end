@@ -3,6 +3,7 @@ import {
 
 	SET_TARGET,
 	SET_LIST,
+	SET_GROUP_LIST,
 
 	API_PENDING,
 	API_SUCCESS,
@@ -181,6 +182,14 @@ export const setList = (list) => {
 	}
 }
 
+export const setGroupList = (list) => {
+
+	return {
+		type : SET_GROUP_LIST,
+		payload : list
+	}
+}
+
 
 export const getUserProfile = (id) => (dispatch) => {
 
@@ -246,7 +255,7 @@ export const saveProfile = (id, pw, birthday, location, occupation, blurb, pictu
 
 }
 
-export const getMessages = (sender, destination, pw) => (dispatch) => {
+export const getMessages = (sender, destination, pw, isGroup) => (dispatch) => {
 
 	dispatch({ type : MSG_FETCH_PENDING });
 	/* Call the getMessages API */
@@ -256,7 +265,8 @@ export const getMessages = (sender, destination, pw) => (dispatch) => {
 		body: JSON.stringify({
 			sender : sender,
 			destination : destination,
-			pw: pw
+			pw: pw,
+			isGroup : isGroup
 		})
 	})
 	/* Parse the json response */
@@ -268,7 +278,7 @@ export const getMessages = (sender, destination, pw) => (dispatch) => {
 
 }
 
-export const sendMessage = (sender, destination, pw, message, isFile) => (dispatch) => {
+export const sendMessage = (sender, destination, pw, message, isFile, isGroup) => (dispatch) => {
 
 	dispatch({ type : SENDING_MSG });
 	/* Call the sendMessage API */
@@ -280,7 +290,8 @@ export const sendMessage = (sender, destination, pw, message, isFile) => (dispat
 			destination : destination,
 			message : message,
 			pw: pw,
-			isFile : isFile
+			isFile : isFile,
+			isGroup : isGroup
 		})
 	})
 	/* Parse the json response */
@@ -337,13 +348,14 @@ export const loadOldMessages = (messages) => {
 	}
 }
 
-export const setTarget = (first, last, id, picture) => {
+export const setTarget = (first, last, id, picture, isGroup) => {
 
 	const user = {
 		first : first,
 		last : last,
 		id : id,
-		picture : picture
+		picture : picture,
+		isGroup : isGroup
 	}
 	return {
 		type : SET_TARGET,
