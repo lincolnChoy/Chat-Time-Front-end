@@ -124,7 +124,7 @@ class SignInForm extends React.Component {
 			<div className = 'tc signIn'>
 				{ loading }
 				<div className = 'mt6'>
-					<h1 className = 'f1 white'>Chat Time</h1>
+					<h1 className = 'f1 white'>Chime</h1>
 					<div className = 'br3 ba shadow-5 b--black-10 mv4 w-100 w-50-m w-25-l mw6 center form'>
 						<div className = 'pa4 black-80'>
 							<div className = 'measure'>
