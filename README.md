@@ -1,4 +1,4 @@
-# Chat time    
+# Chime 
 
     
 Front-end of a communications app.           
@@ -13,20 +13,19 @@ Middleware :
 
 Registration pages :     
 
-![sign in page](http://puu.sh/BG7mU/94e42315d2.jpg)    
+![sign in page](https://puu.sh/BNUFA/08f2027537.jpg)    
     
-
-![registration page](http://puu.sh/BG7ny/8bd1aa4870.jpg)    
+![registration page](https://puu.sh/BNUG2/8f0f8843e5.png)    
     
 Home page (still being worked on):    
     
-![home page](https://puu.sh/BJSMF/93bd7e811c.jpg)          
+![home page](https://puu.sh/BNULu/b897761c6d.jpg)          
     
-![messaging](https://puu.sh/BJSIe/ed4c3f3852.jpg)       
+![messaging](https://puu.sh/BNUKQ/84882923b9.jpg)       
 
-![viewingprofile](https://puu.sh/BJSL1/37b7ec8d05.jpg)
+![viewingprofile](https://puu.sh/BNULS/52a71c869a.jpg)
    
-![editingprofile](https://puu.sh/BJSNG/4568b232d9.jpg)    
+![editingprofile](https://puu.sh/BNUNk/6b2bc2bb37.png)    
 
 
 
