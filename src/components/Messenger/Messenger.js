@@ -12,8 +12,6 @@ import {
 	EMPTY_MSG,
 	CLEAR_MSG,
 	EDIT_MSG
-	// SET_FILE,
-	// CLEAR_FILE
 
 } from '../../constants';
 

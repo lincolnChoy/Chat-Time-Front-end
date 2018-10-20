@@ -47,7 +47,13 @@ const rootReducer = combineReducers({ changeRoute,
 
 /* Create store to contain state, also add redux-logger for debugging and thunk middleware for async actions
  The store uses the root reducer to create the store/ the object tree of the state */
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
+let store;
+if (process.env.NODE_ENV === 'development') {
+	store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
+}
+else {
+	store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+}
 
 /* Wrap container in Provider and pass store down */
 ReactDOM.render(
