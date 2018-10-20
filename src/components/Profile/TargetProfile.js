@@ -40,9 +40,9 @@ class TargetProfile extends React.Component {
 					<div className = 'pa3 w-80' style = {{ display : 'flex', justifyContent : 'space-around' }}>
 						<div className = 'ma5'>
 							<img 
-							className = 'br3 dp' style = {{ border : '1px solid black'}} 
+							className = 'br3 dp'
 							src = { picture }
-							alt = 'user avatar' height = '200px'/>
+							alt = '' height = '200px'/>
 							<h2>{ target.first + ' ' + target.last }</h2>
 						</div>
 						<div className = 'ma5'>

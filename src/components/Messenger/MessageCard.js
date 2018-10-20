@@ -9,8 +9,8 @@ const MessageCard = ({ userPic, targetPic, isSending, message, fileCode }) => {
 	/* If message is an image */
 	if (fileCode === 0 || fileCode === 1) {
 		finalMessage = 
-		<div className = 'msgCard br4 pv2 ma2' >
-			<img src = { message } alt = 'msgImg' width = '200px' />
+		<div className = 'msgCard pv2 ma2' >
+			<img className = 'br4' src = { message } alt = '' width = '200px' />
 		</div>
 	}
 	/* If message is an mp3 file */
@@ -45,7 +45,7 @@ const MessageCard = ({ userPic, targetPic, isSending, message, fileCode }) => {
 				<div className = 'chatHead ma2'>
 					<img 
 						src = { userPic }
-						alt = 'user dp'/>
+						alt = ''/>
 				</div>
 			</div>
 		)
@@ -56,7 +56,7 @@ const MessageCard = ({ userPic, targetPic, isSending, message, fileCode }) => {
 				<div className = 'chatHead ma2'>
 					<img 
 						src = { targetPic }
-						alt = 'target dp'/>
+						alt = ''/>
 				</div>
 				{ finalMessage }
 			</div>

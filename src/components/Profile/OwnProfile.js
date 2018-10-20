@@ -129,9 +129,9 @@ class OwnProfile extends React.Component {
 					</div>
 					<div className = 'ma5'>
 						<img 
-						className = 'br3 dp' style = {{ border : '1px solid black'}} 
+						className = 'br3 dp' 
 						src = { picture }
-						alt = 'user avatar' height = '500px'/>
+						alt = '' height = '500px'/>
 						<br/>
 						<p>Choose a new profile picture</p>
 						<input type = 'file'

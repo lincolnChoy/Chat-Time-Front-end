@@ -96,7 +96,7 @@ class Messenger extends React.Component {
 							value = { this.props.message }
 							onKeyPress = { (event) => { if (event.key === 'Enter') { this.callSendMessage(); }}}
 							
-							className = 'b pa2 input-reset ba bg-transparent hover-white w-80' type = 'text' />
+							className = 'b pa2 input-reset ba bg-transparent w-80' type = 'text' />
 
 						<div className = 'image-upload grow'>
 							<label htmlFor = 'file-input'>
