@@ -37,11 +37,11 @@ class UserCard extends React.Component {
 					}
 				}}
 				className = 'br3 ma2 pointer userCard' 
-				style = {{ border : '1px solid transparent', display : 'flex', justifyContent : 'space-around', alignItems : 'center' }}>
+				style = {{ border : '1px solid transparent', display : 'flex', alignItems : 'center' }}>
 					<div className = 'listHead'>
 						<img src = { picture } height = '40px' alt = '' />
 					</div>
-					<span>{ first } { last } </span>
+					<span className = 'ml5'>{ first } { last } </span>
 				</div>
 			</div>
 		)

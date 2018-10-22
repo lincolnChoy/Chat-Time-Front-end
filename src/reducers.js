@@ -23,6 +23,7 @@ import {
 	SET_TARGET,
 	SET_LIST,
 	SET_GROUP_LIST,
+	LOAD_GROUP,
 
 	EDIT_BIRTHDAY,
 	EDIT_LOCATION,
@@ -305,6 +306,7 @@ const initialTarget = {
 	profile : '',
 	isPending : false,
 	isLoaded : true,
+	group : []
 }
 
 export const loadTarget = (state = initialTarget, action = {}) => {
@@ -313,6 +315,8 @@ export const loadTarget = (state = initialTarget, action = {}) => {
 
 		case SET_TARGET :
 			return Object.assign({}, state, { target : action.payload });
+		case LOAD_GROUP : 
+			return Object.assign({}, state, { group : action.payload });
 		case TARGET_PROFILE_PENDING : 
 			return Object.assign({}, state, { isPending : true });
 		case TARGET_PROFILE_SUCCESS : 

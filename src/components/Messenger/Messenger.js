@@ -118,7 +118,7 @@ class Messenger extends React.Component {
 		}
 
 		return (
-			<div className = 'w-80 wrapper' style = {{ height : '850px'}}>
+			<div className = 'wrapper'>
 				{ messageBox }
 			</div>
 		)

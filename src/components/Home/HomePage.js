@@ -13,7 +13,9 @@ const HomePage = () => {
 			<NavBar />
 			<div className = 'home'>
 				<div className = 'w-20 h-100'>
-					<UserList />
+					<div className = 'w-80'>
+						<UserList />
+					</div>
 				</div> 
 				<Messenger />
 			</div>	

@@ -4,16 +4,28 @@
 	flex-direction: column;
 	max-width: 500px;
 	word-wrap: break-word;
+	border-radius: 1rem;
+	padding-top : 0.5em;
+	padding-bottom : 0.5em;
 }
 
 .sender {
 	background: #ff8c00;
+	color : white;
 
 }
 
 .receiver {
 	background: #DEDEDE;
 }
+
+
+.wrapper {
+	position : relative;
+	width : 80%;
+	height : 82vh;
+}
+
 
 .chatHead {
 	width: 50px;

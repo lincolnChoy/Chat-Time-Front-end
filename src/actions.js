@@ -4,6 +4,7 @@ import {
 	SET_TARGET,
 	SET_LIST,
 	SET_GROUP_LIST,
+	LOAD_GROUP,
 
 	API_PENDING,
 	API_SUCCESS,
@@ -61,6 +62,14 @@ export const loadUser = (user) => {
 			pw : user.pw,
 			picture : user.picture
 		}
+	}
+}
+
+export const loadGroup = (members) => {
+
+	return {
+		type : LOAD_GROUP,
+		payload : members
 	}
 }
 

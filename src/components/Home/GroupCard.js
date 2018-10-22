@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { loadGroup } from '../../actions';
 
 const mapStateToProps = (state) => {
 
@@ -11,20 +12,23 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 
-	return {}
+	return {
+		setGroup : (members) => dispatch(loadGroup(members))
+	}
 }
 
 class GroupCard extends React.Component {
 
 	render() {
 
-		const { id, picture, setTarget, clearProfile, clearMessages } = this.props;
+		const { id, picture, members, setTarget, clearProfile, clearMessages, setGroup } = this.props;
 		return (
 			<div>
 				<div onClick = { () => {
 					clearMessages();
 					clearProfile();
 					setTarget('Group ', id.toString() , id, picture, 1);
+					setGroup(members);
 				}}
 				className = 'br3 ma2 pointer userCard' style = {{ border : '1px solid transparent' }}>
 					<p>{ 'Group ' } { id.toString() } </p>

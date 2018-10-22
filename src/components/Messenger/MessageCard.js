@@ -2,7 +2,7 @@ import React from 'react';
 
 import './message.css';
 
-const MessageCard = ({ userPic, targetPic, isSending, message, fileCode }) => {
+const MessageCard = ({ userPic, targetPic, isSending, message, fileCode, consecutiveMessage }) => {
 
 	let finalMessage = message;
 
@@ -13,6 +13,7 @@ const MessageCard = ({ userPic, targetPic, isSending, message, fileCode }) => {
 			<img className = 'br4' src = { message } alt = '' width = '200px' />
 		</div>
 	}
+
 	/* If message is an mp3 file */
 	else if (fileCode === 2) {
 		finalMessage = 
@@ -22,41 +23,56 @@ const MessageCard = ({ userPic, targetPic, isSending, message, fileCode }) => {
 			</audio>
 		</div>
 	}
-	/* If image is simple text */
+
+	/* If message is simple text */
 	else {
 		if (isSending) {
 			finalMessage = 
-			<div className = 'msgCard sender br4 ph3 pv2 white ma2'>
+			<div className = 'msgCard sender ph3 ma2'>
 				{ message }
 			</div>
 		}
 		else {
 			finalMessage = 
-			<div className = 'msgCard receiver br4 ph3 pv2 ma2'>
+			<div className = 'msgCard receiver ph3 ma2'>
 				{ message }
 			</div>
 		}
 	}
 
+
 	if (isSending) {
+		let chatHead = 
+			<img 
+				src = { userPic }
+				alt = ''/>
+
+		if (consecutiveMessage) {
+			chatHead = ''
+		}
+
 		return (
 			<div style = {{ display : 'flex', justifyContent : 'flex-end'}}>
 				{ finalMessage }
 				<div className = 'chatHead ma2'>
-					<img 
-						src = { userPic }
-						alt = ''/>
+					{ chatHead }
 				</div>
 			</div>
 		)
 	}
 	else {
+		let chatHead = 
+			<img 
+				src = { targetPic }
+				alt = ''/>
+		if (consecutiveMessage) {
+			chatHead = '' 
+		}
+
 		return (
 			<div style = {{ display : 'flex', justifyContent : 'flex-start'}}>
 				<div className = 'chatHead ma2'>
-					<img 
-						src = { targetPic }
-						alt = ''/>
+					{ chatHead }
 				</div>
 				{ finalMessage }
 			</div>

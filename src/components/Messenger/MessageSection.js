@@ -22,7 +22,8 @@ const mapStateToProps = (state) => {
 		prevMessages : state.fetchMessages.prevMessages,
 		fetchResp : state.fetchMessages.resp,
 		messagesLoaded : state.fetchMessages.messagesLoaded,
-		messageSent : state.sendMessage.messageSent
+		messageSent : state.sendMessage.messageSent,
+		members : state.loadTarget.group
 	}
 }
 
@@ -127,23 +128,45 @@ class MessageSection extends React.Component {
 
 	render() {
 
-		const { messages, userPicture , target, id } = this.props;
+		const { messages, userPicture , target, id, members } = this.props;
 
 		/* Check if there are messages */
 		let conversation;
-		if (messages !== '' && messages!== undefined) {
+		if (messages) {
 			conversation = messages.map((message,i) => {
-				let isSending = (message.sender === id)
+
+				/* Determine if chathead avatar should be displayed,
+					based off consecutive messages  */
+				let consecutiveMessage = false;
+				if (i > 0) {
+					if (messages[i-1].sender === messages[i].sender) {
+						consecutiveMessage = true;
+					}
+				}
+
+				let isSending = (message.sender === id);
+				let targetPic = target.picture;
+				
+				/* Change target picture according to group chat */
+				if (target.isGroup) {
+					for (var j = 0; j < members.length; j++) {
+						if (members[j].id === message.sender) {
+							targetPic = members[j].picture;
+						}
+					}
+				}
+
 				return <MessageCard key = {i}
 								userPic = { userPicture } 
-								targetPic = { target.picture } 
-								isSending = { isSending } 
+								targetPic = { targetPic } 
+								isSending = { isSending }
+								consecutiveMessage = { consecutiveMessage } 
 								message = { message.message } 
 								fileCode = { message.filecode } />
 			});
 		}
 		return (
-			<div id = 'bottom' style = {{ overflowY : 'scroll', height : '700px'}}>
+			<div id = 'bottom' style = {{ overflowY : 'scroll', height : '70vh'}}>
 				<div className = 'mb5' >
 					{ conversation }
 				</div>

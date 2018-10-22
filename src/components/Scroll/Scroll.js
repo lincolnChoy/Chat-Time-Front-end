@@ -5,7 +5,7 @@ const Scroll = (props) => {
 		
 	return (
 
-		<div id = 'list' style = {{ overflowY : 'scroll', height : '700px' }} >
+		<div id = 'list' style = {{ overflowY : 'scroll', height : '70vh' }} >
 			{props.children}
 		</div>
 	);
