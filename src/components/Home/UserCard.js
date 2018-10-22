@@ -18,7 +18,8 @@ class UserCard extends React.Component {
 
 	render() {
 
-		const { first, last, id, picture, setTarget, clearProfile, clearMessages, shouldCreate, addUser, group } = this.props;
+		const { user , setTarget, clearProfile, clearMessages, shouldCreate, addUser, group } = this.props;
+		const { first, last, id, picture } = user;
 		return (
 			<div>
 				<div onClick = { () => {
@@ -35,8 +36,12 @@ class UserCard extends React.Component {
 						}
 					}
 				}}
-				className = 'br3 ma2 pointer userCard' style = {{ border : '1px solid transparent' }}>
-					<p>{ first } { last } </p>
+				className = 'br3 ma2 pointer userCard' 
+				style = {{ border : '1px solid transparent', display : 'flex', justifyContent : 'space-around', alignItems : 'center' }}>
+					<div className = 'listHead'>
+						<img src = { picture } height = '40px' alt = '' />
+					</div>
+					<span>{ first } { last } </span>
 				</div>
 			</div>
 		)

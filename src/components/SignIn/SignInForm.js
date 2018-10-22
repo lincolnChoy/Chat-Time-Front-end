@@ -121,7 +121,7 @@ class SignInForm extends React.Component {
 		}
 
 		return (
-			<div className = 'tc signIn'>
+			<div className = 'tc'>
 				{ loading }
 				<div className = 'mt6'>
 					<h1 className = 'f1 white'>Chime</h1>

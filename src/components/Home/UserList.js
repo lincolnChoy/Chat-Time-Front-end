@@ -103,11 +103,8 @@ class UserList extends React.Component {
 		let groupArray;
 		if (list !== '') {
 			userArray = list.map((user,i) => {
-				return <UserCard key = {i} 
-								first = {list[i].first} 
-								last = {list[i].last} 
-								id = {list[i].id} 
-								picture = { list[i].picture } 
+				return <UserCard key = {i}
+								user = { list[i] }
 								setTarget = { setTarget } 
 								clearProfile = { clearProfile }
 								clearMessages = { clearMessages }
