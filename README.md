@@ -19,9 +19,12 @@ Registration pages :
     
 Home page (still being worked on):    
     
-![home page](https://puu.sh/BNULu/b897761c6d.jpg)          
+![home page](https://puu.sh/BPaw5/29c5b184c3.jpg)          
     
-![messaging](https://puu.sh/BO6mX/7f89bc58a4.jpg)       
+![messaging](https://puu.sh/BPazj/16c630c729.jpg)   
+    
+![groupchat](https://puu.sh/BPaC4/ca0b2f3626.jpg)    
+
 
 ![viewingprofile](https://puu.sh/BNULS/52a71c869a.jpg)
    
