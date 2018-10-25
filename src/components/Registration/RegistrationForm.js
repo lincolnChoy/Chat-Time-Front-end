@@ -140,7 +140,7 @@ class RegistrationForm extends React.Component {
 		}
 
 		return (
-			<div className = 'tc'>
+			<div className = 'formPage'>
 				{ loading }
 				<div className = 'mt6'>
 					<h1 className = 'f1 white'>Chime</h1>
