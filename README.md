@@ -13,9 +13,9 @@ Middleware :
 
 Registration pages :     
 
-![sign in page](https://puu.sh/BNUFA/08f2027537.jpg)    
+![sign in page](https://puu.sh/BQKiI/8d8c6f6b4e.png)    
     
-![registration page](https://puu.sh/BNUG2/8f0f8843e5.png)    
+![registration page](https://puu.sh/BQKjm/a4aa2d4cfe.png)    
     
 Home page (still being worked on):    
     
