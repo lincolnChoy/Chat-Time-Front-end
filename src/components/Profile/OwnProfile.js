@@ -81,6 +81,7 @@ class OwnProfile extends React.Component {
 		
 		const { getUserProfile, id } = this.props;
 		getUserProfile(id);
+		document.title = 'Profile';
 	}
 
 	componentDidUpdate() {

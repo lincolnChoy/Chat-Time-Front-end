@@ -13,9 +13,9 @@ import { getList, setTarget, setList, setGroupList, addUser, callCreateGroup } f
 import { 
 	SUCCESS,
 	CLEAR_TARGET_PROFILE,
-	CLEAR_MSG,
+	DUMP_MSGS,
 	CREATE_GROUP,
-	CANCEL_CREATE
+	CANCEL_CREATE,
 } from '../../constants';
 
 
@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch) => {
 		setList : (list) => dispatch(setList(list)),
 		setGroupList : (list) => dispatch(setGroupList(list)),
 		clearProfile : () => dispatch({ type : CLEAR_TARGET_PROFILE }),
-		clearMessages : () => dispatch({ type : CLEAR_MSG }),
+		clearMessages : () => dispatch({ type : DUMP_MSGS }),
 		createGroup : () => dispatch({ type : CREATE_GROUP }),
 		cancelCreate : () => dispatch({ type : CANCEL_CREATE }),
 		addUser : (user) => dispatch(addUser(user)),

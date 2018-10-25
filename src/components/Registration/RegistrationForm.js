@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LoadAnim from '../LoadAnim/LoadAnim';
+import '../SignIn/form.css';
+
 
 import { editField, changeRoute, register, setFormState, loadUser, readAPI } from '../../actions';
 
@@ -128,13 +130,13 @@ class RegistrationForm extends React.Component {
 			loading = <LoadAnim />
 		}
 		else if (formState === EXISTING_EMAIL) {
-			formError = <p className = 'f4 pa1 bg-light-red br3 white'>An account with this email exists.</p>;
+			formError = <p className = 'formError pa2'>AN ACCOUNT WITH THIS EMAIL ALREADY EXISTS.</p>;
 		}
 		else if (formState === NOT_COMPLETE) {
-			formError = <p className = 'f4 pa1 bg-light-red br3 white'>Please fill in all fields.</p>;
+			formError = <p className = 'formError pa2'>PLEASE FILL IN ALL FIELDS</p>;
 		}
 		else if (formState === INVALID_EMAIL) {
-			formError = <p className = 'f4 pa1 bg-light-red br3 white'>Please enter a valid email address.</p>;
+			formError = <p className = 'formError pa2'>PLEASE ENTER A VALID EMAIL ADDRESS</p>;
 		}
 
 		return (
@@ -148,36 +150,36 @@ class RegistrationForm extends React.Component {
 								<div className = 'ba b--transparent ph0 mh0'>
 									<div className = 'f2 fw6 ph0 mh0'>Sign Up!</div>
 									<div className = 'mt3'>
-										<label className = 'db fw6 lh-copy f4'>First name</label>
+										<label className = 'formLabel lh-copy'>First name</label>
 										<input onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_FIRST_NAME);
 											} 
-										} className = 'pa2 input-reset ba bg-transparent w-100' type = 'text' />
-										<label className = 'db fw6 lh-copy f4'>Last name</label>
+										} className = 'pa2 formInput' type = 'text' />
+										<label className = 'formLabel lh-copy'>Last name</label>
 										<input onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_LAST_NAME);
 											} 
-										} className = 'pa2 input-reset ba bg-transparent w-100' type = 'text' />
-										<label className = 'db fw6 lh-copy f4'>Email</label>
+										} className = 'pa2 formInput' type = 'text' />
+										<label className = 'formLabel lh-copy'>Email</label>
 										<input onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_EMAIL);
 											} 
-										} className = 'pa2 input-reset ba bg-transparent w-100' type = 'email' />
-										<label className = 'db fw6 lh-copy f4'>Password</label>
+										} className = 'pa2 formInput' type = 'email' />
+										<label className = 'formLabel lh-copy'>Password</label>
 										<input onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_PW);
 											} 
-										} className = 'pa2 input-reset ba bg-transparent w-100' type = 'password' />
-										<label className = 'db fw6 lh-copy f4'>Confirm Password</label>
+										} className = 'pa2 formInput' type = 'password' />
+										<label className = 'formLabel lh-copy'>Confirm Password</label>
 										<input onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_PW2);
 											} 
-										} className = 'pa2 input-reset ba bg-transparent w-100' type = 'password' />
+										} className = 'pa2 formInput' type = 'password' />
 									</div>
 								</div>
 
@@ -186,7 +188,7 @@ class RegistrationForm extends React.Component {
 											this.callRegister();
 										}
 									} 
-									className = 'mt2 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib br3' type = 'submit' value = 'Register' />
+									className = 'mt2 ph4 pv3 formButton' type = 'submit' value = 'Register' />
 								<div className = 'lh-copy mt3'>
 									<p onClick = { 
 										() => {

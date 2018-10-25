@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LoadAnim from '../LoadAnim/LoadAnim';
+import './form.css';
 
 import { editField, changeRoute, signIn, setFormState, loadUser, readAPI } from '../../actions';
 
@@ -114,10 +115,10 @@ class SignInForm extends React.Component {
 			loading = <LoadAnim />
 		}
 		else if (formState === WRONG_CRED) {
-			formError = <p className = 'f4 pa1 bg-light-red br3 white'>Incorrect email or password.</p>;
+			formError = <p className = 'formError pa2'>INCORRECT EMAIL OR PASSWORD</p>;
 		}
 		else if (formState === NOT_COMPLETE) {
-			formError = <p className = 'f4 pa1 bg-light-red br3 white'>Please fill in both fields.</p>;
+			formError = <p className = 'formError pa2'>PLEASE FILL IN BOTH FIELDS</p>;
 		}
 
 		return (
@@ -131,15 +132,15 @@ class SignInForm extends React.Component {
 								<div className = 'ba b--transparent ph0 mh0'>
 									<div className = 'f2 fw6 ph0 mh0'>Sign In</div>
 									<div className = 'mt3'>
-										<label className = 'db fw6 lh-copy f4'>Email</label>
+										<label className = 'formLabel lh-copy'>Email</label>
 										<input onChange = { 
 											(event) => {
 												editField(event.target.value, EDIT_EMAIL);
 											} 
-										} className = 'pa2 input-reset ba bg-transparent w-100 black ' type = 'email' />
+										} className = 'pa2 formInput' type = 'email' />
 									</div>
 									<div className = 'mv3'>
-										<label className = 'db fw6 lh-copy f4'>Password</label>
+										<label className = 'formLabel lh-copy'>Password</label>
 										<input 
 										onChange = { 
 											(event) => {
@@ -154,7 +155,7 @@ class SignInForm extends React.Component {
 												}
 											}
 										}
-										 className = 'b pa2 input-reset ba bg-transparent w-100' type = 'password' />
+										 className = 'pa2 formInput' type = 'password' />
 										
 									</div>
 								</div>
@@ -164,7 +165,7 @@ class SignInForm extends React.Component {
 											this.callSignIn();
 										}
 									} 
-									className = 'b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib br3' type = 'submit' value = 'Sign in' />
+									className = 'ph4 pv3 mt2 formButton' type = 'submit' value = 'Sign in' />
 
 								<div className = 'lh-copy mt3'>
 									<p onClick = { 

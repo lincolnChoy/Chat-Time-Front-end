@@ -23,6 +23,13 @@ const mapDispatchToProps = (dispatch) => {
 
 class TargetProfile extends React.Component {
 
+	componentDidMount() {
+
+		const { target } = this.props;
+
+		document.title = target.first + target.last + '\'s profile';
+	}
+
 
 	render() {
 

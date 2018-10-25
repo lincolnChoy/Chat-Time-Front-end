@@ -36,6 +36,9 @@ export const LOAD_USER_PROFILE = 'LOAD_USER_PROFILE';
 export const LOAD_TARGET_PROFILE = 'LOAD_TARGET_PROFILE';
 export const LOAD_MESSAGES = 'LOAD_MESSAGES';
 export const LOAD_OLD_MSG = 'LOAD_OLD_MSG';
+export const DUMP_MSGS = 'DUMP_MSGS';
+export const REMOVE_BLOCK = 'REMOVE_BLOCK';
+
 
 /* Profile action constants */
 export const EDIT_BIRTHDAY = 'EDIT_BIRTHDAY';

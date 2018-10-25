@@ -44,6 +44,10 @@ class Messenger extends React.Component {
 	}
 
 
+	componentDidMount() {
+		document.title = 'Home';
+	}
+
 	callSendMessage() {
 
 		const { sendMessage, id, messageTarget, pw, message, isFile, clearMessage } = this.props;

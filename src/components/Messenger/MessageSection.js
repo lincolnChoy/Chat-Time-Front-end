@@ -7,7 +7,8 @@ import { getMessages, loadMessages, loadOldMessages } from '../../actions';
 
 import {
 	SUCCESS,
-	CLEAR_MSG
+	CLEAR_MSG,
+	REMOVE_BLOCK
 
 } from '../../constants';
 
@@ -23,7 +24,8 @@ const mapStateToProps = (state) => {
 		fetchResp : state.fetchMessages.resp,
 		messagesLoaded : state.fetchMessages.messagesLoaded,
 		messageSent : state.sendMessage.messageSent,
-		members : state.loadTarget.group
+		members : state.loadTarget.group,
+		firstLoad : state.fetchMessages.firstLoad
 	}
 }
 
@@ -33,7 +35,8 @@ const mapDispatchToProps = (dispatch) => {
 		getMessages : (sender, destination, pw, isGroup) => dispatch(getMessages(sender, destination, pw, isGroup)),
 		loadMessages : (messages) => dispatch(loadMessages(messages)),
 		clearSentFlag : () => dispatch({ type : CLEAR_MSG }),
-		loadOldMessages : (messages) => dispatch(loadOldMessages(messages)) 
+		loadOldMessages : (messages) => dispatch(loadOldMessages(messages)) ,
+		removeBlock : () => dispatch({ type : REMOVE_BLOCK })
 	}
 }
 
@@ -73,50 +76,33 @@ class MessageSection extends React.Component {
 		/* If a message fetch was called, check the results */
 		if (!this.props.messagesLoaded) {
 
-			const { fetchResp, loadMessages, target, prevMessages } = this.props;
+			const { fetchResp, loadMessages, prevMessages, firstLoad, removeBlock } = this.props;
 			const { code, messages } = fetchResp;
 			/* If message fetch was successful, load the messages */
 			if (code === SUCCESS) {
-				if (messages.length > 0) {
-					if (target.isGroup) {
-						loadMessages(messages);
-						if (prevMessages.length > 0) {
-								if (messages.length !== prevMessages.length) {
-									this.scrollToBottom();						
-								}
-							}
-							else {
-								setTimeout(() => { 
-									var elem = document.getElementById('bottom');
-	  								elem.scrollTop = elem.scrollHeight;
-								}, 50);
-								
-							}
-					}
-					else {
-						if (messages[0].sender === target.id || messages[0].destination === target.id) {
-							/* Load messages and clear the flag so we know messages have been loaded */
-							loadMessages(messages);
-
-							if (prevMessages.length > 0) {
-								if (messages.length !== prevMessages.length) {
-									this.scrollToBottom();						
-								}
-							}
-							else {
-								setTimeout(() => { 
-									var elem = document.getElementById('bottom');
-	  								elem.scrollTop = elem.scrollHeight;
-								}, 50);
-								
-							}
-						}
-					}
+				if (firstLoad) {
+					removeBlock();
 				}
 				else {
+					/* If new messages */
 					loadMessages(messages);
+					this.scroll(messages, prevMessages, firstLoad);	
 				}
 			}
+		}
+	}
+	
+
+
+	scroll(messages, prevMessages, firstLoad) {
+		if (prevMessages.length > 0 && messages.length !== prevMessages.length) {
+			this.scrollToBottom();						
+		}
+		else if (firstLoad) {
+			setTimeout(() => { 
+			var elem = document.getElementById('bottom');
+	  		elem.scrollTop = elem.scrollHeight;
+			}, 50);	
 		}
 	}
 

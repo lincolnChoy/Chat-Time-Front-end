@@ -45,6 +45,8 @@ import {
 	MSG_FETCH_FAIL,
 	MSG_LOAD,
 	LOAD_OLD_MSG,
+	DUMP_MSGS,
+	REMOVE_BLOCK,
 
 	USER_PROFILE_PENDING,
 	USER_PROFILE_SUCCESS,
@@ -365,8 +367,9 @@ const initialMessages = {
 	isPending : false,
 	messagesLoaded : false,
 	resp : '',
-	messages : '',
-	prevMessages : ''
+	messages : [],
+	prevMessages : [],
+	firstLoad : true
 }
 
 export const fetchMessages = (state = initialMessages, action = {}) => {
@@ -383,6 +386,10 @@ export const fetchMessages = (state = initialMessages, action = {}) => {
 			return Object.assign({}, state, { messages : action.payload, messagesLoaded : true });
 		case LOAD_OLD_MSG : 
 			return Object.assign({}, state, { prevMessages : action.payload });	
+		case DUMP_MSGS : 
+			return Object.assign({}, state, { messages : [] , prevMessages : [], firstLoad : true });
+		case REMOVE_BLOCK : 
+			return Object.assign({}, state, { firstLoad : false });	
 		default : 
 			return state;
 	}
