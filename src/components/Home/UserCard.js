@@ -16,10 +16,28 @@ const mapDispatchToProps = (dispatch) => {
 
 class UserCard extends React.Component {
 
+	constructor() {
+
+		super();
+
+		this.state = {
+			selected : false
+		}
+	}
+
+
 	render() {
 
 		const { user , setTarget, clearProfile, clearMessages, shouldCreate, addUser, group } = this.props;
 		const { first, last, id, picture } = user;
+
+		let className = '';
+		if (this.state.selected) {
+			className = 'br3 ma2 pointer userCard bg-orange hover-bg-orange'
+		}
+		else {
+			className = 'br3 ma2 pointer userCard'
+		}
 		return (
 			<div>
 				<div onClick = { () => {
@@ -33,13 +51,25 @@ class UserCard extends React.Component {
 						if (!tempGroup.includes(id)) {
 							tempGroup.push(id);
 							addUser(tempGroup);
+							this.setState({ selected : !this.state.selected });
+							console.log(this.state.selected);
+						}
+						else {
+							for (var i = 0; i < tempGroup.length; i++) { 
+								if (tempGroup[i] === id) {
+									tempGroup.splice(i, 1);
+									addUser(tempGroup);
+									this.setState({ selected : !this.state.selected }); 
+								}
+							}
 						}
 					}
 				}}
-				className = 'br3 ma2 pointer userCard' 
+
+				className = { className }
 				style = {{ border : '1px solid transparent', display : 'flex', alignItems : 'center' }}>
 					<div className = 'listHead'>
-						<img src = { picture } height = '40px' alt = '' />
+						<img src = { picture } height = '40px' width = '40px' alt = '' />
 					</div>
 					<span className = 'ml5'>{ first } { last } </span>
 				</div>

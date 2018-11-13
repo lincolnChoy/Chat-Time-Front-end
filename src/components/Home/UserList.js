@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import plus from './plus.png';
 import close from './close.png';
 import tick from './tick.png';
 
@@ -131,7 +130,7 @@ class UserList extends React.Component {
 		if (shouldCreate) {
 			content = 
 				<div>
-					<p className = 'w-100 f4 ph5 pv3 br3 tc'>Create a group chat</p>
+					<p className = 'w-100 f5 ph5 pv3 br3 tc'>Add friends to group</p>
 						<Scroll>
 							<div className = 'tc'>
 								{ userArray }
@@ -151,6 +150,7 @@ class UserList extends React.Component {
 								onClick = { 
 									() => {
 										submitGroup(id, pw, group);
+										cancelCreate();
 									}
 								} 
 							/>
@@ -160,21 +160,23 @@ class UserList extends React.Component {
 		else {
 			content =
 				<div>
-					<p className = 'w-100 f4 ph5 pv3 br3 tc'>Online Users</p>
+					<p className = 'w-100 f5 ph5 pv3 br3 tc'>Online Users</p>
 						<Scroll>
 							<div className = 'tc'>
 								{ userArray }
 								{ groupArray }
 							</div>
 						</Scroll>
-					<img src = { plus } alt = 'plus' 
-						className = 'ml3 pointer grow'
+					<div
+						className = 'tc ma2 br3 pa2 input-reset ba pointer'
 						onClick = { 
 							() => {
 								createGroup();
 							}
 						} 
-					/>
+					>
+					Create a group
+					</div>
 				</div>
 		}
 		return (
