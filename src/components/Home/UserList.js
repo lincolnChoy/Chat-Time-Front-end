@@ -160,7 +160,7 @@ class UserList extends React.Component {
 		else {
 			content =
 				<div>
-					<p className = 'w-100 f5 ph5 pv3 br3 tc'>Online Users</p>
+					<p className = 'w-100 f5 ph5 pv3 br3 tc'>Contacts</p>
 						<Scroll>
 							<div className = 'tc'>
 								{ userArray }

@@ -13,7 +13,7 @@ const HomePage = () => {
 			<NavBar />
 			<div className = 'home'>
 				<div className = 'w-20 h-100'>
-					<div className = 'w-80'>
+					<div className = 'userList'>
 						<UserList />
 					</div>
 				</div> 
