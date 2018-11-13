@@ -44,8 +44,8 @@ class UserCard extends React.Component {
 
 		const timeNow = (new Date()).getTime();
 		let activity = '';
-		/* If on within last 5 minutes */
-		if (timeNow - lastSeen <= 30000) {
+		/* If on within last 2 minutes */
+		if (timeNow - lastSeen <= 120000) {
 			activity = <img src = { active } alt = '' height = '10px' width = '10px' />
 		}
 		else {
