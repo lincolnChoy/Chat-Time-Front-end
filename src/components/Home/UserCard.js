@@ -71,7 +71,7 @@ class UserCard extends React.Component {
 					<div className = 'listHead'>
 						<img src = { picture } height = '40px' width = '40px' alt = '' />
 					</div>
-					<span className = 'ml5'>{ first } { last } </span>
+					<span className = 'ml3'>{ first } { last } </span>
 				</div>
 			</div>
 		)
