@@ -19,11 +19,11 @@ Registration pages :
     
 Home page (still being worked on):    
     
-![home page](https://puu.sh/BPaw5/29c5b184c3.jpg)          
+![home page](http://puu.sh/C15UJ/7bd142070d.jpg)          
     
-![messaging](https://puu.sh/BPazj/16c630c729.jpg)   
+![messaging](http://puu.sh/C15St/bc6660b094.jpg)   
     
-![groupchat](https://puu.sh/BPaC4/ca0b2f3626.jpg)    
+![groupchat](http://puu.sh/C15Uq/0e4d4b240c.jpg)    
 
 
 ![viewingprofile](https://puu.sh/BNULS/52a71c869a.jpg)
