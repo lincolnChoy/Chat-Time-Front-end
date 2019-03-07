@@ -17,12 +17,12 @@ export const TARGET_PROFILE = 'TARGET_PROFILE';
 export const FORM_STATE_SET = 'FORM_STATE_SET';
 
 /* API response codes */
-export const SUCCESS = '0';
-export const WRONG_CRED = '1';
-export const USER_NOT_EXIST = '2';
-export const NOT_COMPLETE = '3';
-export const INVALID_PARAMS = '4';
-export const EXISTING_EMAIL = '6';
+export const SUCCESS = 0;
+export const WRONG_CRED = 1;
+export const USER_NOT_EXIST = 2;
+export const NOT_COMPLETE = 3;
+export const INVALID_PARAMS = 4;
+export const EXISTING_EMAIL = 6;
 
 export const RESET = 'RESET';
 export const PW_MISMATCH = 'PW_MISMATCH';
@@ -99,6 +99,5 @@ export const GROUP_CREATED = 'GROUP_CREATED';
 export const GROUP_FAILED = 'GROUP_FAILED';
 
 
-// export const DOMAIN = 'https://chat-time-api.herokuapp.com/';
-//export const DOMAIN = 'http://222.155.4.117:3000/';
-export const DOMAIN = 'http://localhost:3001/';
+export const DOMAIN = 'https://chat-time-api.herokuapp.com/';
+// export const DOMAIN = 'http://localhost:3001/';
