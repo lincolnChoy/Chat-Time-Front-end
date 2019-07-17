@@ -65,13 +65,8 @@ class SignInForm extends React.Component {
 				/* Save the user in state, then route change */
 				/* Signed in */
 				setFormState(RESET);
-				const user = {
-					first : signInResponse.first,
-					last : signInResponse.last,
-					id : signInResponse.id,
-					picture : signInResponse.picture,
-					pw : this.props.pw
-				}
+				let user = signInResponse.user;
+				user = Object.assign({}, user, { pw: this.props.pw});
 				loadUser(user);
 				changeRoute(HOME);
 			}

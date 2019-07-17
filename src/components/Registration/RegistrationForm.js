@@ -70,13 +70,9 @@ class RegistrationForm extends React.Component {
 				/* Save the user in state, then route change */
 				/* Signed in */
 				setFormState(RESET);
-				const user = {
-					first : apiResponse.first,
-					last : apiResponse.last,
-					id : apiResponse.id,
-					picture : apiResponse.picture,
-					pw : pw
-				}
+
+				let user = apiResponse.user;
+				user = Object.assign({}, user, { pw: pw});
 				loadUser(user);
 				changeRoute(HOME);
 			}

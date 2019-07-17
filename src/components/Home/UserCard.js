@@ -27,6 +27,32 @@ class UserCard extends React.Component {
 		}
 	}
 
+	getLastOnline(lastSeen) {
+		const timeNow = (new Date()).getTime();
+
+		let lastOn = Math.floor((timeNow - (+lastSeen))/(60*1000));
+
+		/* More than 3 days ago */
+		if (lastOn >= 4320) {
+			return '>3d';
+		}
+		/* More than 1 day ago */
+		else if (lastOn >= 1440) {
+			return `${Math.floor(lastOn/(60*24))}d`;
+		}
+		/* More than one hour */
+		else if (lastOn >= 60) {
+			return `${Math.floor(lastOn/60)}h`;
+		}
+		else if (lastOn <= 1) {
+			return '1m';
+		}
+		else {
+			return `${lastOn}m`;
+		}
+		
+	}
+
 
 	render() {
 
@@ -43,13 +69,15 @@ class UserCard extends React.Component {
 		}
 
 		const timeNow = (new Date()).getTime();
+
 		let activity = '';
-		/* If on within last 2 minutes */
-		if (timeNow - lastSeen <= 120000) {
+		/* If on within last minute */
+		if (timeNow - lastSeen <=60000) {
 			activity = <img src = { active } alt = '' height = '10px' width = '10px' />
 		}
 		else {
-			activity = <img src = '' alt = '' height = '10px' width = '10px' />
+			const time = this.getLastOnline(lastSeen);
+			activity = <p>{time}</p>
 		}
 
 		return (
