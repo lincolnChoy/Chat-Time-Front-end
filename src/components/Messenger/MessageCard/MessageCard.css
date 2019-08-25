@@ -1,0 +1,56 @@
+.sending-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5em;
+}
+
+.receiving-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0.5em;
+}
+
+.msg-card-image {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	max-width: 500px;
+	word-wrap: break-word;
+	border-radius: 1rem;
+	padding-top : 0.3em;
+    padding-bottom : 0.3em;
+}
+
+
+.msg-card {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	max-width: 500px;
+	word-wrap: break-word;
+	border-radius: 1rem;
+	padding-top : 0.15em;
+    padding-bottom : 0.15em;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+}
+
+.msg-card-image img {
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.chat-head-container {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius : 100%;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.chat-head-container img {
+    height: 100%;
+    width : 100%;
+    object-fit: cover;
+}

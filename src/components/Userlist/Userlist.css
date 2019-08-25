@@ -1,0 +1,22 @@
+.list-container {
+    min-width: 300px;
+    min-height: 500px;
+    margin-right: 1em;
+    text-align: center;
+}
+
+.list-container h3 {
+    font-weight: lighter;
+}
+
+.list-content {
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+@media only screen and (max-width: 800px) {
+    .list-container {
+        width: 90%;
+        height: 50%;
+    }
+}

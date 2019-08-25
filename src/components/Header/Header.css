@@ -1,0 +1,31 @@
+.header-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.header-button-group {
+	display: flex;
+}
+
+.header-button {
+    border: none;
+	padding: 1.3em;
+	cursor: pointer;
+	background: transparent;
+	font-weight: lighter;
+}
+
+.header-loading {
+	display: flex;
+	align-items: center;
+}
+
+.profile-group {
+	display: flex;
+}
+
+.header-button:hover {
+	opacity: 0.5;
+}

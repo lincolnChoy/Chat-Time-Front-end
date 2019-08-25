@@ -2,33 +2,15 @@ html {
 	height : 100%;
 }
 
-
 body {
-	font-family: segoe;
+	font-family: 'Segoe UI';
 	margin: 0;
 	padding: 0;
 	height : 100%;
 	width: 100%;
-	background : #ffa751;
-
+	font-weight: lighter;
 }
 
-h1 {
-	font-family : segoe;
-}
-
-
-
-.form {
-	background-color : rgba(255,255,255,0.1);
-}
-
-@font-face {
-	font-family : main;
-	src : url(KGBehindTheseHazelEyes.ttf);
-}
-
-@font-face {
-	font-family: segoe;
-	src: url(font.ttf);
+#root {
+	height: 100%;
 }

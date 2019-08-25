@@ -1,0 +1,64 @@
+.messenger-container {
+    flex: 1;
+    height: 100%;
+}
+
+.messenger-body {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.name-container {
+    text-align: center;
+    cursor: pointer;
+    padding: 1em;
+}
+
+.name-container:hover {
+    opacity: 0.5;
+}
+
+.messages-container {
+    padding-top: 1em;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 70vh;
+}
+
+.message-input-container {
+    margin-top: 0.2em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.send-button {
+    border-style: solid;
+    border-width: 1px;
+    padding: 0.8em;
+    margin-right: 0.2em;
+    background: transparent;
+    cursor: pointer;
+}
+
+.message-input {
+    border-width: 1px;
+    border-style: solid;
+    width: 100%;
+    background: transparent;
+}
+
+
+.image-upload > input {
+    display: none;
+}
+
+.image-upload img {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+    .messenger-container {
+        width: 90%;
+    }
+}
