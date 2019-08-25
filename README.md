@@ -11,7 +11,7 @@ Middleware :
 .Redux    
 .Redux logger     
 
-Registration pages :     
+Screenshots:
 
 ![sign in page](https://i.imgur.com/A9kgEUN.png)    
     
