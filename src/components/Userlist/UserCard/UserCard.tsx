@@ -59,8 +59,8 @@ class UserCard extends React.Component<IProps,any> {
     }
 
     public render() {
-
         const activity = this.getActivity();
+
         return (
             <div className = "user-card-container" onClick = {this.setTarget}>
                 <div className = "dp">
@@ -69,7 +69,6 @@ class UserCard extends React.Component<IProps,any> {
                 <span>{this.props.user.first} {this.props.user.last}</span>
                 <div>{activity}</div>
             </div>
-
         )
     }
 }

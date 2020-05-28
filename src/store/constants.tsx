@@ -33,4 +33,4 @@ export const TOGGLE_THEME = 'TOGGLE_THEME';
 export const SET_THEME = 'SET_THEME';
 
 // export const ADDRESS = 'http://localhost:3001/';
-export const ADDRESS = 'https://chimemsa.azurewebsites.net/';
+export const ADDRESS = 'https://chime-api-v2.herokuapp.com/';

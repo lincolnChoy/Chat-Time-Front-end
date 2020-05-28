@@ -49,7 +49,6 @@ class ProfileEdit extends React.Component<IProps, IState> {
         }
     }
 
-
     public onChangeAbout = (event: any) => {
         this.setState({about: event.target.value});
     }
@@ -95,11 +94,9 @@ class ProfileEdit extends React.Component<IProps, IState> {
     }
 
     public render() {
-
         const { picture } = this.props.profile;
         
         return (
-
             <div className = "profile-main-container">
                     <div className = "profile-container">
                         <div className = "profile-pic-edit">
@@ -158,10 +155,8 @@ class ProfileEdit extends React.Component<IProps, IState> {
                         </div>
                     </div>
                 </div>
-
         )
     }
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileEdit);

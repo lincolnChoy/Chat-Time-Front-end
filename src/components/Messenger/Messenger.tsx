@@ -48,7 +48,6 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 class Messenger extends React.Component<IProps, IState> {
-
     public interval: any;
 
     constructor(props: any) {
@@ -78,7 +77,6 @@ class Messenger extends React.Component<IProps, IState> {
         clearInterval(this.interval);
     }
 
-
     public componentDidUpdate = () => {
 
         if (this.state.messagesLoaded === false) {
@@ -104,14 +102,12 @@ class Messenger extends React.Component<IProps, IState> {
         }, 0);
     }
 
-
     public viewProfile = () => {
         this.props.loadTarget(this.props.target.username);
         this.props.viewProfile();
     }
     
     public render() {
-
         const { messages } = this.props;
 
         let messageList: any[] = [];
@@ -129,7 +125,7 @@ class Messenger extends React.Component<IProps, IState> {
                 
                 /* Error check */
                 if (message.sender !== this.props.target.username && message.destination !== this.props.target.username) {
-                    isInvalid=true;
+                    isInvalid = true;
                 }
                 return (
                     <MessageCard 

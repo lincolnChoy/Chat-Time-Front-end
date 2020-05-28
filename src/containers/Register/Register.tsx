@@ -46,7 +46,6 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 class Register extends React.Component<IProps, IState> {
-
     constructor(props: any) {
         super(props);
         this.state = {
@@ -165,7 +164,6 @@ class Register extends React.Component<IProps, IState> {
                     </div>
                 </div>
             </div>
-
         )
     }
 }

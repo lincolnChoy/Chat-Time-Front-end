@@ -16,13 +16,11 @@ interface IProps {
 }
 
 class MessageCard extends React.Component<IProps, {}> {
-
     constructor(props: any) {
         super(props);
     }
 
     public render() {
-
         const { message, isImage, isSending, userPic, targetPic, isConsecutive, theme } = this.props;
 
         let finalMessage;
@@ -30,38 +28,37 @@ class MessageCard extends React.Component<IProps, {}> {
         /* If message is an image */
         if (isImage === 1) {
             finalMessage = 
-            <div className = "msg-card-image">
-                <img src = { message } alt = "message image" width = "200px" />
-            </div>
+                <div className = "msg-card-image">
+                    <img src = { message } alt = "message image" width = "200px" />
+                </div>
         }
     
         /* If message is simple text */
         else {
             if (isSending) {
                 finalMessage = 
-                <div className = "msg-card" style = {{
-                        color: getColor(theme, 'msgSenderColor'), 
-                        backgroundColor: getColor(theme, 'msgSender')
-                    }}>
-                    { message }
-                </div>
+                    <div className = "msg-card" style = {{
+                            color: getColor(theme, 'msgSenderColor'), 
+                            backgroundColor: getColor(theme, 'msgSender')
+                        }}>
+                        { message }
+                    </div>
             }
             else {
                 finalMessage = 
-                <div className = "msg-card" style = {{color: getColor(theme, 'msgReceiverColor'), backgroundColor: getColor(theme, 'msgReceiver')}}>
-                    { message }
-                </div>
+                    <div className = "msg-card" style = {{color: getColor(theme, 'msgReceiverColor'), backgroundColor: getColor(theme, 'msgReceiver')}}>
+                        { message }
+                    </div>
             }
         }
-    
     
         if (isSending) {
             let chatHead;
 
             if (!isConsecutive) {
-                chatHead = <img 
-                    src = { userPic }
-                    alt = ''/>
+                chatHead = 
+                    <img src = {userPic}
+                        alt = ''/>
             }
             return (
                 <div className = "sending-container">
@@ -74,12 +71,12 @@ class MessageCard extends React.Component<IProps, {}> {
         }
         else {
             let chatHead;
+            
             if (!isConsecutive) {
-                chatHead = <img 
-                src = { targetPic }
-                alt = ''/>
+                chatHead = 
+                    <img src = {targetPic}
+                        alt = ''/>
             }
-
     
             return (
                 <div className = "receiving-container">

@@ -25,7 +25,6 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 class Userlist extends React.Component<any, any> {
-
     private interval: any;
 
     constructor(props: any) {

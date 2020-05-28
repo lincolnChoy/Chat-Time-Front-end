@@ -39,7 +39,6 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 class Profile extends React.Component<IProps, IState> {
-
     constructor(props: any) {
         super(props);
         this.state = {
@@ -56,8 +55,8 @@ class Profile extends React.Component<IProps, IState> {
     }
 
     public render() {
-
         let stateMessage = null;
+
         if (this.props.updateState === 'SUCCESS') {
             stateMessage = <p>Successfully updated profile!</p>;
         }
@@ -68,55 +67,53 @@ class Profile extends React.Component<IProps, IState> {
         return (
             <div className = "profile-page-container" style = {{borderColor: getColor(this.props.theme, 'border')}}>
                 <Header />
-                {(this.props.profile === null) ?
-                <Loading isLoading={true} />
-                :
-                (this.state.editMode) ? 
-                <ProfileEdit profile = {this.props.profile} toggleEditMode = {this.toggleEditMode}/>
-                :
-                <div className = "profile-main-container">
-                    <div className = "profile-container">
-                        <div className = "profile-pic-edit">
-                            <img src = {this.props.profile.picture} className = "profile-picture" />
-                        </div>
-                        <div className = "profile-details">
-                            <div>
-                                <div className = "profile-item">
-                                    <h3>{this.props.profile.first} {this.props.profile.last}</h3>
-                                </div>
-                                <div className = "profile-item">
-                                    <span>About me: {this.props.profile.about}</span>
-                                </div>
-                                <div className = "profile-item">
-                                    <span>Location: {this.props.profile.location}</span>
-                                </div>
-                                <div className = "profile-item">
-                                    <span>Occupation: {this.props.profile.occupation}</span>
-                                </div>
-                                <div className = "profile-item">
-                                    <span>Birthday: {this.props.profile.birthday}</span>   
+                {
+                    (this.props.profile === null) 
+                        ? <Loading isLoading={true} />
+                        : (this.state.editMode) 
+                            ? <ProfileEdit profile = {this.props.profile} toggleEditMode = {this.toggleEditMode}/>
+                            : 
+                            <div className = "profile-main-container">
+                                <div className = "profile-container">
+                                    <div className = "profile-pic-edit">
+                                        <img src = {this.props.profile.picture} className = "profile-picture" />
+                                    </div>
+                                    <div className = "profile-details">
+                                        <div>
+                                            <div className = "profile-item">
+                                                <h3>{this.props.profile.first} {this.props.profile.last}</h3>
+                                            </div>
+                                            <div className = "profile-item">
+                                                <span>About me: {this.props.profile.about}</span>
+                                            </div>
+                                            <div className = "profile-item">
+                                                <span>Location: {this.props.profile.location}</span>
+                                            </div>
+                                            <div className = "profile-item">
+                                                <span>Occupation: {this.props.profile.occupation}</span>
+                                            </div>
+                                            <div className = "profile-item">
+                                                <span>Birthday: {this.props.profile.birthday}</span>   
+                                            </div>
+                                        </div>
+                                        {(this.props.updateState ==='PENDING') ?
+                                        <Loading isLoading = {true}/>
+                                        :
+                                        (this.props.user === this.props.target)  ?
+                                        <button 
+                                            onClick = {this.toggleEditMode} 
+                                            className = "edit-button" 
+                                            style = {{backgroundColor: getColor(this.props.theme, 'button'), color: getColor(this.props.theme, 'btnText'), borderColor: getColor(this.props.theme, 'border')}}
+                                            >Edit</button>
+                                        :
+                                        null
+                                        }
+                                        {stateMessage}
+
+                                    </div>
                                 </div>
                             </div>
-                            {(this.props.updateState ==='PENDING') ?
-                            <Loading isLoading = {true}/>
-                            :
-                            (this.props.user === this.props.target)  ?
-                            <button 
-                                onClick = {this.toggleEditMode} 
-                                className = "edit-button" 
-                                style = {{backgroundColor: getColor(this.props.theme, 'button'), color: getColor(this.props.theme, 'btnText'), borderColor: getColor(this.props.theme, 'border')}}
-                                >Edit</button>
-                            :
-                            null
-                            }
-                            {stateMessage}
-
-                        </div>
-                    </div>
-                </div>
-
                 }
-
             </div>
         )
     }

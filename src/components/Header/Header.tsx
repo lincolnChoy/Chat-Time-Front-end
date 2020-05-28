@@ -46,11 +46,9 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 class Header extends React.Component<IProps, {}> {
-
     constructor(props: IProps) {
         super(props);
     }
-
 
     public componentDidUpdate = () => {
         if (this.props.deleteResponse === 'SUCCESS') {
@@ -75,12 +73,12 @@ class Header extends React.Component<IProps, {}> {
     }
 
     public render() {
-
         let extraProfile;
 
         if (this.props.target === this.props.user) {
             extraProfile = 
-            <div className = "header-button" style = {{ color: getColor(this.props.theme,'color')}} onClick = {this.deleteProfile}>Delete account</div>;
+                <div className = "header-button" style = {{ color: getColor(this.props.theme,'color')}} onClick = {this.deleteProfile}>Delete account</div>;
+                
             if (this.props.deleteResponse === 'PENDING') {
                 extraProfile = 
                 <div className = "header-loading">
@@ -105,7 +103,6 @@ class Header extends React.Component<IProps, {}> {
                     }
                     <div className = "header-button" style = {{ color: getColor(this.props.theme,'color')}} onClick = {this.props.logout}>Sign out</div>
                 </div>
-
             </div>
         )
     }

@@ -32,10 +32,7 @@ const mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-
-
 class MessageInput extends React.Component<IProps, IState> {
-
     constructor(props: any) {
         super(props);
 
@@ -71,15 +68,12 @@ class MessageInput extends React.Component<IProps, IState> {
             this.setState({ input: ""});
         }
     }
-
     
     public uploadAndSend = (event: any) => {
-
 		/* Grab the file and read as a base64 string */
 		const file = event.target.files[0];
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
-
 		
 		const { sendMessageAction, target, authData } = this.props;
 
@@ -100,12 +94,9 @@ class MessageInput extends React.Component<IProps, IState> {
 		}
 	}
 
-
-
     public render() {
         return (
         <div className = "message-input-container">
-                        
             <input 
                 className = "message-input"
                 style = {{color: getColor(this.props.theme, 'color'), borderColor: getColor(this.props.theme, 'color')}}
